@@ -1,0 +1,73 @@
+// Place all the styles related to the Main controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+nav {
+    position: fixed;
+    height: 100px;
+    width: 100%;
+    z-index: 2;
+}
+
+body {
+    margin: 0;
+}
+
+
+#image {
+    position: relative;
+    z-index: -1;
+}
+
+#tile1 {
+    height: 750px;
+    width: 100%;
+    margin-top: -10px;
+    background-color: #03a9f4;
+    position: relative;
+    z-index: 1;
+}
+
+
+#tile2 {
+    height: 750px;
+    width: 100%;
+    margin-top: -10px;
+    background-color: #03a9f4;
+    position: relative;
+    z-index: 1;
+}
+
+#char {
+    float: right;
+    padding-right: 50px;
+    z-index: 3;
+}
+
+div#title {
+    top: 0;
+
+}
+
+h1 {
+    color: white;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 150px;
+    font-weight: bold;
+    letter-spacing: -1px;
+    line-height: 1;
+    text-align: center;
+    margin: 0 0 15 0;
+}
+
+p {
+    color: white;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 25px;
+    font-weight: bold;
+    letter-spacing: -1px;
+    line-height: 1;
+    text-align: center;
+    padding-top: 300px;
+    }
