@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  text: MyText
+  time_stamp: 2016-11-18 03:27:07
+  job_id: 1
+
+two:
+  text: MyText
+  time_stamp: 2016-11-18 03:27:07
+  job_id: 1

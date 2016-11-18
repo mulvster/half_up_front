@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  employer_id: 1
+  freelancer_id: 1
+  date_initiated: 2016-11-18 03:17:35
+  start_date: 2016-11-18 03:17:35
+  end_date: 2016-11-18 03:17:35
+  contract_text: MyText
+  contract_pdf: 
+  contract_signed: false
+  contract_completed: false
+  employer_review: MyText
+  employer_rating: 1
+  freelancer_review: MyText
+  freelancer_rating: 1
+
+two:
+  employer_id: 1
+  freelancer_id: 1
+  date_initiated: 2016-11-18 03:17:35
+  start_date: 2016-11-18 03:17:35
+  end_date: 2016-11-18 03:17:35
+  contract_text: MyText
+  contract_pdf: 
+  contract_signed: false
+  contract_completed: false
+  employer_review: MyText
+  employer_rating: 1
+  freelancer_review: MyText
+  freelancer_rating: 1

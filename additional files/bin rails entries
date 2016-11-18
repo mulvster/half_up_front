@@ -1,0 +1,13 @@
+bin/rails generate model Job employer_id:integer freelancer_id:integer date_initiated:datetime start_date:datetime end_date:datetime contract_text:text contract_pdf:binary contract_signed:boolean contract_completed:boolean employer_review:text employer_rating:integer freelancer_review:text freelancer_rating:integer
+
+bin/rails generate model User first_name:string last_name:string profile_image:binary city:string province:string country:string summary:text paypal_acct:string description:text email:string password_digest:string user_type:string company_name:string company_url:string job_title:string stack:text git:string linked_in:string personal_url:string
+
+bin/rails generate model Milestone name:string start_date:datetime end_date:date_time payment_percentage:integer payment_renegotiable:boolean requirements_summary:text milestone_elaboration:text all_requirements_renegotiable:boolean job_id:integer completed:boolean
+
+bin/rails generate model Requirement name:string details:text renegotiable:boolean milestone_id:integer
+
+bin/rails generate model Chat_log text:text time_stamp:datetime job_id:integer
+
+bin/rails generate model Attachment name:string description:text data:binary milestone_id:integer
+
+bin/rails generate model Comment text:text requirement_id:integer

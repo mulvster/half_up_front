@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  start_date: 2016-11-18 03:24:08
+  end_date: 
+  payment_percentage: 1
+  payment_renegotiable: false
+  requirements_summary: MyText
+  milestone_elaboration: MyText
+  all_requirements_renegotiable: false
+  job_id: 1
+  completed: false
+
+two:
+  name: MyString
+  start_date: 2016-11-18 03:24:08
+  end_date: 
+  payment_percentage: 1
+  payment_renegotiable: false
+  requirements_summary: MyText
+  milestone_elaboration: MyText
+  all_requirements_renegotiable: false
+  job_id: 1
+  completed: false
