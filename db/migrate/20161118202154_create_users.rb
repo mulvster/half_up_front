@@ -8,6 +8,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :province
       t.string :country
       t.text :summary
+      t.integer :hourly_rate
       t.string :paypal_acct
       t.text :description
       t.string :email

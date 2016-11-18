@@ -3,11 +3,12 @@
 one:
   employer_id: 1
   freelancer_id: 1
-  date_initiated: 2016-11-18 03:17:35
-  start_date: 2016-11-18 03:17:35
-  end_date: 2016-11-18 03:17:35
+  date_initiated: 2016-11-18 20:22:08
+  start_date: 2016-11-18 20:22:08
+  end_date: 2016-11-18 20:22:08
   contract_text: MyText
   contract_pdf: 
+  final_budget: 1
   contract_signed: false
   contract_completed: false
   employer_review: MyText
@@ -18,11 +19,12 @@ one:
 two:
   employer_id: 1
   freelancer_id: 1
-  date_initiated: 2016-11-18 03:17:35
-  start_date: 2016-11-18 03:17:35
-  end_date: 2016-11-18 03:17:35
+  date_initiated: 2016-11-18 20:22:08
+  start_date: 2016-11-18 20:22:08
+  end_date: 2016-11-18 20:22:08
   contract_text: MyText
   contract_pdf: 
+  final_budget: 1
   contract_signed: false
   contract_completed: false
   employer_review: MyText

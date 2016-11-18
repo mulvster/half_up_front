@@ -8,6 +8,7 @@ one:
   province: MyString
   country: MyString
   summary: MyText
+  hourly_rate: 1
   paypal_acct: MyString
   description: MyText
   email: MyString
@@ -29,6 +30,7 @@ two:
   province: MyString
   country: MyString
   summary: MyText
+  hourly_rate: 1
   paypal_acct: MyString
   description: MyText
   email: MyString

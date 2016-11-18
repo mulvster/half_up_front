@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161118032856) do
+ActiveRecord::Schema.define(version: 20161118202208) do
 
   create_table "attachments", force: :cascade do |t|
     t.string   "name"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20161118032856) do
     t.datetime "end_date"
     t.text     "contract_text"
     t.binary   "contract_pdf"
+    t.integer  "final_budget"
     t.boolean  "contract_signed"
     t.boolean  "contract_completed"
     t.text     "employer_review"
@@ -87,6 +88,7 @@ ActiveRecord::Schema.define(version: 20161118032856) do
     t.string   "province"
     t.string   "country"
     t.text     "summary"
+    t.integer  "hourly_rate"
     t.string   "paypal_acct"
     t.text     "description"
     t.string   "email"

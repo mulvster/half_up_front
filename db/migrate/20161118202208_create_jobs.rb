@@ -8,6 +8,7 @@ class CreateJobs < ActiveRecord::Migration
       t.datetime :end_date
       t.text :contract_text
       t.binary :contract_pdf
+      t.integer :final_budget
       t.boolean :contract_signed
       t.boolean :contract_completed
       t.text :employer_review
