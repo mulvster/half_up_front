@@ -8,6 +8,7 @@ Bundler.require(*Rails.groups)
 
 module HalfUpFront
   class Application < Rails::Application
+    config.web_console.whitelisted_ips = '10.0.2.2'
     config.assets.paths << Rails.root.join("app", "assets", "fonts")
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
