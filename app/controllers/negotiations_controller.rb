@@ -1,0 +1,2 @@
+class NegotiationsController < ApplicationController
+end

@@ -1,0 +1,22 @@
+<h1>Editing User</h1>
+
+
+  <%= form_for :user, url: '/users' do |f| %>
+
+  First Name: <%= f.text_field :first_name %>
+  Last Name: <%= f.text_field :last_name %>
+  User Type: <%= f.select :user_type, [['Freelancer', 1], ['Employer', 2]]%>
+  Email: <%= f.text_field :email %>
+  Password: <%= f.password_field :password %>
+  Password Confirmation: <%= f.password_field :password_confirmation %>
+
+Profile Picture: <%= f.file_field :profile_image %>
+  City: <%= f.text_field :city %>
+  Province: <%= f.text_field :province %>
+  Country: <%= f.text_field :country %>
+  Biography: <%= f.text_area :summary %>
+  Hourly Wage: <%= f.text_field :integer %>
+  Paypal Account: <%= f.text_field :paypal_acct %>
+  Description: <%= f.text_area :description %>
+
+  <%= f.submit "Submit" %>
