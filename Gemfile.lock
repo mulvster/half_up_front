@@ -82,6 +82,8 @@ GEM
     faye-websocket (0.10.5)
       eventmachine (>= 0.12.0)
       websocket-driver (>= 0.5.1)
+    font-awesome-rails (4.7.0.0)
+      railties (>= 3.2, < 5.1)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     hiredis (0.6.1)
@@ -187,6 +189,7 @@ DEPENDENCIES
   bootstrap (~> 4.0.0.alpha5)
   byebug
   coffee-rails (~> 4.1.0)
+  font-awesome-rails
   jbuilder (~> 2.0)
   jquery-rails
   rails (= 4.2.6)

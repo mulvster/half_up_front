@@ -1,3 +1,30 @@
-<p id="notice"><%= notice %></p>
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" type="text/css" href="/show.scss">
+<body>
+<nav>
+  <button id="edit">EDIT BUTTON</button>
+</nav>
+<main>
+<div>
+  <%= image_tag 'profile_avatar', id: "logo", alt: "logo", height: '80px' %>
+</div>
+  <h3 class="name">April</h3>
+  <br></br>
+  <h3 class="job">Rails Developer</h3>
+  <br></br>
+  <h3 class="location">Vancouver,BC</h3>
 
-THIS PAGE WILL SHOW A SPECIFIC USER
+<section>
+  <p id="portext">Portfolio</p>
+  <span class="personal" role="navigation">
+    <a href="http://www.github.com">Github</a>
+    <a href="#http://www.linkedin.com">LinkedIn</a>
+    <a href="http://www.facebook.com">Facebook</a>
+    <a href="http://www.aprilmulvey.com">Personal Website</a>
+</section>
+</main>
+
+</body>
+</html>
+
