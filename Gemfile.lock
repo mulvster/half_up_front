@@ -53,8 +53,13 @@ GEM
       tzinfo (~> 1.1)
     arel (6.0.3)
     bcrypt (3.1.11)
+    autoprefixer-rails (6.5.3)
+      execjs
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bootstrap (4.0.0.alpha5)
+      autoprefixer-rails (>= 6.0.3)
+      sass (>= 3.4.19)
     builder (3.2.2)
     byebug (9.0.6)
     celluloid (0.16.0)
@@ -181,6 +186,7 @@ PLATFORMS
 DEPENDENCIES
   actioncable!
   bcrypt (~> 3.1.7)
+  bootstrap (~> 4.0.0.alpha5)
   byebug
   coffee-rails (~> 4.1.0)
   font-awesome-rails
