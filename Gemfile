@@ -27,6 +27,12 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 #Action Cable for Real-time communications (Milestones)
 gem 'actioncable', git: 'git@github.com:rails/actioncable', branch: 'archive'
 
+#Font-Awesome Icons
+gem "font-awesome-rails"
+
+gem 'bootstrap', '~> 4.0.0.alpha5'
+
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
