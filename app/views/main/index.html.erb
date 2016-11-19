@@ -1,35 +1,26 @@
 <!DOCTYPE HTML>
 <html>                      <!-- Kyle made this -->
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Half Up Front</title>
-  <link rel="stylesheet" type="text/css" href="/main.scss">
-  <% stylesheet_link_tag "application" %>
 </head>
-
 <body>
-<nav>
-  <%= image_tag 'logo.png', id: 'logo', alt: 'logo', height: '80px' %>
-</nav>
 <main>
 
   <div id="paralax-container">
     <%= image_tag 'desk.jpg', id: 'image', alt: 'desk and keyboard', height: '1200px', width: '100%' %>
     <div id="title">
-      <h1>HALF UP FRONT</h1>
-      <p>Let's work together</p>
+      <h1 class ="homepage">HALF UP FRONT</h1>
+      <p class="homepage">Let's work together</p>
     </div>
   </div>
 
   <section id="valuestory" class="slide header">
     <div>
-      <h2 class="FF">Freddy Freelancer </h2>
+      <h2 class="Freddy">Freddy Freelancer </h2>
       <%= image_tag 'freelancer.png', id: 'freelancer', alt: 'freelancer', height: '250px', width: '250px' %>
     </div>
 
     <div>
-      <H2 class="EE">Employer Edna</H2>
+      <H2 class="Employer">Employer Edna</H2>
       <%= image_tag 'employer.png', id: 'employer', alt: 'employer', height: '250px', width: '250px' %>
     </div>
   </section>
