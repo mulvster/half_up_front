@@ -1,12 +1,16 @@
-<h1>Signup!</h1>
+<h1>Signup for Half Up Front!</h1>
 
 ***THIS PAGE IS SIGNING UP FOR HUF***
 <%= form_for :user, url: '/users' do |f| %>
 
-  Name: <%= f.text_field :name %>
+  First Name: <%= f.text_field :first_name %>
+  Last Name: <%= f.text_field :last_name %>
+  User Type: <%= f.select :user_type, [['Freelancer', 1], ['Employer', 2]]%>
   Email: <%= f.text_field :email %>
   Password: <%= f.password_field :password %>
   Password Confirmation: <%= f.password_field :password_confirmation %>
+
+
   <%= f.submit "Submit" %>
 
 <% end %>
