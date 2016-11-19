@@ -39,6 +39,7 @@ gem 'actioncable', git: 'git@github.com:rails/actioncable', branch: 'archive'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'pry'
 end
 
 group :development do
