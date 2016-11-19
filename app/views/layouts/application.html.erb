@@ -13,9 +13,9 @@
 <nav>
   <%= image_tag 'logo.png', id: 'logo', alt: 'logo', height: '80px' %>
 </nav>
-<body>
+<body class="<%= yield :body_class %>">
 
-<%= yield %>
+  <%= yield %>
 
 </body>
 </html>
