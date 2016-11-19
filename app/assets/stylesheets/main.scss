@@ -2,6 +2,16 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@font-face {
+        font-family: 'Alcubierre';
+        src: font-url('Alcubirre.otf');
+}
+
+
+html, body {
+        margin: 0;
+        height: 100%;
+}
 
 
 nav {
@@ -11,7 +21,52 @@ nav {
     z-index: 2;
 }
 
+#paralax-container {
+    background: black;
+    min-height: 500px;
+    overflow: hidden;
+    position: relative;
+}
 
+#image {
+    background: no-repeat 50% 50%;
+    background-size: cover;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+div#title {
+    border: 5px solid white;
+    left: 52.5%;
+    position: absolute;
+    text-align: center;
+    top: 175px;
+    transform: translate(-50%);
+    width: 950px;
+
+}
+
+h1.homepage {
+    color: white;
+    font-family: 'Alcubierre';
+    font-size: 100px;
+    letter-spacing: 5px;
+    line-height: 1;
+    text-align: center;
+}
+
+p.homepage {
+    color: white;
+    font-family: 'Alcubierre';
+    font-size: 50px;
+    font-style: italic;
+    letter-spacing: 2px;
+    line-height: 1;
+    text-align: center;
+}
 
 
 #valuestory {
@@ -31,118 +86,34 @@ background-image:
 }
 
 
-#tile2 {
-    height: 750px;
-    width: 100%;
-    margin-top: -10px;
-    background-color: #062b93;
-    background-color: #062b93;
-background-image:
-  -webkit-linear-gradient(top left, #242366, #3c7cab);
-background-image:
-  -o-linear-gradient(top left, #242366, #3c7cab);
-background-image:
-  linear-gradient(to bottom right, #242366, #3c7cab);;
-    
-    position: relative;
-    z-index: 1;
-}
-
 #employer {
     float: left;
     z-index: 3;
-    padding-top: 200px;
+    margin-top: 200px;
 }
-
-h2.EE {
-    color: white;
-    float: left;
-    z-index: -5;
-    padding-top: 100px;
-
-}
-
 
 #freelancer {
     float: right;
     z-index: 3;
-    padding-top: 200px;
-    margin: 0;
+    margin-top: 200px;
 }
 
-h2.FF {
+h2.Employer {
+    font-family: 'Alcubierre';
+    color: white;
+    float: left;
+    z-index: -5;
+    padding-top: 100px;
+    letter-spacing: 5px;
+
+}
+
+
+h2.Freddy {
+    font-family: 'Alcubierre';
     color: white;
     float: right;
     z-index: -5;
     padding-top: 100px;
-}
-
-
-
-
-@font-face {
-        font-family: 'Alcubierre';
-        src: font-url('Alcubirre.otf');
-    }
-
-h1 {
-    color: white;
-    font-family: 'Alcubierre';
-    font-size: 100px;
-    letter-spacing: 5px;
-    line-height: 1;
-    text-align: center;
-}
-
-p {
-    color: white;
-    font-family: 'Alcubierre';
-    font-size: 50px;
-    font-style: italic;
     letter-spacing: 2px;
-    line-height: 1;
-    text-align: center;
-    }
-
-h2 {
-    font-family: 'Alcubierre';
-    letter-spacing: 4px;
 }
-
-h3 {
-    color: white;
-}
-
-div#title {
-    border: 5px solid white;
-    left: 52.5%;
-    position: absolute;
-    text-align: center;
-    top: 175px;
-    transform: translate(-50%);
-    width: 950px;
-
-}
-
-/*Parallax Effects*/
-html, body {
-        margin: 0;
-        height: 100%;
-    }
-
-    #paralax-container {
-        background: black;
-        min-height: 500px;
-        overflow: hidden;
-        position: relative;
-    }
-
-    #image {
-        background: no-repeat 50% 50%;
-        background-size: cover;
-        height: 100%;
-        left: 0;
-        position: absolute;
-        right: 0;
-        top: 0;
-    }
