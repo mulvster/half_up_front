@@ -7,6 +7,13 @@ Rails.application.routes.draw do
 
   resources :main, only: [:index]
 
+  resources :sessions, only: [:new, :create, :destroy]
+
+  resources :users, only: [:create, :new, :edit, :show]
+
+  resources :jobs, only: [:show, :edit, :destroy, :index]
+
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
