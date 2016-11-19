@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
+
   <title>HalfUpFront</title>
 
   <%= link_to 'Sign Up', new_user_path %>
   <%= link_to 'Log In', new_session_path %>
+
+
+  <title>Half Up Front</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" rel="stylesheet">
@@ -13,6 +19,9 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
+<nav>
+  <%= image_tag 'logo.png', id: 'logo', alt: 'logo', height: '80px' %>
+</nav>
 <body>
 
 <%= render 'layouts/top_nav' %>
