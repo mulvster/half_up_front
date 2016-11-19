@@ -21,14 +21,17 @@ nav {
     z-index: 2;
 }
 
-#paralax-container {
+
+body.homepage{
+
+  #paralax-container {
     background: black;
     min-height: 500px;
     overflow: hidden;
     position: relative;
-}
+  }
 
-#image {
+  #image {
     background: no-repeat 50% 50%;
     background-size: cover;
     height: 100%;
@@ -36,9 +39,9 @@ nav {
     position: absolute;
     right: 0;
     top: 0;
-}
+  }
 
-div#title {
+  div#title {
     border: 5px solid white;
     left: 52.5%;
     position: absolute;
@@ -47,18 +50,18 @@ div#title {
     transform: translate(-50%);
     width: 950px;
 
-}
+  }
 
-h1.homepage {
+  h1.homepage {
     color: white;
     font-family: 'Alcubierre';
     font-size: 100px;
     letter-spacing: 5px;
     line-height: 1;
     text-align: center;
-}
+  }
 
-p.homepage {
+  p.homepage {
     color: white;
     font-family: 'Alcubierre';
     font-size: 50px;
@@ -66,39 +69,39 @@ p.homepage {
     letter-spacing: 2px;
     line-height: 1;
     text-align: center;
-}
+  }
 
 
-#valuestory {
+  #valuestory {
     height: 1250px;
     width: 100%;
     margin-top: -10px;
     background-color: #062b93;
-background-image:
-  -webkit-linear-gradient(top left, #242366, #3c7cab);
-background-image:
-  -o-linear-gradient(top left, #242366, #3c7cab);
-background-image:
-  linear-gradient(to bottom right, #242366, #3c7cab);;
+    background-image:
+            -webkit-linear-gradient(top left, #242366, #3c7cab);
+    background-image:
+            -o-linear-gradient(top left, #242366, #3c7cab);
+    background-image:
+            linear-gradient(to bottom right, #242366, #3c7cab);;
 
     position: relative;
     z-index: 1;
-}
+  }
 
 
-#employer {
+  #employer {
     float: left;
     z-index: 3;
     margin-top: 200px;
-}
+  }
 
-#freelancer {
+  #freelancer {
     float: right;
     z-index: 3;
     margin-top: 200px;
-}
+  }
 
-h2.Employer {
+  h2.Employer {
     font-family: 'Alcubierre';
     color: white;
     float: left;
@@ -106,14 +109,16 @@ h2.Employer {
     padding-top: 100px;
     letter-spacing: 5px;
 
-}
+  }
 
 
-h2.Freddy {
+  h2.Freddy {
     font-family: 'Alcubierre';
     color: white;
     float: right;
     z-index: -5;
     padding-top: 100px;
     letter-spacing: 2px;
+  }
+
 }

@@ -22,11 +22,13 @@
 <nav>
   <%= image_tag 'logo.png', id: 'logo', alt: 'logo', height: '80px' %>
 </nav>
-<body>
+<body class="<%= yield :body_class %>">
+
 
 <%= render 'layouts/top_nav' %>
 
-<%= yield %>
+  <%= yield %>
+
 
 </body>
 </html>
