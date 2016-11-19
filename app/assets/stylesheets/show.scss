@@ -1,0 +1,43 @@
+header {
+  color: blue;
+  font-family: 'Yanone Kaffeesatz';
+  font-size: 150px;
+  font-weight: bold;
+  letter-spacing: -1px;
+  line-height: 1;
+  text-align: center;
+  margin: 0 0 15 0;
+}
+
+.personal {
+  display: block;
+  text-align: center;
+}
+
+#logo {
+  padding-left: 100px;
+  float: left;
+  border-radius: 15px;
+}
+
+#edit {
+  float: right;
+}
+
+.name {
+  float: left;
+  margin: 0;
+  padding-left: 10px;
+}
+
+.job {
+  float: left;
+  margin: 0;
+  padding-left: 10px;
+}
+
+.location {
+  float: left;
+  margin: 0;
+  padding-left: 10px;
+}
