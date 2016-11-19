@@ -1,50 +1,41 @@
 <!DOCTYPE HTML>
 <html>                      <!-- Kyle made this -->
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Half Up Front</title>
-<script type="text/javascript">
-    var ypos;
-    var image;
-
-    function parallax() {
-        ypos = window.pageYOffset;
-        image = document.getElementById('image');
-        image.style.top = ypos * .8 + 'px';
-    };
-
-    window.addEventListener('scroll',parallax);
-</script>
 <link rel="stylesheet" type="text/css" href="/main.scss">
+<%stylesheet_link_tag "application"%>
+</head>
 
 <body>
 <nav>
-    <img id="logo" src="logo.png" height="80px" width="">
+    <%=image_tag 'logo.png', id:'logo', alt:'logo', height:'80px' %>
 </nav>
+    <main>
 
-</head>
-
-<div id="main">
-        <img id="image" src="officephoto2.jpg" height="710px" width="100%">
-        <h1>Half Up Front</h1>
-    <div id="title">
-
-    </div>
-</div>
-
-<div id="tile1" class="slide header">
-    <div>
-    <p>
-        Half Up Front allows freelancers to streamline their negotiations, receive payment and liability processes to allow both parties find common ground towards a project goal. Half up front allows freelancers to chat via video and text, where they can communicate and collaborate on a real time document to establish payment milestones, project targets and other commitments.
-    </p>
-
-    <img id="char" src="6.png" height="250px" width="250px">
-    </div>
-
-</div>
+        <div id="paralax-container">
+            <%=image_tag 'desk.jpg', id:'image', alt:'desk and keyboard', height: '1200px', width: '100%' %>
+            <div id="title">
+                <h1>HALF UP FRONT</h1>
+                <p>'Let's work together'</p>
+            </div>
+        </div>
 
 
-<img id="image" src="office2.jpg" height="650px" width="100%">
 
-<div id="tile2" class="slide header"></div>
+
+    <section id="valuestory" class="slide header">
+            <div>
+                <h2 class ="FF">Freddy Freelancer </h2>
+                <%=image_tag 'freelancer.png', id:'freelancer', alt:'freelancer', height:'250px', width:'250px' %>
+            </div>
+
+            <div>
+                <H2 class="EE">Employer Edna</H2>
+                <%=image_tag 'employer.png', id:'employer', alt:'employer', height:'250px', width:'250px' %>
+            </div>
+        </section>
+    </main>
 </body>
 </html>
