@@ -27,8 +27,12 @@ div.well.well-sm {
 }
 
 @media (min-width: 992px) {
-.col-md-offset-3 {
-  margin-left: 25%;
-  padding-top: 150px;
-}}
+  .col-md-offset-3 {
+    margin-left: 25%;
+    padding-top: 150px;
+  }
+}
 
+.edit {
+  float: right;
+}

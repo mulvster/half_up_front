@@ -1,6 +1,6 @@
 <%= provide(:body_class, 'users-show') %>
 <body class="users-show">
-<%= link_to 'Edit', edit_user_path(@user) %> | <%= link_to 'Back', user_path %>
+
 
 <div class="row">
 
@@ -9,14 +9,26 @@
 <div id="profile_page">
 
   <div class="container">
+    <
+
     <div class="row">
+
       <div class="col-xs-12 col-sm-6 col-md-6 col-md-offset-3">
         <div class="well well-sm ">
+          <div class="edit">
+            <%= link_to 'Edit', edit_user_path(@user) %>
+          </div>
           <div class="row">
             <div class="col-sm-6 col-md-4">
               <%= image_tag @user.profile_image, id: "logo", alt: "logo", height: '80px' %>
             </div>
             <div class="col-sm-6 col-md-8">
+              <h5>
+                Rating <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </h5>
 
               <h4><%= @user.first_name %> <%= @user.last_name %></h4>
 
@@ -24,9 +36,8 @@
                 <i class="glyphicon glyphicon-map-marker">
                 </i></cite></small>
               <p>
-                <i class="glyphicon glyphicon-envelope"></i>email@example.com
+                <i class="glyphicon glyphicon-envelope"></i>april.mulvey@gmail.com
                 <br/>
-
               <p id="portext">Portfolio</p>
               <ul class="dropdown-menu" role="menu">
                 <li><a href="#">Twitter</a></li>
