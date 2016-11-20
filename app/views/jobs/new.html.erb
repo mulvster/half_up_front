@@ -2,4 +2,15 @@
 
 <%= render 'form' %>
 
+<%= form_for :job, url: '/jobs' do |f| %>
+
+  Contract Text: <%= f.text_field :contract_text %>
+  Date Created: <%= f.text_field :created_at %>
+
+
+  <%= f.submit "Submit" %>
+
+<% end %>
+
+
 <%= link_to 'Back', jobs_path %>
