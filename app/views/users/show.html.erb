@@ -1,58 +1,45 @@
 <%= provide(:body_class, 'users-show') %>
-
-<p id="notice"><%= notice %></p>
+<body class="users-show">
 <%= link_to 'Edit', edit_user_path(@user) %> | <%= link_to 'Back', user_path %>
 
-<body class="users-show">
-<section class="products-show">
+<div class="row">
 
-  <header class="page-header">
-  </header>
+</div>
+</article>
+<div id="profile_page">
 
-  <article class="product-detail">
-
+  <div class="container">
     <div class="row">
+      <div class="col-xs-12 col-sm-6 col-md-6 col-md-offset-3">
+        <div class="well well-sm ">
+          <div class="row">
+            <div class="col-sm-6 col-md-4">
+              <%= image_tag @user.profile_image, id: "logo", alt: "logo", height: '80px' %>
+            </div>
+            <div class="col-sm-6 col-md-8">
 
-    </div>
-  </article>
-  <div id="profile_page">
+              <h4><%= @user.first_name %> <%= @user.last_name %></h4>
 
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-12 col-sm-6 col-md-6">
-          <div class="well well-sm">
-            <div class="row">
-              <div class="col-sm-6 col-md-4">
-                <%= image_tag @user.profile_image, id: "logo", alt: "logo", height: '80px' %>
-              </div>
-              <div class="col-sm-6 col-md-8">
+              <small><cite title="Vancouver,Canada"><%= @user.city %> <%= @user.province %> <%= @user.country %>
+                <i class="glyphicon glyphicon-map-marker">
+                </i></cite></small>
+              <p>
+                <i class="glyphicon glyphicon-envelope"></i>email@example.com
+                <br/>
 
-                <h4><%= @user.first_name %> <%= @user.last_name %></h4>
-
-                <small><cite title="Vancouver,Canada"><%= @user.city %> <%= @user.province %> <%= @user.country %>
-                  <i class="glyphicon glyphicon-map-marker">
-                  </i></cite></small>
-                <p>
-                  <i class="glyphicon glyphicon-envelope"></i>email@example.com
-                  <br/>
-                  <!-- Split button -->
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                      <span class="caret"></span><span class="sr-only">Social</span>
-                    </button>
-                <p id="portext">Portfolio</p>
-                <ul class="dropdown-menu" role="menu">
-                  <li><a href="#">Twitter</a></li>
-                  <li><a href="https:www.google.com">Google +</a></li>
-                  <li><a href="https://www.facebook.com">Facebook</a></li>
-                  <li><a href="www.github.com">Github</a></li>
-                </ul>
-              </div>
+              <p id="portext">Portfolio</p>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#">Twitter</a></li>
+                <li><a href="https:www.google.com">Google +</a></li>
+                <li><a href="https://www.facebook.com">Facebook</a></li>
+                <li><a href="www.github.com">Github</a></li>
+              </ul>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
 </section>
 </body>
