@@ -1,82 +1,56 @@
+<%= provide(:body_class, 'users-show') %>
+<body class="users-show">
 
-<p id="notice"><%= notice %></p>
- <%= link_to 'Edit', edit_user_path(@user) %> | <%= link_to 'Back', user_path %>
-THIS PAGE WILL SHOW A SPECIFIC USER
 
-<section class="products-show">
+<div class="row">
 
-  <header class="page-header">
-    <p> UPDATE YO</p>
-  </header>
+</div>
+</article>
+<div id="profile_page">
 
-  <article class="product-detail">
+  <div class="container">
+    <
 
     <div class="row">
 
-      <div class="col-sm-4">
-        <%= image_tag @user.profile_image, class: 'main-img' %>
-      </div>
-      <div class="col-sm-8">
-        <dl class="dl-horizontal">
-          <dt>First Name</dt>
-          <dd><%= @user.first_name %></dd>
-          <dt>Last Name</dt>
-          <dd><%= @user.last_name %></dd>
-          <dt>City</dt>
-          <dd><%= @user.city %></dd>
-          <dt>Province</dt>
-          <dd><%= @user.province %></dd>
-          <dt>Country </dt>
-          <dd><%= @user.country %> </dd>
-        </dl>
-      </div>
-
-    </div>
-
-  </article>
-
-</section>
-
-
-<%= provide(:body_class, 'users-show') %>
-
-<div id="profile_page">
-
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-sm-6 col-md-6">
-      <div class="well well-sm">
-        <div class="row">
-          <div class="col-sm-6 col-md-4">
-            <%= image_tag 'profile_avatar', id: "logo", alt: "logo", height: '80px' %>
+      <div class="col-xs-12 col-sm-6 col-md-6 col-md-offset-3">
+        <div class="well well-sm ">
+          <div class="edit">
+            <%= link_to 'Edit', edit_user_path(@user) %>
           </div>
-          <div class="col-sm-6 col-md-8">
-            <h4>
-              April</h4>
-            <small><cite title="Vancouver,Canada">Vancouver,Canada<i class="glyphicon glyphicon-map-marker">
-            </i></cite></small>
-            <p>
-              <i class="glyphicon glyphicon-envelope"></i>email@example.com
-              <br/>
-              <!-- Split button -->
-              <div class="btn-group">
-                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                  <span class="caret"></span><span class="sr-only">Social</span>
-                </button>
-            <p id="portext">Portfolio</p>
-            <ul class="dropdown-menu" role="menu">
-              <li><a href="#">Twitter</a></li>
-              <li><a href="https:www.google.com">Google +</a></li>
-              <li><a href="https://www.facebook.com">Facebook</a></li>
-              <li><a href="www.github.com">Github</a></li>
-            </ul>
+          <div class="row">
+            <div class="col-sm-6 col-md-4">
+              <%= image_tag @user.profile_image, id: "logo", alt: "logo", height: '80px' %>
+            </div>
+            <div class="col-sm-6 col-md-8">
+              <h5>
+                Rating <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </h5>
+
+              <h4><%= @user.first_name %> <%= @user.last_name %></h4>
+
+              <small><cite title="Vancouver,Canada"><%= @user.city %> <%= @user.province %> <%= @user.country %>
+                <i class="glyphicon glyphicon-map-marker">
+                </i></cite></small>
+              <p>
+                <i class="glyphicon glyphicon-envelope"></i>april.mulvey@gmail.com
+                <br/>
+              <p id="portext">Portfolio</p>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#">Twitter</a></li>
+                <li><a href="https:www.google.com">Google +</a></li>
+                <li><a href="https://www.facebook.com">Facebook</a></li>
+                <li><a href="www.github.com">Github</a></li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  </div>
 </div>
-
-
-
+</section>
+</body>

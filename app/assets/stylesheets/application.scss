@@ -12,6 +12,8 @@
  *
  @import "bootstrap";
  *= require main
+ *= require show
+ *= require font-awesome
  * require_tree .
  * require_self
  */
