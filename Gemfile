@@ -32,6 +32,8 @@ gem "font-awesome-rails"
 
 gem 'bootstrap', '~> 4.0.0.alpha5'
 
+gem 'carrierwave', '>= 1.0.0.rc', '< 2.0'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
