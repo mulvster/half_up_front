@@ -1,11 +1,12 @@
 <h1>Signup for Half Up Front!</h1>
+<%= link_to 'Back', root_path %>
 
 ***THIS PAGE IS SIGNING UP FOR HUF***
 <%= form_for :user, url: '/users' do |f| %>
 
   First Name: <%= f.text_field :first_name %>
   Last Name: <%= f.text_field :last_name %>
-  User Type: <%= f.select :user_type, [['Freelancer', 1], ['Employer', 2]]%>
+  User Type: <%= f.select :user_type, [['Freelancer', 'Freelancer'], ['Employer', 'Employer']]%>
   Email: <%= f.text_field :email %>
   Password: <%= f.password_field :password %>
   Password Confirmation: <%= f.password_field :password_confirmation %>
