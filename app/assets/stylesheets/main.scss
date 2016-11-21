@@ -72,7 +72,7 @@ body.homepage {
   }
 
   #valuestory {
-    height: 1250px;
+    height: 1000px;
     width: 100%;
     margin-top: -10px;
     background-color: #062b93;
@@ -148,3 +148,22 @@ body.homepage {
   }
 }
 
+}
+
+
+#login-section {
+    height: 1500px;
+    width: 100%;
+    margin-top: -10px;
+    background-color: #062b93;
+    background-image:
+            -webkit-linear-gradient(top left, #242366, #3c7cab);
+    background-image:
+            -o-linear-gradient(top left, #242366, #3c7cab);
+    background-image:
+            linear-gradient(to bottom right, #242366, #3c7cab);;
+
+    position: relative;
+    z-index: 1;
+    padding-top: 50px;
+}
