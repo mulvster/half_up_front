@@ -22,7 +22,7 @@ nav {
 }
 
 
-body.homepage{
+body.homepage {
 
   #paralax-container {
     background: black;
@@ -71,44 +71,38 @@ body.homepage{
     text-align: center;
   }
 
-
-
   #valuestory {
     height: 1000px;
     width: 100%;
     margin-top: -10px;
     background-color: #062b93;
-    background-image:
-            -webkit-linear-gradient(top left, #242366, #3c7cab);
-    background-image:
-            -o-linear-gradient(top left, #242366, #3c7cab);
-    background-image:
-            linear-gradient(to bottom right, #242366, #3c7cab);;
+    background-image: -webkit-linear-gradient(top left, #242366, #3c7cab);
+    background-image: -o-linear-gradient(top left, #242366, #3c7cab);
+    background-image: linear-gradient(to bottom right, #242366, #3c7cab);;
 
     position: relative;
     z-index: 1;
     padding-top: 50px;
-}
+  }
 
-
-#employer {
+  #employer {
     z-index: 3;
-}
+  }
 
-#freelancer {
+  #freelancer {
     z-index: 3;
-}
+  }
 
-.avatar {
+  .avatar {
     margin: 0 auto;
     display: block;
-}
+  }
 
-.avatar-details {
+  .avatar-details {
     text-align: center;
     color: white;
     padding-top: 15px;
-}
+  }
 
   h2.Employer {
     font-family: 'Alcubierre';
@@ -118,43 +112,40 @@ body.homepage{
 
   }
 
-
   h2.Freddy {
     font-family: 'Alcubierre';
     color: white;
     z-index: -5;
     letter-spacing: 2px;
-}
+  }
 
-p.details {
+  p.details {
     font-family: 'Alcubierre';
     color: white;
     font-size: 20px;
     letter-spacing: 2px;
 
-}
+  }
 
-#login-section {
+  #login-section {
     height: 750px;
     width: 100%;
     margin-top: -10px;
     background-color: #062b93;
-background-image:
-  -webkit-linear-gradient(top left, #242366, #3c7cab);
-background-image:
-  -o-linear-gradient(top left, #242366, #3c7cab);
-background-image:
-  linear-gradient(to bottom right, #242366, #3c7cab);;
+    background-image: -webkit-linear-gradient(top left, #242366, #3c7cab);
+    background-image: -o-linear-gradient(top left, #242366, #3c7cab);
+    background-image: linear-gradient(to bottom right, #242366, #3c7cab);;
 
     position: relative;
     z-index: 1;
     padding-top: 50px;
-}
+  }
 
-.btn-success {
+  .btn-success {
     margin-top: 300px;
     margin-left: 750px;
     padding: 50px;
+  }
 }
 
 }

@@ -1,3 +1,6 @@
+
+<%= provide(:body_class, 'users-show') %>
+
 <h1>Signup for Half Up Front!</h1>
 <%= link_to 'Back', root_path %>
 
@@ -10,7 +13,6 @@
   Email: <%= f.text_field :email %>
   Password: <%= f.password_field :password %>
   Password Confirmation: <%= f.password_field :password_confirmation %>
-
 
   <%= f.submit "Submit" %>
 
