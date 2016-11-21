@@ -16,11 +16,10 @@ $(function () {
         });
     }
 
-    var $input = $('#chat-input');
-    $input.on('keydown', function (e) {
+    $('#chat-input').on('keydown', function (e) {
         if (e.keyCode == 13) {
-            chatChannel.sendMessage($input.val())
-            $input.val('');
+            chatChannel.sendMessage($('#chat-input').val());
+            $('#chat-input').val('');
         }
     });
 
