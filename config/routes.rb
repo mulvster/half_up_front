@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:create, :new, :edit, :show, :update]
 
-  resources :jobs, only: [:show, :edit, :destroy, :index]
+  resources :jobs, only: [:create, :new, :show, :edit, :destroy, :index]   #index may go away later
 
 
   # Example of regular route:
