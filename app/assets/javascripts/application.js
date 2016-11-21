@@ -15,6 +15,25 @@
 //require bootstrap-sprockets
 //= require turbolinks
 //= require parallax
+//= require websocket_rails/main
 //= require_tree .
 //
 
+
+
+
+var dispatcher = new WebSocketRails('localhost:3000/websocket');
+
+dispatcher.on_open = function(data) {
+  console.log('Connection has been established', data);
+  dispatcher.trigger('hello','hello this is working')
+};
+
+dispatcher.bind('event_name', function(data) {
+  console.log(data.message); // would output 'this is a message'
+});
+
+
+dispatcher.bind('connection_closed', function(data) {
+  console.log('connection is closed');
+});
