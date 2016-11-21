@@ -7,13 +7,13 @@ class TokensController < ApplicationController
         ENV['API_KEY_SID'],
         ENV['API_KEY_SECRET'],
         3600,
-        @current_user.name
+        current_user.last_name
     )
   end
 
   def get_grant
     grant = Twilio::Util::AccessToken::IpMessagingGrant.new
-    grant.endpoint_id = "Chatty:#{@current_user.name.gsub(" ", "_")}:browser"
+    grant.endpoint_id = "Chatty:#{current_user.last_name.gsub(" ", "_")}:browser"
     grant.service_sid = ENV['IPM_SERVICE_SID']
     grant
   end
@@ -22,7 +22,7 @@ class TokensController < ApplicationController
     token = get_token
     grant = get_grant
     token.add_grant(grant)
-    render json: {username: @current_user.name, token: token.to_jwt}
+    render json: {username: current_user.last_name, token: token.to_jwt}
   end
 end
 
