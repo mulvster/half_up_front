@@ -22,7 +22,7 @@ nav {
 }
 
 
-body.homepage{
+body.homepage {
 
   #paralax-container {
     background: black;
@@ -71,10 +71,91 @@ body.homepage{
     text-align: center;
   }
 
-
-
   #valuestory {
-    height: 1250px;
+    height: 1000px;
+    width: 100%;
+    margin-top: -10px;
+    background-color: #062b93;
+    background-image: -webkit-linear-gradient(top left, #242366, #3c7cab);
+    background-image: -o-linear-gradient(top left, #242366, #3c7cab);
+    background-image: linear-gradient(to bottom right, #242366, #3c7cab);;
+
+    position: relative;
+    z-index: 1;
+    padding-top: 50px;
+  }
+
+  #employer {
+    z-index: 3;
+  }
+
+  #freelancer {
+    z-index: 3;
+  }
+
+  .avatar {
+    margin: 0 auto;
+    display: block;
+  }
+
+  .avatar-details {
+    text-align: center;
+    color: white;
+    padding-top: 15px;
+  }
+
+  h2.Employer {
+    font-family: 'Alcubierre';
+    color: white;
+    z-index: -5;
+    letter-spacing: 2px;
+
+  }
+
+  h2.Freddy {
+    font-family: 'Alcubierre';
+    color: white;
+    z-index: -5;
+    letter-spacing: 2px;
+  }
+
+  p.details {
+    font-family: 'Alcubierre';
+    color: white;
+    font-size: 20px;
+    letter-spacing: 2px;
+
+  }
+
+  #login-section {
+    height: 750px;
+    width: 100%;
+    margin-top: -10px;
+    background-color: #062b93;
+    background-image: -webkit-linear-gradient(top left, #242366, #3c7cab);
+    background-image: -o-linear-gradient(top left, #242366, #3c7cab);
+    background-image: linear-gradient(to bottom right, #242366, #3c7cab);;
+
+    position: relative;
+    z-index: 1;
+    padding-top: 50px;
+  }
+
+  .btn-success {
+    margin-top: 300px;
+    margin-left: 750px;
+    padding: 50px;
+  }
+}
+
+}
+
+<<<<<<< HEAD
+}
+=======
+
+#login-section {
+    height: 1500px;
     width: 100%;
     margin-top: -10px;
     background-color: #062b93;
@@ -89,72 +170,4 @@ body.homepage{
     z-index: 1;
     padding-top: 50px;
 }
-
-
-#employer {
-    z-index: 3;
-}
-
-#freelancer {
-    z-index: 3;
-}
-
-.avatar {
-    margin: 0 auto;
-    display: block;
-}
-
-.avatar-details {
-    text-align: center;
-    color: white;
-    padding-top: 15px;
-}
-
-  h2.Employer {
-    font-family: 'Alcubierre';
-    color: white;
-    z-index: -5;
-    letter-spacing: 2px;
-
-  }
-
-
-  h2.Freddy {
-    font-family: 'Alcubierre';
-    color: white;
-    z-index: -5;
-    letter-spacing: 2px;
-}
-
-p.details {
-    font-family: 'Alcubierre';
-    color: white;
-    font-size: 20px;
-    letter-spacing: 2px;
-
-}
-
-#login-section {
-    height: 750px;
-    width: 100%;
-    margin-top: -10px;
-    background-color: #062b93;
-background-image:
-  -webkit-linear-gradient(top left, #242366, #3c7cab);
-background-image:
-  -o-linear-gradient(top left, #242366, #3c7cab);
-background-image:
-  linear-gradient(to bottom right, #242366, #3c7cab);;
-
-    position: relative;
-    z-index: 1;
-    padding-top: 50px;
-}
-
-.btn-success {
-    margin-top: 300px;
-    margin-left: 750px;
-    padding: 50px;
-}
-
-}
+>>>>>>> master
