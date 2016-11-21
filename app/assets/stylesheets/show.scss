@@ -1,27 +1,38 @@
-div#profile_page {
+body.users-show {
 
-    height: 1250px;
-    width: 100%;
-    margin-top: -10px;
-    background-color: #062b93;
-    background-image:
-            -webkit-linear-gradient(top left, #242366, #3c7cab);
-    background-image:
-            -o-linear-gradient(top left, #242366, #3c7cab);
-    background-image:
-            linear-gradient(to bottom right, #242366, #3c7cab);;
+  height: 100%;
+  width: 100%;
+  margin-top: -10px;
+  background-color: #062b93;
+  background-image: -webkit-linear-gradient(top left, #242366, #3c7cab);
+  background-image: -o-linear-gradient(top left, #242366, #3c7cab);
+  position: relative;
+  z-index: 1;
 
-    position: relative;
-    z-index: 1;
+  .glyphicon {
+    margin-bottom: 10px;
+    margin-right: 10px;
   }
 
-.glyphicon {  margin-bottom: 10px;margin-right: 10px;}
+  small {
+    display: block;
+    line-height: 1.428571429;
+    color: #999;
+  }
 
-small {
-  display: block;
-  line-height: 1.428571429;
-  color: #999;
 }
 
+div.well.well-sm {
+  left: 50%;
+}
 
+@media (min-width: 992px) {
+  .col-md-offset-3 {
+    margin-left: 25%;
+    padding-top: 150px;
+  }
+}
 
+.edit {
+  float: right;
+}

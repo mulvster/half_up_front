@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
   resources :jobs, only: [:create, :new, :show, :edit, :destroy, :index]   #index may go away later
 
+  resources :tokens, only: [:create]
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
