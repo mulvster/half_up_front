@@ -1,3 +1,12 @@
+<script>
+function getLiveInfo() {
+  return {
+    isFreelancer: <%= @job.freelancer_id == current_user.id %>,
+    isEmployer: <%= @job.employer_id == current_user.id %>
+  };
+}
+</script>
+
 <p id="notice"><%= notice %></p>
 
 <iframe src="https://appear.in/half-up-front/<%= @job.id %>" width="400" height="480" frameborder="0"></iframe>
@@ -10,6 +19,12 @@
     <input id="chat-input" class="form-control" type="text" placeholder="say anything" autofocus/>
   </div>
 </div>
+
+<div class="requirement">
+  <div class="title"></div>
+  <div class="details"></div>
+</div>
+
 
 <%= link_to 'Edit', edit_job_path(@job) %> |
 <%= link_to 'Back', jobs_path %>
