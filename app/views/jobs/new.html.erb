@@ -1,16 +1,218 @@
-<h1>New Job</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
 
-<%= render 'form' %>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-<%= form_for :job, url: '/jobs' do |f| %>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
-  Contract Text: <%= f.text_field :contract_text %>
-  Date Created: <%= f.text_field :created_at %>
-
-
-  <%= f.submit "Submit" %>
-
-<% end %>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
 
-<%= link_to 'Back', jobs_path %>
+</script>
+
+<script type="text/javascript">
+    $(function()
+{
+    $(document).on('click', '.btn-add', function(e)
+    {
+        e.preventDefault();
+
+        var controlForm = $('.controls form:first'),
+            currentEntry = $(this).parents('.entry:first'),
+            newEntry = $(currentEntry.clone()).appendTo(controlForm);
+
+        newEntry.find('input').val('');
+        controlForm.find('.entry:not(:last) .btn-add')
+            .removeClass('btn-add').addClass('btn-remove')
+            .removeClass('btn-success').addClass('btn-danger')
+            .html('<span class="glyphicon glyphicon-minus"></span>');
+    }).on('click', '.btn-remove', function(e)
+    {
+        $(this).parents('.entry:first').remove();
+
+        e.preventDefault();
+        return false;
+    });
+});
+</script>
+
+<link rel="stylesheet" href="styles.css">
+
+
+
+</head>
+<body>
+
+<form class="allcontainer">
+
+    <br>
+
+    <section class="textType">
+        <h2>Brief:</h2><input class="jobtype" id="jobtype" placeholder="What kind of job is this">    
+    </section>  
+
+    <br>
+    <br>
+
+ <section class="textType">
+        <h2></h2><input class="jobtype" id="jobtype" placeholder="What do you want to accomplish with this project"></section>  
+
+
+    <br>
+    <br>
+
+    <h2>What Kind of Project?</h2>
+    <section class="project">
+        <div class="row ">
+            <div class="col-md-4">
+                <div class="button">
+                    <span class="glyphicon glyphicon-plus"></span>
+                      <label for ="newproject">New Project</label>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-md-offset-1">
+                <div class="button">
+                   <span class="glyphicon glyphicon-arrow-right"></span>
+                    <p>Existing Project</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<br>
+
+    <h2>What Kind of Price Point?</h2>
+    <section class="pricepoint">
+        <div class="row price">
+            <div class="col-md-4">
+                <div class="button">
+                   <span class="glyphicon fa fa-dollar"></span>
+                      <p>Fixed Budget</p>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-md-offset-1">
+                <div class="button">
+                  <span class="glyphicon fa fa-dollar"></span>
+                  <span class="glyphicon fa fa-dollar"></span>
+                    <p>Wiggle Room</p>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-md-offset-1">
+                <div class="button">
+                   <span class="glyphicon fa fa-dollar"></span>
+                   <span class="glyphicon fa fa-dollar"></span>
+                   <span class="glyphicon fa fa-dollar"></span>
+                    <p>The Solution</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+<br>
+
+    <h2>How Big of a Website?</h2>
+    <section class="size">
+        <div class="row price">
+            <div class="col-md-4">
+                <div class="button">
+                   <span class="glyphicon fa fa-file-text"></span>
+                      <p>Small Site</p>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-md-offset-1">
+                <div class="button">
+                  <span class="glyphicon fa fa-file-text"></span>
+                  <span class="glyphicon fa fa-file-text"></span>
+                    <p>Medium Site</p>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-md-offset-1">
+                <div class="button">
+                   <span class="glyphicon fa fa-file-text"></span>
+                   <span class="glyphicon fa fa-file-text"></span>
+                   <span class="glyphicon fa fa-file-text"></span>
+                    <p>Large Site</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+<br>
+     <h2>Extras</h2>
+     <p>Additional Cost</p>
+    <section class="extra">
+        <div class="row price">
+            <div class="col-md-4">
+                <div class="button">
+                   <span class="glyphicon fa fa-camera"></span>
+                      <p>Photos</p>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-md-offset-1">
+                <div class="button">
+                  <span class="glyphicon fa fa-paint-brush"></span>
+                    <p>Designers</p>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-md-offset-1">
+                <div class="button">
+                   <span class="glyphicon fa fa-server"></span>
+                    <p>Servers and Hosting</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+<br>
+    <h2>Link Examples</h2>
+    <section class="addexamples">
+    <div class="row">
+        <div class="control-group" id="fields">
+            <label class="control-label" for="field1"></label>
+            <div class="controls"> 
+                <form role="form" autocomplete="off">
+                    <div class="entry input-group col-xs-3">
+                        <input class="form-control" name="fields[]" type="text" placeholder="Websites You Like" />
+                        <span class="input-group-btn">
+                            <button class="btn btn-success btn-add" type="button">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</div>
+
+<section class="summary">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <textarea class="form-control textarea" rows="3" name="Message" id="Message" placeholder="More Details"></textarea>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+</form>
+
+</body>
+</html>

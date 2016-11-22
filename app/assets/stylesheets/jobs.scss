@@ -1,3 +1,52 @@
-// Place all the styles related to the Jobs controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+div.col-md-4  {
+	border: 1px solid grey;
+	border-radius: 25px;
+	height: 100px;
+	left: 35.0%;
+	width: 200px;
+	display:block;
+	text-align: center;
+	position: relative;
+}
+
+div.col-md-4:hover  {
+	border: 2px solid #062b93;
+	color: #062b93;
+}
+
+div.col-md-4.glyphicon:hover {
+	color:red;
+}
+
+
+h2 {
+	text-align: center;
+}
+
+span.glyphicon {
+	text-align: center;
+	margin-top: 30px;
+	font-size: 25px;
+}
+
+span.glyphicon:hover {
+	text-align: center;
+	color: #062b93;
+}
+
+input#jobtype {
+	margin-left: 700px;
+	width: 500px;
+}
+
+input#jobtype:hover {
+	margin-left: 700px;
+	width: 500px;
+	border: 2px solid #062b93;
+}
+
+input#jobtype:hover {
+	margin-left: 700px;
+	width: 500px;
+	border: 2px solid #062b93;
+}
