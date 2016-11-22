@@ -1,3 +1,4 @@
+
 div.col-md-4  {
 	border: 1px solid grey;
 	border-radius: 25px;
@@ -50,3 +51,8 @@ input#jobtype:hover {
 	width: 500px;
 	border: 2px solid #062b93;
 }
+
+#messages {height: 300px; width: 400px; overflow: scroll; border: 1px solid #ddd}
+
+#chat-input {width: 400px}
+

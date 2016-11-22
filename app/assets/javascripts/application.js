@@ -16,5 +16,6 @@
 //= require turbolinks
 //= require parallax
 //= require_tree .
+//= require chat
 //
 
