@@ -56,6 +56,8 @@ ActiveRecord::Schema.define(version: 20161118202208) do
     t.datetime "updated_at",         null: false
   end
 
+
+
   create_table "milestones", force: :cascade do |t|
     t.string   "name"
     t.datetime "start_date"
@@ -71,6 +73,8 @@ ActiveRecord::Schema.define(version: 20161118202208) do
     t.datetime "updated_at",                    null: false
   end
 
+   add_index "milestones", ["job_id"], name: "index_milestones_on_job_id", using: :btree
+
   create_table "requirements", force: :cascade do |t|
     t.string   "name"
     t.text     "details"
@@ -79,6 +83,8 @@ ActiveRecord::Schema.define(version: 20161118202208) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
+
+  add_index "requirements", ["milestone_id"], name: "index_requirements_on_milestone_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
