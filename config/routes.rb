@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   resources :tokens, only: [:create]
 
+  get "/auth/paypal/callback", to: "sessions#create"
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
