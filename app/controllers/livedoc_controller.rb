@@ -9,4 +9,9 @@ class LivedocController < WebsocketRails::BaseController
   def update_details
     broadcast_message :replace_details, message[:details]
   end
+
+
+  # def post_message
+  #   broadcast_message :receive_message, message[:content]
+  # end
 end

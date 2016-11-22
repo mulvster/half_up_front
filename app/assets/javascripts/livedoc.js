@@ -7,6 +7,10 @@ function handleUpdateTitle(event) {
 function handleUpdateDetails(event) {
   dispatcher.trigger('update_details', { details: event.target.innerText });
 }
+//
+// function handlePostMessage(event) {
+//   dispatcher.trigger('post_message', { content: "blah" });
+// }
 
 document.addEventListener('DOMContentLoaded', function() {
   var liveInfo = getLiveInfo();
