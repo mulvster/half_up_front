@@ -1,5 +1,3 @@
-console.log("ADE IT TO LIVEDOC");
-
 const MILESTONE_DATA_ATTRIBUTE_NAME = 'data-milestone-id';
 
 var dispatcher = new WebSocketRails('localhost:3000/websocket', false);
@@ -83,10 +81,16 @@ $(function(){
         console.log(arguments);
         return $(dd).text();
       });
-      $.ajax('/', {
 
+      var url = '/jobs/:job_id/milestones/:id(.:format)'
+      console.log("This is url:", url)
+      $.ajax({
+        type: "PUT",
+        url:'/jobs/:job_id/milestones/:id(.:format)',
+        data: values
       })
-    }
+      }
+    ;
   });
 
   $('.button_to').on('ajax:success', function(event, data, status, xhr){
@@ -96,13 +100,6 @@ $(function(){
 
   // debugger;
   if(liveInfo.isEmployer) {
-    // dispatcher.bind("replace_title", function(message) {
-    //   requirement.children(".title")[0].innerText = message;
-    // });
-
-    // dispatcher.bind("replace_details", function(message) {
-    //   requirement.children(".details")[0].innerText = message;
-    // });
 
     dispatcher.bind("replace_field", function(message) {
       $("." + message.field).text(message.text);
@@ -110,8 +107,6 @@ $(function(){
 
   } else {
     //isFreelancer
-
-
     $('.milestone .freelancer-editable').attr("contenteditable", true);
     $('.milestone .freelancer-editable').on('input', handleUpdate);
 
