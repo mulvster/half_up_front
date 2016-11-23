@@ -2,12 +2,7 @@
 div.col-md-4  {
 	border: 1px solid grey;
 	border-radius: 25px;
-	height: 100px;
-	left: 35.0%;
-	width: 200px;
-	display:block;
 	text-align: center;
-	position: relative;
 }
 
 div.col-md-4:hover  {
@@ -24,33 +19,54 @@ h2 {
 	text-align: center;
 }
 
-span.glyphicon {
-	text-align: center;
-	margin-top: 30px;
-	font-size: 25px;
+
+.new-job {
+	label{
+
+		&.active{
+			border: 2px solid #062b93;
+		}
+
+		.glyphicon {
+			text-align: center;
+			margin-top: 30px;
+			margin-bottom: 10px;
+			font-size: 25px;
+			display: block;
+
+			&:hover {
+				color: #062b93;
+			}
+		}
+		input[type="radio"] {
+			// visibility: hidden;
+		}
+
+
+	}
+	
+
+	input#jobtype {
+		margin-left: 700px;
+		width: 500px;
+	}
+
+	input#jobtype:hover {
+		margin-left: 700px;
+		width: 500px;
+		border: 2px solid #062b93;
+	}
+
+	input#jobtype:hover {
+		margin-left: 700px;
+		width: 500px;
+		border: 2px solid #062b93;
+	}
+
+	
+
 }
 
-span.glyphicon:hover {
-	text-align: center;
-	color: #062b93;
-}
-
-input#jobtype {
-	margin-left: 700px;
-	width: 500px;
-}
-
-input#jobtype:hover {
-	margin-left: 700px;
-	width: 500px;
-	border: 2px solid #062b93;
-}
-
-input#jobtype:hover {
-	margin-left: 700px;
-	width: 500px;
-	border: 2px solid #062b93;
-}
 
 #messages {height: 300px; width: 400px; overflow: scroll; border: 1px solid #ddd}
 

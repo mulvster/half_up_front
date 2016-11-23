@@ -1,54 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Document</title>
+<%= provide :body_class, 'new-job' %>
 
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-  
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-
-
-</script>
-
-<script type="text/javascript">
-    $(function()
-{
-    $(document).on('click', '.btn-add', function(e)
-    {
-        e.preventDefault();
-
-        var controlForm = $('.controls form:first'),
-            currentEntry = $(this).parents('.entry:first'),
-            newEntry = $(currentEntry.clone()).appendTo(controlForm);
-
-        newEntry.find('input').val('');
-        controlForm.find('.entry:not(:last) .btn-add')
-            .removeClass('btn-add').addClass('btn-remove')
-            .removeClass('btn-success').addClass('btn-danger')
-            .html('<span class="glyphicon glyphicon-minus"></span>');
-    }).on('click', '.btn-remove', function(e)
-    {
-        $(this).parents('.entry:first').remove();
-
-        e.preventDefault();
-        return false;
-    });
-});
-</script>
-
-<link rel="stylesheet" href="styles.css">
-
-
-
-</head>
-<body>
-
-<form class="allcontainer">
+<%= form_for @job do |f| %>
 
     <br>
 
@@ -66,21 +18,24 @@
     <br>
     <br>
 
+    
     <h2>What Kind of Project?</h2>
     <section class="project">
         <div class="row ">
-            <div class="col-md-4">
-                <div class="button">
-                    <span class="glyphicon glyphicon-plus"></span>
-                      <label for ="newproject">New Project</label>
-                </div>
+            <div class="col-xs-offset-2 col-xs-3 ">
+                <label class="radio-btn" for="newproject">
+                    <div class="glyphicon glyphicon-plus"></div>
+                    New Project
+                    <%= radio_button("job", "date_initiated", "new", id: "newproject")%>
+                </label>
             </div>
 
-            <div class="col-md-4 col-md-offset-1">
-                <div class="button">
-                   <span class="glyphicon glyphicon-arrow-right"></span>
-                    <p>Existing Project</p>
-                </div>
+            <div class="col-xs-offset-3 col-xs-3">
+                <label class="radio-btn" for="existingproject">
+                    <div class="glyphicon glyphicon-arrow-right"></div>
+                    Existing Project
+                    <%= radio_button("job", "date_initiated", "existing", id: "existingproject")%>
+                </label>
             </div>
         </div>
     </section>
@@ -150,8 +105,7 @@
     </section>
 
 <br>
-     <h2>Extras</h2>
-     <p>Additional Cost</p>
+     <h2>Additional Costs</h2>
     <section class="extra">
         <div class="row price">
             <div class="col-md-4">
@@ -171,7 +125,48 @@
             <div class="col-md-4 col-md-offset-1">
                 <div class="button">
                    <span class="glyphicon fa fa-server"></span>
-                    <p>Servers and Hosting</p>
+                    <p>Domain</p>
+                </div>
+            </div>
+
+        </div>
+        <div class="row price">
+
+            <div class="col-md-4 col-md-offset-1">
+                <div class="button">
+                   <span class="glyphicon fa fa-server"></span>
+                    <p>Servers</p>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-md-offset-1">
+                <div class="button">
+                   <span class="glyphicon fa fa-server"></span>
+                    <p>Hosting</p>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-md-offset-1">
+                <div class="button">
+                   <span class="glyphicon fa fa-server"></span>
+                    <p>SEO</p>
+                </div>
+            </div>
+
+        </div>
+        <div class="row price">
+
+            <div class="col-md-4 col-md-offset-1">
+                <div class="button">
+                   <span class="glyphicon fa fa-server"></span>
+                    <p>Analytics</p>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-md-offset-1">
+                <div class="button">
+                   <span class="glyphicon fa fa-server"></span>
+                    <p>E-Commerce</p>
                 </div>
             </div>
 
@@ -211,8 +206,5 @@
 </section>
 
 
-
-</form>
-
-</body>
-</html>
+<%= f.submit %>
+<% end %>
