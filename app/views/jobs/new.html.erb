@@ -21,12 +21,12 @@
     
     <h2>What Kind of Project?</h2>
     <section class="project">
-        <div class="row ">
+        <div class="row project">
             <div class="col-xs-offset-2 col-xs-3 ">
                 <label class="radio-btn" for="newproject">
                     <div class="glyphicon glyphicon-plus"></div>
                     New Project
-                    <%= radio_button("job", "date_initiated", "new", id: "newproject")%>
+                    <%= radio_button("jobs", "date_initiated", "new", id: "newproject")%>
                 </label>
             </div>
 
@@ -34,7 +34,7 @@
                 <label class="radio-btn" for="existingproject">
                     <div class="glyphicon glyphicon-arrow-right"></div>
                     Existing Project
-                    <%= radio_button("job", "date_initiated", "existing", id: "existingproject")%>
+                    <%= radio_button("jobs", "date_initiated", "existing", id: "existingproject")%>
                 </label>
             </div>
         </div>
@@ -45,30 +45,34 @@
     <h2>What Kind of Price Point?</h2>
     <section class="pricepoint">
         <div class="row price">
-            <div class="col-md-4">
-                <div class="button">
-                   <span class="glyphicon fa fa-dollar"></span>
-                      <p>Fixed Budget</p>
-                </div>
+            <div class="col-xs-offset-1 col-xs-3 ">
+                <label class="radio-btn" for="fixed">
+                   <div class="glyphicon fa fa-dollar"></div>
+                    Fixed Budget
+                    <%= radio_button("jobs", "pre_price", "fixed", id: "fixed")%>
+                </label>
             </div>
 
-            <div class="col-md-4 col-md-offset-1">
-                <div class="button">
-                  <span class="glyphicon fa fa-dollar"></span>
-                  <span class="glyphicon fa fa-dollar"></span>
-                    <p>Wiggle Room</p>
-                </div>
+
+            <div class="col-xs-offset-1 col-xs-3 ">
+                <label class="radio-btn" for="flexible">
+                    <div class="glyphicon fa fa-dollar"></div>
+                    <div class="glyphicon fa fa-dollar"></div>
+                    Flexible Budget
+                    <%= radio_button("jobs", "pre_price", "flexible", id: "flexible")%>
+                </label>
             </div>
 
-            <div class="col-md-4 col-md-offset-1">
-                <div class="button">
-                   <span class="glyphicon fa fa-dollar"></span>
-                   <span class="glyphicon fa fa-dollar"></span>
-                   <span class="glyphicon fa fa-dollar"></span>
-                    <p>The Solution</p>
-                </div>
-            </div>
 
+             <div class="col-xs-offset-1 col-xs-3 ">
+                <label class="radio-btn" for="sizable">
+                    <div class="glyphicon fa fa-dollar"></div>
+                    <div class="glyphicon fa fa-dollar"></div>
+                    <div class="glyphicon fa fa-dollar"></div>
+                    Sizable Budget
+                    <%= radio_button("jobs", "pre_price", "sizable", id: "sizable")%>
+                </label>
+            </div>
         </div>
     </section>
 
@@ -76,98 +80,122 @@
 
     <h2>How Big of a Website?</h2>
     <section class="size">
-        <div class="row price">
-            <div class="col-md-4">
-                <div class="button">
-                   <span class="glyphicon fa fa-file-text"></span>
-                      <p>Small Site</p>
-                </div>
+        <div class="row site">
+            <div class="col-xs-offset-1 col-xs-3 ">
+             <label class="radio-btn" for="small">
+                   <div class="glyphicon fa fa-file-text"></div>
+                    Small Site
+                    <%= radio_button("jobs", "website_size", "small", id: "small")%>
+            </label>
+            </div>
+        
+
+            <div class="col-xs-offset-1 col-xs-3 ">
+                 <label class="radio-btn" for="medium">
+                   <div class="glyphicon fa fa-file-text"></div>
+                   <div class="glyphicon fa fa-file-text"></div>
+                    Medium Site
+                    <%= radio_button("jobs", "website_size", "medium", id: "medium")%>
+                </label>
             </div>
 
-            <div class="col-md-4 col-md-offset-1">
-                <div class="button">
-                  <span class="glyphicon fa fa-file-text"></span>
-                  <span class="glyphicon fa fa-file-text"></span>
-                    <p>Medium Site</p>
-                </div>
+            <div class="col-xs-offset-1 col-xs-3 ">
+                 <label class="radio-btn" for="large">
+                   <div class="glyphicon fa fa-file-text"></div>
+                   <div class="glyphicon fa fa-file-text"></div>
+                   <div class="glyphicon fa fa-file-text"></div>
+                    Large Site
+                    <%= radio_button("jobs", "website_size", "large", id: "large")%>
+                </label>
             </div>
-
-            <div class="col-md-4 col-md-offset-1">
-                <div class="button">
-                   <span class="glyphicon fa fa-file-text"></span>
-                   <span class="glyphicon fa fa-file-text"></span>
-                   <span class="glyphicon fa fa-file-text"></span>
-                    <p>Large Site</p>
-                </div>
             </div>
-
         </div>
     </section>
 
 <br>
+
+
      <h2>Additional Costs</h2>
     <section class="extra">
-        <div class="row price">
-            <div class="col-md-4">
-                <div class="button">
-                   <span class="glyphicon fa fa-camera"></span>
-                      <p>Photos</p>
-                </div>
+        <div class="row xcost">
+            <div class="col-xs-offset-1 col-xs-3 ">
+                <label class="radio-btn" for="photos">
+                   <div class="glyphicon fa fa-camera"></div>
+                    Photos
+                    <%= radio_button("jobs", "extra_costs", "photos", id: "photos")%>
+                </label>
             </div>
 
-            <div class="col-md-4 col-md-offset-1">
-                <div class="button">
-                  <span class="glyphicon fa fa-paint-brush"></span>
-                    <p>Designers</p>
-                </div>
+
+           <div class="col-xs-offset-1 col-xs-3 ">
+                <label class="radio-btn" for="designer">
+                   <div class="glyphicon fa fa-paint-brush"></div>
+                    Designer
+                    <%= radio_button("jobs", "extra_costs", "designer", id: "designer")%>
+                </label>
             </div>
 
-            <div class="col-md-4 col-md-offset-1">
-                <div class="button">
-                   <span class="glyphicon fa fa-server"></span>
-                    <p>Domain</p>
-                </div>
+
+            
+           <div class="col-xs-offset-1 col-xs-3 ">
+                <label class="radio-btn" for="server">
+                   <div class="glyphicon fa fa-server"></div>
+                    Server
+                    <%= radio_button("jobs", "extra_costs", "server", id: "server")%>
+                </label>
             </div>
+
 
         </div>
-        <div class="row price">
+        
+        <br>
 
-            <div class="col-md-4 col-md-offset-1">
-                <div class="button">
-                   <span class="glyphicon fa fa-server"></span>
-                    <p>Servers</p>
-                </div>
+        <div class="row xcost">
+
+              <div class="col-xs-offset-1 col-xs-3 ">
+                <label class="radio-btn" for="domain">
+                   <div class="glyphicon fa fa-desktop"></div>
+                    Domain
+                    <%= radio_button("jobs", "extra_costs", "domain", id: "domain")%>
+                </label>
             </div>
 
-            <div class="col-md-4 col-md-offset-1">
-                <div class="button">
-                   <span class="glyphicon fa fa-server"></span>
-                    <p>Hosting</p>
-                </div>
+
+                <div class="col-xs-offset-1 col-xs-3 ">
+                <label class="radio-btn" for="hosting">
+                   <div class="glyphicon fa fa-server"></div>
+                    Hosting
+                    <%= radio_button("jobs", "extra_costs", "hosting", id: "hosting")%>
+                </label>
             </div>
 
-            <div class="col-md-4 col-md-offset-1">
-                <div class="button">
-                   <span class="glyphicon fa fa-server"></span>
-                    <p>SEO</p>
-                </div>
+
+                 <div class="col-xs-offset-1 col-xs-3 ">
+                <label class="radio-btn" for="seo">
+                   <div class="glyphicon fa fa-search"></div>
+                    SEO
+                    <%= radio_button("jobs", "extra_costs", "seo", id: "seo")%>
+                </label>
             </div>
+
 
         </div>
-        <div class="row price">
+        <div class="row xcost">
 
-            <div class="col-md-4 col-md-offset-1">
-                <div class="button">
-                   <span class="glyphicon fa fa-server"></span>
-                    <p>Analytics</p>
-                </div>
+                 <div class="col-xs-offset-1 col-xs-3 ">
+                <label class="radio-btn" for="analytics">
+                   <div class="glyphicon fa fa-line-chart"></div>
+                    Analytics
+                    <%= radio_button("jobs", "extra_costs", "analytics", id: "analytics")%>
+                </label>
             </div>
 
-            <div class="col-md-4 col-md-offset-1">
-                <div class="button">
-                   <span class="glyphicon fa fa-server"></span>
-                    <p>E-Commerce</p>
-                </div>
+                 <div class="col-xs-offset-1 col-xs-3 ">
+                <label class="radio-btn" for="seo">
+                   <div class="glyphicon fa fa-shopping-cart"></div>
+                    E-Commerce
+                    <%= radio_button("jobs", "extra_costs", "e-commerce", id: "e-commerce")%>
+                </label>
             </div>
 
         </div>

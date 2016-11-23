@@ -4,8 +4,8 @@ $(function(){
 	} 	
 
 	$('label.radio-btn input[type="radio"]').on('click', function(e){
-		// console.log("label click")
-		$(this).parents('section').find('label.radio-btn').removeClass('active');
+		console.log("label click")
+		$(this).closest('section').find('label.radio-btn').removeClass('active');
 		$(this).parents('label.radio-btn').addClass('active');
 	});
 });
