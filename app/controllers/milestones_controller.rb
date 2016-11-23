@@ -1,10 +1,12 @@
 class MilestonesController < ApplicationController
   def create
+    job = Job.find(params[:job_id])
     milestone = Milestone.new()
+    milestone.job = job
     if milestone.save
-      redirect_to "/"
+      render json: milestone
     else
-      redirect_to "/"
+      render nothing: true, status: 400
     end
   end
 

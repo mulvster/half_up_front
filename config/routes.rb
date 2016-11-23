@@ -11,11 +11,12 @@ Rails.application.routes.draw do
 
   resources :users, only: [:create, :new, :edit, :show, :update]
 
-  resources :jobs, only: [:create, :new, :show, :edit, :destroy, :index]   #index may go away later
+  resources :jobs, only: [:create, :new, :show, :edit, :destroy, :index] do
+    resources :milestones, only: [:create, :edit, :destroy]
+  end
+     #index may go away later
 
   resources :tokens, only: [:create]
-
-  resources :milestones, only: [:create, :edit, :destroy]
 
 
   # Example of regular route:

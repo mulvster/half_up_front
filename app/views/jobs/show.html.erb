@@ -25,12 +25,10 @@ function getLiveInfo() {
 </div>
  -->
 
-<%= button_to "Add Milestone", milestones_path, :id => "new-milestone-btn",
-      :class => "milestones", :method => :post %>
-  <%= button_to "Delete Milestone", milestones_path, :id => "new-milestone-btn",
-  :class => "milestones", :method => :destroy %>
+<%= button_to "Add Milestone", job_milestones_path(@job.id), :id => "new-milestone-btn",
+      :class => "milestones", :method => :post, :remote => true %>
 <div class="milestone">
-  <%= button_to "Delete Milestone", milestones_path, :id => "new-milestone-btn",
+  <%= button_to "Delete Milestone", job_milestones_path(@job.id), :id => "new-milestone-btn",
   :class => "milestones", :method => :destroy %>
   <div class="name freelancer-editable" data-update-field="name">Name</div>
   <div class="start-date freelancer-editable" data-update-field="start-date">Start Date</div>
@@ -42,3 +40,9 @@ function getLiveInfo() {
       <div class="details freelancer-editable" data-update-field="details" >Requirement Details: </div>
     </div>
 </div>
+<section id="allMilestones">
+  <% @job.milestones.each do |milestone| %>
+    <%= render 'milestone', milestone: milestone %>
+  <% end %>
+
+</section>
