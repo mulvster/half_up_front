@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 20161118202208) do
     t.integer  "freelancer_id"
     t.datetime "date_initiated"
     t.datetime "start_date"
-    t.datetime "end_date"
+    t.datetime "end_date" 
     t.text     "contract_text"
     t.binary   "contract_pdf"
     t.integer  "final_budget"
