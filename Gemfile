@@ -32,6 +32,8 @@ gem "font-awesome-rails"
 
 gem 'bootstrap', '~> 4.0.0.alpha5'
 
+gem 'websocket-rails'
+
 gem 'twilio-ruby' # for interacting with twilio
 gem 'envyable' # for managing environment variables
 

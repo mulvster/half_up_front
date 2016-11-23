@@ -1,3 +1,17 @@
+<%= link_to 'Edit', edit_job_path(@job) %> |
+<%= link_to 'Back', jobs_path %>
+
+**THIS WILL SHOW A JOB**
+
+<script>
+function getLiveInfo() {
+  return {
+    isFreelancer: <%= @job.freelancer_id == current_user.id %>,
+    isEmployer: <%= @job.employer_id == current_user.id %>
+  };
+}
+</script>
+
 <p id="notice"><%= notice %></p>
 
 <iframe src="https://appear.in/half-up-front/<%= @job.id %>" width="400" height="480" frameborder="0"></iframe>
@@ -5,16 +19,26 @@
 <h3>Welcome <%= current_user.first_name %> </h3>
 
 
-<!--<div class="chat">-->
-  <!--<div class="messagelist">-->
+<!-- <div class="requirement">
+  <div class="title">Title</div>
+  <div class="details">Detials</div>
+</div>
+ -->
 
-  <!--</div>-->
-  <!--<form>-->
-    <!--<input />-->
-  <!--</form>-->
-<!--</div>-->
-
-<%= link_to 'Edit', edit_job_path(@job) %> |
-<%= link_to 'Back', jobs_path %>
-
-**THIS WILL SHOW A JOB**
+<%= button_to "Add Milestone", milestones_path, :id => "new-milestone-btn",
+      :class => "milestones", :method => :post %>
+  <%= button_to "Delete Milestone", milestones_path, :id => "new-milestone-btn",
+  :class => "milestones", :method => :destroy %>
+<div class="milestone">
+  <%= button_to "Delete Milestone", milestones_path, :id => "new-milestone-btn",
+  :class => "milestones", :method => :destroy %>
+  <div class="name freelancer-editable" data-update-field="name">Name</div>
+  <div class="start-date freelancer-editable" data-update-field="start-date">Start Date</div>
+  <div class="end-date freelancer-editable" data-update-field="end-date">End Date</div>
+  <div class="summary freelancer-editable" data-update-field="summary">Summary of Requirements</div>
+    <div class="requirement">
+      <button type="req-button" >New Requirement</button>
+      <div class="req-name freelancer-editable" data-update-field="req-name">Name</div>
+      <div class="details freelancer-editable" data-update-field="details" >Requirement Details: </div>
+    </div>
+</div>

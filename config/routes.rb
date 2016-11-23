@@ -15,6 +15,8 @@ Rails.application.routes.draw do
 
   resources :tokens, only: [:create]
 
+  resources :milestones, only: [:create, :edit, :destroy]
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
