@@ -35,6 +35,7 @@ gem 'bootstrap', '~> 4.0.0.alpha5'
 gem 'twilio-ruby' # for interacting with twilio
 gem 'envyable' # for managing environment variables
 
+gem "omniauth-paypal"
 
 
 # Use ActiveModel has_secure_password
