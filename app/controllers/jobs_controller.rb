@@ -11,10 +11,6 @@ class JobsController < ApplicationController
 
   def show
     @job = Job.find(params[:id])
-    @milestone1 = Milestone.first
-    @milestone2 = Milestone.last
-    @requirement1 = @milestone1.requirements
-    @requirement2 = @milestone2.requirements
   end
 
   def new
