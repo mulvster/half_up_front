@@ -1,7 +1,83 @@
-// Place all the styles related to the Jobs controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+
+div.col-md-4  {
+	border: 1px solid grey;
+	border-radius: 25px;
+	text-align: center;
+}
+
+div.col-md-4:hover  {
+	border: 2px solid #062b93;
+	color: #062b93;
+}
+
+div.col-md-4.glyphicon:hover {
+	color:red;
+}
+
+
+h2 {
+	text-align: center;
+}
+
+
+.new-job {
+	label{
+
+		&.active{
+			border: 2px solid #062b93;
+			color: #062b93;
+			box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+		}
+
+		&:hover {
+				color: #062b93;
+				border: 2px solid #062b93;
+		}
+
+		.glyphicon {
+			text-align: center;
+			margin-top: 30px;
+			margin-bottom: 10px;
+			font-size: 25px;
+			display: block;	
+		}
+
+
+		input[type="radio"] {
+			visibility: hidden;
+		}
+
+		border: 1px solid grey;
+		border-radius: 25px;
+		box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+
+
+	}
+	
+
+	input#jobtype {
+		margin-left: 700px;
+		width: 500px;
+	}
+
+	input#jobtype:hover {
+		margin-left: 700px;
+		width: 500px;
+		border: 2px solid #062b93;
+	}
+
+	input#jobtype:hover {
+		margin-left: 700px;
+		width: 500px;
+		border: 2px solid #062b93;
+	}
+
+	
+
+}
+
 
 #messages {height: 300px; width: 400px; overflow: scroll; border: 1px solid #ddd}
 
 #chat-input {width: 400px}
+

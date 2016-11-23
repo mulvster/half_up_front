@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161118202208) do
+ActiveRecord::Schema.define(version: 20161123001024) do
 
   create_table "attachments", force: :cascade do |t|
     t.string   "name"
@@ -109,6 +109,7 @@ ActiveRecord::Schema.define(version: 20161118202208) do
     t.string   "personal_url"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.string   "uid"
   end
 
 end
