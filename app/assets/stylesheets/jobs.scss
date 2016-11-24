@@ -26,6 +26,7 @@ h2 {
 body.new-job {
   margin-left: 300px;
   margin-right: 300px;
+  height: 2000px;
 }
 
 
@@ -38,14 +39,25 @@ body.new-job {
 			box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
 		}
 
+
 		&:hover {
 				color: #062b93;
 				border: 2px solid #062b93;
 		}
 
+		&.checked {
+			border: 2px solid #062b93;
+			color: #062b93;
+		}
+
+		&:checked {
+			border: 2px solid #062b93;
+			color: #062b93;
+		}
+
 		.glyphicon {
 			text-align: center;
-            margin-top: 30px;
+      margin-top: 50px;
 			font-size: 25px;
 		}
 
@@ -53,38 +65,55 @@ body.new-job {
 		input[type="radio"] {
 			visibility: hidden;
 		}
-
+	
 		border: 1px solid grey;
 		border-radius: 25px;
 		box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
       height: 150px;
       width: 150px;
-
-
-
-	}
-	
-
-	input#jobtype {
-		margin-left: 700px;
-		width: 500px;
-	}
-
-	input#jobtype:hover {
-		margin-left: 700px;
-		width: 500px;
-		border: 2px solid #062b93;
-	}
-
-	input#jobtype:hover {
-		margin-left: 700px;
-		width: 500px;
-		border: 2px solid #062b93;
-	}
-
-	
-
+      text-align: center;
 }
+	
+	input {
+		width: 50%;
+	}
+
+	input#brief:focus {
+		border: 2px solid #062b93;
+	}
+
+	input#brief:hover {
+		border: 2px solid #062b93;
+	}
+
+	input#jobtype:hover {
+		border: 2px solid #062b93;
+	}
+
+	input#jobtype:hover {
+		border: 2px solid #062b93;
+	}
+
+	
+}
+
+.textType {
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+} 
+
+
+
+// input[type='checkbox'] {
+// 	position: absolute;
+// 	top: -9999px;
+// 	left: -9999px;
+// }
+
+
+
+
 #messages {height: 300px; width: 400px; overflow: scroll; border: 1px solid #ddd}
 
 #chat-input {width: 400px}

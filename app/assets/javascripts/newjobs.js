@@ -12,12 +12,25 @@ $(function () {
     $('.check-btn').on("click", function () {
         var checkbox = $(this).find('input');
         if (checkbox.is(':checked')) {
-            checkbox.removeProp('checked');
+            checkbox.removeProp('checked')
         }
         else {
             checkbox.prop('checked', 'checked');
         }
+        console.log('checked')
     });
+
+
+    $("input[type='checkbox']").change(function(){
+        if($(this).is(":checked")){
+            $(this).parents('').addClass('checkedbox');
+        }else{
+            $(this).parent('').removeClass('checkedbox');
+        }
+    });
+
+
+
 
 });
 
