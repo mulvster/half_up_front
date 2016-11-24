@@ -67,8 +67,8 @@ ActiveRecord::Schema.define(version: 20161118202208) do
     t.boolean  "all_requirements_renegotiable"
     t.integer  "job_id"
     t.boolean  "completed"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.string   "created_at",                    null: false
+    t.string   "updated_at",                    null: false
   end
 
   create_table "requirements", force: :cascade do |t|

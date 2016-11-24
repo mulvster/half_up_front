@@ -33,6 +33,13 @@ function renderMilestone(milestone) {
   nameValue.text(milestone.name);
   list.append(nameLabel, nameValue);
 
+  let budgetLabel = $('<dt>');
+  budgetLabel.text('Budget');
+  let budgetValue = $('<dd>');
+  budgetValue.text(milestone.payment_percentage);
+  list.append(budgetLabel, budgetValue);
+  console.log(budgetValue);
+
   let startDateLabel = $('<dt>');
   startDateLabel.text('Start Date');
   let startDateValue = $('<dd>');
@@ -81,7 +88,7 @@ $(function(){
         console.log(arguments);
         return $(dd).text();
       });
-      var fields = ["name", "start_date", "end_date", "requirements_summary"];
+      var fields = ["name", "payment_percentage", "start_date", "end_date", "requirements_summary"];
 
       var data = fields.reduce(function(previous, current, index) {
         previous[current] = values[index];
