@@ -5,11 +5,13 @@
 <dd contenteditable="true"><%= milestone.name %></dd>
 
 <dt>Budget</dt>
-<%= image_tag 'crazy_green_up.png', id: 'arrow', alt: 'up arrow', height: '25px', width: '25px' %>
-
- (30%)
-
-<%= image_tag 'crazy_green_down.png', id: 'arrow', alt: 'up arrow', height: '25px', width: '25px' %>
+<%= link_to '#' do %>
+  <%= image_tag 'crazy_green_up.png', id: 'arrow', alt: 'up arrow', height: '25px', width: '25px' %>
+<% end %>
+ (25%)
+<%= link_to '#' do %>
+  <%= image_tag 'crazy_green_down.png', id: 'arrow', alt: 'up arrow', height: '25px', width: '25px' %>
+<% end %>
 
 <dt>Start Date</dt>
 <dd contenteditable="true"><%= milestone.start_date %></dd>

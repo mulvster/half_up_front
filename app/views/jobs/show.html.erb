@@ -19,12 +19,14 @@ function getLiveInfo() {
 <h3>Welcome <%= current_user.first_name %> </h3>
 
 <h3> Budget: </h3>
-<%= image_tag 'crazy_green_up.png', id: 'arrow', alt: 'up arrow', height: '40px', width: '40px' %>
-
+<%= link_to '#' do %>
+  <%= image_tag 'crazy_green_up.png', id: 'arrow', alt: 'up arrow', height: '40px', width: '40px' %>
+<% end %>
 <%= @job.final_budget %> ($10,000)
 
-<%= image_tag 'crazy_green_down.png', id: 'arrow', alt: 'up arrow', height: '40px', width: '40px' %>
-
+<%= link_to '#' do %>
+  <%= image_tag 'crazy_green_down.png', id: 'arrow', alt: 'up arrow', height: '40px', width: '40px' %>
+<% end %>
 
 
 <!-- <div class="requirement">
@@ -38,12 +40,13 @@ function getLiveInfo() {
 <div class="milestone">
   <%= button_to "Delete Milestone", job_milestones_path(@job.id), :id => "new-milestone-btn",
   :class => "milestones", :method => :destroy %>
-
+<%= link_to '#' do %>
   <%= image_tag 'crazy_green_up.png', id: 'arrow', alt: 'up arrow', height: '25px', width: '25px' %>
-
+<% end %>
  (30%)
-
-<%= image_tag 'crazy_green_down.png', id: 'arrow', alt: 'up arrow', height: '25px', width: '25px' %>
+<%= link_to '#' do %>
+  <%= image_tag 'crazy_green_down.png', id: 'arrow', alt: 'up arrow', height: '25px', width: '25px' %>
+<% end %>
 
   <div class="name freelancer-editable" data-update-field="name">Name</div>
   <div class="start-date freelancer-editable" data-update-field="start-date">Start Date</div>
