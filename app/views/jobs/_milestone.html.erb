@@ -1,13 +1,13 @@
-<article>
+<article class="milestone">
 <dl data-milestone-id="<%= milestone.id %>">
-<dt>Name</dt>
-<dd contenteditable="true"><%= milestone.name %></dd>
-<dt>Start Date</dt>
-<dd contenteditable="true"><%= milestone.start_date %></dd>
-<dt>End Date</dt>
-<dd contenteditable="true"><%= milestone.end_date %></dd>
-<dt>Summary of Requirements</dt>
-<dd contenteditable="true"><%= milestone.requirements_summary %></dd>
-</dl>
-<button data-milestone-id="<%= milestone.id %>">Save</button>
+  <dt>Name</dt>
+  <dd class="name freelancer-editable" data-update-field="name"><%= milestone.name %></dd>
+  <dt>Start Date</dt>
+  <dd class="start-date freelancer-editable" data-update-field="start-date"><%= milestone.start_date %></dd>
+  <dt>End Date</dt>
+  <dd class="end-date freelancer-editable" data-update-field="end-date"><%= milestone.end_date %></dd>
+  <dt>Summary of Requirements</dt>
+  <dd class="summary freelancer-editable" data-update-field="summary"><%= milestone.requirements_summary %></dd>
+  </dl>
+  <button data-milestone-id="<%= milestone.id %>">Save</button>
 </article>

@@ -14,7 +14,7 @@ function getLiveInfo() {
 
 <p id="notice"><%= notice %></p>
 
-<iframe src="https://appear.in/half-up-front/<%= @job.id %>" width="400" height="480" frameborder="0"></iframe>
+<!-- <iframe src="https://appear.in/half-up-front/<%= @job.id %>" width="400" height="480" frameborder="0"></iframe> -->
 
 <h3>Welcome <%= current_user.first_name %> </h3>
 
@@ -27,19 +27,7 @@ function getLiveInfo() {
 
 <%= button_to "Add Milestone", job_milestones_path(@job.id), :id => "new-milestone-btn",
       :class => "milestones", :method => :post, :remote => true %>
-<div class="milestone">
-  <%= button_to "Delete Milestone", job_milestones_path(@job.id), :id => "new-milestone-btn",
-  :class => "milestones", :method => :destroy %>
-  <div class="name freelancer-editable" data-update-field="name">Name</div>
-  <div class="start-date freelancer-editable" data-update-field="start-date">Start Date</div>
-  <div class="end-date freelancer-editable" data-update-field="end-date">End Date</div>
-  <div class="summary freelancer-editable" data-update-field="summary">Summary of Requirements</div>
-    <div class="requirement">
-      <button type="req-button" >New Requirement</button>
-      <div class="req-name freelancer-editable" data-update-field="req-name">Name</div>
-      <div class="details freelancer-editable" data-update-field="details" >Requirement Details: </div>
-    </div>
-</div>
+
 <section id="allMilestones">
   <% @job.milestones.each do |milestone| %>
     <%= render 'milestone', milestone: milestone %>

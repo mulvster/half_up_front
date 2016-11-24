@@ -21,7 +21,7 @@ class LivedocController < WebsocketRails::BaseController
   def update
     # broadcast_message broadcast_key, message[:text]
     # broadcast_message broadcast_key, {text: message[:text], field: 'name'}
-    broadcast_message 'replace_field', {field: message[:field], text: message[:text]}
+    broadcast_message 'replace_field', {field: message[:field], text: message[:text], idMilestone: message[:idMilestone]}
   end
 
   # evntually add id so that we can do it through unique milestones??

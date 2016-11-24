@@ -12,11 +12,11 @@ var dispatcher = new WebSocketRails('localhost:3000/websocket', false);
 // }
 
 function handleUpdate(event) {
-  // $(this).text()
-  // debugger;
-  // dispatcher.trigger('u')
+
   dispatcher.trigger('update', {
-    field: $(this).data("update-field"), //name/details/startdate
+    field: $(this).data("update-field"),
+    idMilestone: $(this).closest("[data-milestone-id]").data('milestone-id'),
+     //name/details/startdate
     text: $(this).text()
   });
 
@@ -81,13 +81,19 @@ $(function(){
         console.log(arguments);
         return $(dd).text();
       });
+      var fields = ["name", "start_date", "end_date", "requirements_summary"];
 
-      var url = '/jobs/:job_id/milestones/:id(.:format)'
-      console.log("This is url:", url)
+      var data = fields.reduce(function(previous, current, index) {
+        previous[current] = values[index];
+        return previous;
+      }, {});
+
+      var job_id = parseInt(window.location.pathname.substring(6));
+      var url = '/jobs/' + job_id + '/milestones/' + milestoneId;
       $.ajax({
         type: "PUT",
-        url:'/jobs/:job_id/milestones/:id(.:format)',
-        data: values
+        url: url,
+        data: data
       })
       }
     ;
@@ -102,13 +108,15 @@ $(function(){
   if(liveInfo.isEmployer) {
 
     dispatcher.bind("replace_field", function(message) {
-      $("." + message.field).text(message.text);
+      var element = $("dl[data-milestone-id='" + message.idMilestone + "'] ." +  message.field)
+      element.text(message.text);
     });
 
   } else {
     //isFreelancer
-    $('.milestone .freelancer-editable').attr("contenteditable", true);
-    $('.milestone .freelancer-editable').on('input', handleUpdate);
+    $('.milestone .freelancer-editable #allMilestones').attr("contenteditable", true);
+    // $('.milestone .freelancer-editable #allMilestones').on('input', handleUpdate);
+    $('#allMilestones').on('input', '[data-update-field]', handleUpdate);
 
   }
 });
