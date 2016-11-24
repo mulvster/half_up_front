@@ -5,20 +5,20 @@
     <br>
 
     <section class="textType">
-      <h2>Brief:</h2><input class="jobtype" id="jobtype" placeholder="What kind of job is this">
+      <h2>Brief:</h2><input class="jobtype" id="brief" placeholder="What kind of job is this">
     </section>
 
     <br>
     <br>
 
     <section class="textType">
-      <h2></h2><input class="jobtype" id="jobtype" placeholder="What do you want to accomplish with this project">
+      <h2></h2>
+      <input class="jobtype" id="objective" placeholder="What do you want to accomplish with this project">
     </section>
 
 
     <br>
     <br>
-
 
     <h2>What Kind of Project?</h2>
     <section class="project">
@@ -27,7 +27,7 @@
           <label class="radio-btn" for="newproject">
             <div class="glyphicon glyphicon-plus"></div>
             New Project
-            <%= radio_button("jobs", "date_initiated", "new", id: "newproject") %>
+            <%= radio_button("jobs", "project_type", "new", id: "newproject") %>
           </label>
         </div>
 
@@ -35,7 +35,7 @@
           <label class="radio-btn" for="existingproject">
             <div class="glyphicon glyphicon-arrow-right"></div>
             Existing Project
-            <%= radio_button("jobs", "date_initiated", "existing", id: "existingproject") %>
+            <%= radio_button("jobs", "project_type", "existing", id: "existingproject") %>
           </label>
         </div>
       </div>
@@ -124,7 +124,9 @@
           <label class="check-btn" for="photos">
             <div class="glyphicon fa fa-camera"></div>
             Photos
-            <%= check_box("jobs", "extra_costs", "photos", "yes", "no")%>
+            <%= check_box :jobs, :photos, options = {}, on_value = '1', off_value = '0' %>
+
+
           </label>
         </div>
 
@@ -133,16 +135,16 @@
           <label class="check-btn" for="designer">
             <div class="glyphicon fa fa-paint-brush"></div>
             Designer
-            <%= check_box("jobs", "extra_costs", "designer", "yes", "no")%>
+            <%= check_box :jobs, :designer %>
           </label>
         </div>
 
 
         <div class="col-xs-offset-1 col-xs-3 ">
-          <label class="radio-btn" for="server">
-            <div class="glyphicon fa fa-server"></div>
-            Server
-            <%= radio_button("jobs", "extra_costs", "server", id: "server") %>
+          <label class="check-btn" for="seo">
+            <div class="glyphicon fa fa-search"></div>
+            SEO
+            <%= check_box :jobs, :seo %>
           </label>
         </div>
 
@@ -154,50 +156,61 @@
       <div class="row xcost">
 
         <div class="col-xs-offset-1 col-xs-3 ">
-          <label class="radio-btn" for="domain">
+          <label class="check-btn" for="domain">
             <div class="glyphicon fa fa-desktop"></div>
             Domain
-            <%= radio_button("jobs", "extra_costs", "domain", id: "domain") %>
+            <%= check_box :jobs, :domain %>
           </label>
         </div>
 
 
         <div class="col-xs-offset-1 col-xs-3 ">
-          <label class="radio-btn" for="hosting">
+          <label class="check-btn" for="hosting">
             <div class="glyphicon fa fa-server"></div>
             Hosting
-            <%= radio_button("jobs", "extra_costs", "hosting", id: "hosting") %>
+            <%= check_box :jobs, :hosting %>
           </label>
         </div>
 
 
         <div class="col-xs-offset-1 col-xs-3 ">
-          <label class="radio-btn" for="seo">
-            <div class="glyphicon fa fa-search"></div>
-            SEO
-            <%= radio_button("jobs", "extra_costs", "seo", id: "seo") %>
+          <label class="check-btn" for="Mobile">
+            <div class="glyphicon fa fa-mobile"></div>
+            Mobile
+            <%= check_box :jobs, :hosting %>
           </label>
         </div>
-
-
       </div>
+
+      <br>
+
       <div class="row xcost">
 
         <div class="col-xs-offset-1 col-xs-3 ">
-          <label class="radio-btn" for="analytics">
+          <label class="check-btn" for="analytics">
             <div class="glyphicon fa fa-line-chart"></div>
             Analytics
-            <%= radio_button("jobs", "extra_costs", "analytics", id: "analytics") %>
+            <%= check_box :jobs, :analytics %>
           </label>
         </div>
 
         <div class="col-xs-offset-1 col-xs-3 ">
-          <label class="radio-btn" for="seo">
+          <label class="check-btn" for="seo">
             <div class="glyphicon fa fa-shopping-cart"></div>
             E-Commerce
-            <%= radio_button("jobs", "extra_costs", "e-commerce", id: "e-commerce") %>
+            <%= check_box :jobs, :ecommerce %>
           </label>
         </div>
+
+
+        <div class="col-xs-offset-1 col-xs-3 ">
+          <label class="check-btn" for="cms">
+            <div class="glyphicon fa fa-pencil"></div>
+            CMS
+            <%= check_box :jobs, :cms %>
+          </label>
+        </div>
+
 
       </div>
     </section>
@@ -209,16 +222,14 @@
         <div class="control-group" id="fields">
           <label class="control-label" for="field1"></label>
           <div class="controls">
-            <form role="form" autocomplete="off">
-              <div class="entry input-group col-xs-3">
-                <input class="form-control" name="fields[]" type="text" placeholder="Websites You Like"/>
-                <span class="input-group-btn">
+            <div class="entry input-group col-xs-3">
+              <input class="form-control" name="fields[]" type="text" placeholder="Websites You Like"/>
+              <span class="input-group-btn">
                             <button class="btn btn-success btn-add" type="button">
                                 <span class="glyphicon glyphicon-plus"></span>
                             </button>
                         </span>
-              </div>
-            </form>
+            </div>
           </div>
         </div>
     </section>
@@ -233,7 +244,5 @@
         </div>
       </div>
     </section>
-
-
     <%= f.submit %>
 <% end %>
