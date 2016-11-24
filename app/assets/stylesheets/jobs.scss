@@ -1,3 +1,6 @@
+html {
+  background-color: #7badd1;
+}
 
 div.col-md-4  {
 	border: 1px solid grey;
@@ -21,7 +24,8 @@ h2 {
 }
 
 body.new-job {
-  background-color: #cedbfd;
+  margin-left: 300px;
+  margin-right: 300px;
 }
 
 
@@ -81,8 +85,6 @@ body.new-job {
 	
 
 }
-
-
 #messages {height: 300px; width: 400px; overflow: scroll; border: 1px solid #ddd}
 
 #chat-input {width: 400px}
