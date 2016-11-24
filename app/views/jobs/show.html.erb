@@ -25,8 +25,9 @@ function getLiveInfo() {
 </div>
  -->
 
-<%= button_to "Add Milestone", job_milestones_path(@job.id), :id => "new-milestone-btn",
-      :class => "milestones", :method => :post, :remote => true %>
+<br>
+<br>
+<%= button_to "Add Milestone", job_milestones_path(@job.id), :id => "new-milestone-btn", :class => "milestones", :method => :post, :remote => true %>
 
 <section id="allMilestones">
   <% @job.milestones.each do |milestone| %>

@@ -1,4 +1,7 @@
 <article class="milestone">
+
+
+  <%= button_to 'X', '/jobs/'+ @job.id.to_s + '/milestones/' + milestone.id.to_s + '/', class: 'delete-milestone-btn', method: :delete, data: { confirm: "Are you sure?" }, remote: true %>
 <dl data-milestone-id="<%= milestone.id %>">
   <dt>Name</dt>
   <dd class="name freelancer-editable" data-update-field="name"><%= milestone.name %></dd>

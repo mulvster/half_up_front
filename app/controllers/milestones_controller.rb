@@ -26,5 +26,8 @@ class MilestonesController < ApplicationController
   end
 
   def destroy
+    @milestone = Milestone.find(params[:id])
+    @milestone.destroy
+    flash[:notice] = "Milestone Deleted"
   end
 end
