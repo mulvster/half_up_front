@@ -13,3 +13,23 @@
   border: 2px solid black;
   border-radius: 10px;
 }
+
+.delete-milestone-btn {
+  float: right;
+  border-radius: 25px;
+  border: 2px solid black;
+  font-size: 10px;
+}
+
+.delete-milestone-btn:hover {
+  background-color: #ed6565;
+}
+
+.save-milestone-btn {
+  border-radius: 10px;
+  border: 1px solid black;
+}
+
+.save-milestone-btn:hover {
+  background-color: #9b9393;
+}
