@@ -18,6 +18,8 @@ function getLiveInfo() {
 
 <h3>Welcome <%= current_user.first_name %> </h3>
 
+<%= render 'stepwizard' %>
+
 <h3> Budget: </h3>
 <%= link_to '#' do %>
   <%= image_tag 'crazy_green_up.png', id: 'arrow', alt: 'up arrow', height: '40px', width: '40px' %>
