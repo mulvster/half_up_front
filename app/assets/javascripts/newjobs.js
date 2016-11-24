@@ -10,8 +10,6 @@ $(function () {
     });
 
     $('.check-btn').on("click", function () {
-        // grouping all the checkbox using the classname
-        // var checkboxes = $(".check-btn input:checked");
         var checkbox = $(this).find('input');
         if (checkbox.is(':checked')) {
             checkbox.removeProp('checked');

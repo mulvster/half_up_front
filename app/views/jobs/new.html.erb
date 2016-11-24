@@ -124,7 +124,7 @@
           <label class="check-btn" for="photos">
             <div class="glyphicon fa fa-camera"></div>
             Photos
-            <%= check_box :jobs, :photos, options = {}, on_value = '1', off_value = '0' %>
+            <%= check_box :jobs, :photos, options = {}, on_value = 'yes', off_value = 'no' %>
 
 
           </label>
@@ -135,7 +135,7 @@
           <label class="check-btn" for="designer">
             <div class="glyphicon fa fa-paint-brush"></div>
             Designer
-            <%= check_box :jobs, :designer %>
+            <%= check_box :jobs, :designer,options = {}, on_value = 'yes', off_value = 'no' %>
           </label>
         </div>
 
@@ -144,7 +144,7 @@
           <label class="check-btn" for="seo">
             <div class="glyphicon fa fa-search"></div>
             SEO
-            <%= check_box :jobs, :seo %>
+            <%= check_box :jobs, :seo,options = {}, on_value = 'yes', off_value = 'no' %>
           </label>
         </div>
 
@@ -159,7 +159,7 @@
           <label class="check-btn" for="domain">
             <div class="glyphicon fa fa-desktop"></div>
             Domain
-            <%= check_box :jobs, :domain %>
+            <%= check_box :jobs, :domain,options = {}, on_value = 'yes', off_value = 'no' %>
           </label>
         </div>
 
@@ -168,7 +168,7 @@
           <label class="check-btn" for="hosting">
             <div class="glyphicon fa fa-server"></div>
             Hosting
-            <%= check_box :jobs, :hosting %>
+            <%= check_box :jobs, :hosting,options = {}, on_value = 'yes', off_value = 'no' %>
           </label>
         </div>
 
@@ -177,7 +177,7 @@
           <label class="check-btn" for="Mobile">
             <div class="glyphicon fa fa-mobile"></div>
             Mobile
-            <%= check_box :jobs, :hosting %>
+            <%= check_box :jobs, :mobile,options = {}, on_value = 'yes', off_value = 'no' %>
           </label>
         </div>
       </div>
@@ -190,7 +190,7 @@
           <label class="check-btn" for="analytics">
             <div class="glyphicon fa fa-line-chart"></div>
             Analytics
-            <%= check_box :jobs, :analytics %>
+            <%= check_box :jobs, :analytics,options = {}, on_value = 'yes', off_value = 'no' %>
           </label>
         </div>
 
@@ -198,7 +198,7 @@
           <label class="check-btn" for="seo">
             <div class="glyphicon fa fa-shopping-cart"></div>
             E-Commerce
-            <%= check_box :jobs, :ecommerce %>
+            <%= check_box :jobs, :ecommerce,options = {}, on_value = 'yes', off_value = 'no' %>
           </label>
         </div>
 
@@ -207,7 +207,7 @@
           <label class="check-btn" for="cms">
             <div class="glyphicon fa fa-pencil"></div>
             CMS
-            <%= check_box :jobs, :cms %>
+            <%= check_box :jobs, :cms,options = {}, on_value = 'yes', off_value = 'no' %>
           </label>
         </div>
 

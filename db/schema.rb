@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161123225140) do
+ActiveRecord::Schema.define(version: 20161124020301) do
 
   create_table "attachments", force: :cascade do |t|
     t.string   "name"
@@ -54,6 +54,19 @@ ActiveRecord::Schema.define(version: 20161123225140) do
     t.integer  "freelancer_rating"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+    t.string   "brief"
+    t.string   "objective"
+    t.string   "project_type"
+    t.string   "pre_price"
+    t.string   "website_size"
+    t.string   "photos"
+    t.string   "designer"
+    t.string   "seo"
+    t.string   "domain"
+    t.string   "hosting"
+    t.string   "analytics"
+    t.string   "ecommerce"
+    t.string   "cms"
   end
 
   create_table "milestones", force: :cascade do |t|
