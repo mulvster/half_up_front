@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161123233649) do
+ActiveRecord::Schema.define(version: 20161124000838) do
 
   create_table "attachments", force: :cascade do |t|
     t.string   "name"
@@ -67,8 +67,8 @@ ActiveRecord::Schema.define(version: 20161123233649) do
     t.text     "milestone_elaboration"
     t.boolean  "all_requirements_renegotiable"
     t.boolean  "completed"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.string   "created_at",                    null: false
+    t.string   "updated_at",                    null: false
     t.integer  "job_id"
   end
 
