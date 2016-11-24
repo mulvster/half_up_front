@@ -18,46 +18,50 @@ $(function () {
             checkbox.prop('checked', 'checked');
         }
         console.log('checked')
+        $(this).toggleClass('hovered');
     });
 
 
-    $("input[type='checkbox']").change(function(){
-        if($(this).is(":checked")){
-            $(this).parents('').addClass('checkedbox');
-        }else{
-            $(this).parent('').removeClass('checkedbox');
+    var i = $('input').size() + 1;
+
+        $('#add').click(function() {
+        $('<div><input type="text" class="field" name="dynamic[]" value="' + i + '" /></div>').fadeIn('slow').appendTo('.inputs'); i++;
+        });
+
+        $('#remove').click(function() {
+        if(i > 1) {
+        $('.field:last').remove();
+        i--;
+        }
+        });
+        $('#reset').click(function() {
+        while(i > 2) {
+        $('.field:last').remove();
+        i--;
         }
     });
 
+    // here's our click function for when the forms submitted
 
+    $('.submit').click(function(){
 
+        var answers = [];
 
+        $.each($('.field'), function() {
+
+        answers.push($(this).val());
+
+        });
+
+        if(answers.length == 0) {
+
+        answers = "none";
+
+    }
+
+    alert(answers);
+
+    return false;
+
+    });
 });
-
-
-/* 
- $(function()
- {
- $(document).on('click', '.btn-add', function(e)
- {
- e.preventDefault();
-
- var controlForm = $('.controls form:first'),
- currentEntry = $(this).parents('.entry:first'),
- newEntry = $(currentEntry.clone()).appendTo(controlForm);
-
- newEntry.find('input').val('');
- controlForm.find('.entry:not(:last) .btn-add')
- .removeClass('btn-add').addClass('btn-remove')
- .removeClass('btn-success').addClass('btn-danger')
- .html('<span class="glyphicon glyphicon-minus"></span>');
- }).on('click', '.btn-remove', function(e)
- {
- $(this).parents('.entry:first').remove();
-
- e.preventDefault();
- return false;
- });
- });
-
- */

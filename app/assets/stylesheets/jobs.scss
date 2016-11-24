@@ -45,15 +45,12 @@ body.new-job {
 				border: 2px solid #062b93;
 		}
 
-		&.checked {
-			border: 2px solid #062b93;
-			color: #062b93;
+		&.hovered {
+				color: #062b93;
+				border: 2px solid #f62b20;
 		}
 
-		&:checked {
-			border: 2px solid #062b93;
-			color: #062b93;
-		}
+
 
 		.glyphicon {
 			text-align: center;
@@ -103,18 +100,24 @@ body.new-job {
 	display: block;
 } 
 
+span.input-group-btn{
+	float: right;
+	margin: 0;
+	padding-bottom: 100px;
+}
 
+.btn-success {
+	float: right;
+}
 
-// input[type='checkbox'] {
-// 	position: absolute;
-// 	top: -9999px;
-// 	left: -9999px;
-// }
-
-
-
+input[type="checkbox"] {
+			visibility: hidden;
+		}
 
 #messages {height: 300px; width: 400px; overflow: scroll; border: 1px solid #ddd}
 
 #chat-input {width: 400px}
 
+section.addexamples {
+	text-align: center;
+}

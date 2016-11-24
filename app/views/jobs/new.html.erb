@@ -216,19 +216,15 @@
     <br>
     <h2>Link Examples</h2>
     <section class="addexamples">
-      <div class="row center-block">
-        <div class="control-group" id="fields">
-          <div class="controls">
-            <div class="entry input-group col-lg-6 center-block">
-              <input class="form-control" name="fields[]" type="text" placeholder="Websites You Like"/>
-              <span class="input-group-btn">
-                            <button class="btn btn-success btn-add" type="button">
-                                <span class="glyphicon glyphicon-plus"></span>
-                            </button>
-                        </span>
-            </div>
-          </div>
-        </div>
+      <div class="dynamic-form">
+        <a id="add">Add</a> | <a id="remove">Remove</a>  | <a id="reset">Reset</a>
+          <form>
+            <div class="inputs">
+            <div><input name="dynamic[]" class="field" value="1" type="text"></div>
+            <div style=""><input class="field" name="dynamic[]" value="3" type="text"></div></div>
+            <input name="submit" class="submit" value="Submit" type="button">
+          </form>
+      </div>
     </section>
     </div>
 
