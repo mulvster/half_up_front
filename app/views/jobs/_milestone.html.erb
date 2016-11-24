@@ -5,6 +5,21 @@
 <dl data-milestone-id="<%= milestone.id %>">
   <dt>Name</dt>
   <dd class="name freelancer-editable" data-update-field="name"><%= milestone.name %></dd>
+
+  <dt>Budget</dt>
+  <dd contenteditable="true">Percent:</dd>
+  <span>
+    <%= link_to '#' do %>
+      <%= image_tag 'crazy_green_up.png', id: 'arrow', alt: 'up arrow', height: '25px', width: '25px' %>
+    <% end %>
+     (25%)
+    <%= link_to '#' do %>
+      <%= image_tag 'crazy_green_down.png', id: 'arrow', alt: 'down arrow', height: '25px', width: '25px' %>
+    <% end %>
+  </span>
+  <dd contenteditable="true">Amount:</dd>
+  <span>($2424)</span>
+
   <dt>Start Date</dt>
   <dd class="start-date freelancer-editable" data-update-field="start-date"><%= milestone.start_date %></dd>
   <dt>End Date</dt>
