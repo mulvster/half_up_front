@@ -26,7 +26,7 @@ class JobsController < ApplicationController
   private
 
   def job_params
-    params.require(:jobs).permit(:contract_text, :created_at, :brief, :objective, :project_type, :pre_price, :website_size, :photos, :designer, :seo, :domain, :hosting, :analytics, :ecommerce, :cms)
+    params.require(:jobs).permit(:contract_text, :created_at, :brief, :objective, :project_type, :pre_price, :website_size, :photos, :designer, :seo, :domain, :hosting, :analytics, :ecommerce, :cms, :website_examples, :job_details)
   end
 
 end

@@ -5,7 +5,8 @@
     <br>
 
     <section class="textType">
-      <h2>Brief:</h2><input class="brief center-block" id="brief" placeholder="Briefly describe the job">
+    <h2>Brief:</h2>
+      <%= text_field("jobs", "brief", class:"brief center-block") %>
     </section>
 
     <br>
@@ -13,7 +14,7 @@
 
     <section class="textType">
       <h2>Objective:</h2>
-      <input class="jobtype center-block" id="objective" placeholder="What do you want to accomplish with this project">
+    <%= text_field("jobs", "objective", class:"jobtype center-block") %>
     </section>
 
 
@@ -218,26 +219,26 @@
     <section class="addexamples">
       <div class="dynamic-form">
         <a id="add">Add</a> | <a id="remove">Remove</a>
-          <form>
           <div class="inputs">
-          <div><input name="dynamic[]" class="field" type="text"></div>
-        
-          </form>
+          <div> 
+          <%= text_field('jobs', 'website_examples', class:"brief center-block", placeholder: "Websites") %>
+          </div>
       </div>
     </section>
     </div>
 
 <br>
-<br>
 
     <section class="summary">
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 ">
           <div class="form-group">
-            <textarea class="form-control textarea" rows="3" name="Message" id="Message" placeholder="More Details"></textarea>
+            <%= text_area('jobs', 'job_details', class:"brief center-block", size: "100x5", placeholder:"Summary") %>
           </div>
         </div>
       </div>
     </section>
+    <div class='submitJob'>
     <%= f.submit %>
+    </div>
 <% end %>

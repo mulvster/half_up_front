@@ -47,7 +47,7 @@ body.new-job {
 
 		&.hovered {
 				color: #062b93;
-				border: 2px solid #f62b20;
+				border: 2px solid #062b93;
 		}
 
 
@@ -113,6 +113,14 @@ span.input-group-btn{
 input[type="checkbox"] {
 			visibility: hidden;
 		}
+
+textarea#Message {
+	width: 60%;
+}
+
+.submitJob {
+	padding-left: 35%;
+}
 
 #messages {height: 300px; width: 400px; overflow: scroll; border: 1px solid #ddd}
 
