@@ -1,7 +1,16 @@
 <article>
 <dl data-milestone-id="<%= milestone.id %>">
+
 <dt>Name</dt>
 <dd contenteditable="true"><%= milestone.name %></dd>
+
+<dt>Budget</dt>
+<%= image_tag 'crazy_green_up.png', id: 'arrow', alt: 'up arrow', height: '25px', width: '25px' %>
+
+ (30%)
+
+<%= image_tag 'crazy_green_down.png', id: 'arrow', alt: 'up arrow', height: '25px', width: '25px' %>
+
 <dt>Start Date</dt>
 <dd contenteditable="true"><%= milestone.start_date %></dd>
 <dt>End Date</dt>
