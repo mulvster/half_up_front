@@ -23,38 +23,21 @@ function handleUpdate(event) {
 
 function handleBudgetChange(event) {
   console.log('handleBudgetChange invoked');
-  var idName = event.target.id;
-  // if (event.target.id === 'up-arrow') {
-  //   console.log($(this).next().html());
-  //   var oneMore = Math.min(Number($(this).next().html()) + 1, 100);
-  //   $(this).next().html(oneMore);
-  //   console.log(oneMore);
-  //   dispatcher.trigger('update', {
-  //     field: $(this).data("update-field"),
-  //     idMilestone: $(this).closest("[data-milestone-id]").data('milestone-id'),
-  //     text: oneMore
-  //   });
-  // } else {
-  //   console.log($(this).prev().prev().html());
-  //   var oneLess = Math.max(Number($(this).prev().prev().html()) -1, 0);
-  //   console.log(oneLess);
-  //   dispatcher.trigger('update', {
-  //     field: $(this).data("update-field"),
-  //     idMilestone: $(this).closest("[data-milestone-id]").data('milestone-id'),
-  //     text: oneLess
-  //   });
-  // }
+  var idName = event.target.class;
 
   var budgetValueNode = $(this).parent().children('.payment-percentage');
   var oldValue = Number(budgetValueNode.html());
-  // var deltaBudget = -1;
-  // if (event.target.id === 'up-arrow') {
-  //   deltaBudget = 1;
-  // }
-  var deltaBudget = event.target.id === 'up-arrow' ? 1 : -1;
+
+  var deltaBudget = event.target.className === 'arrow up-arrow' ? 1.0 : -1.0;
   var newValue = oldValue + deltaBudget;
   newValue = Math.max(0, Math.min(100, newValue));
   budgetValueNode.html(newValue);
+  // reset the milestone budget field
+
+  // collect all the milestone percent fields
+  // for all of the percent fields except this one:
+    // reset to add to 100 by SOME FORMULA
+    // add or subtract to one decimal place.
 
 }
 
