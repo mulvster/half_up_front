@@ -27,12 +27,17 @@ function handleBudgetChange(event) {
 
   var budgetValueNode = $(this).parent().children('.payment-percentage');
   var oldValue = Number(budgetValueNode.html());
+  console.log(oldValue);
 
   var deltaBudget = event.target.className === 'arrow up-arrow' ? 1.0 : -1.0;
   var newValue = oldValue + deltaBudget;
   newValue = Math.max(0, Math.min(100, newValue));
-  budgetValueNode.html(newValue);
+  //round if needed:
+  roundedValue = deltaBudget > 0 ? Math.floor(newValue) : Math.ceil(newValue);
+  budgetValueNode.html(roundedValue.toFixed(1));
+  actualDelta = roundedValue - oldValue;
   // reset the milestone budget field
+
 
   // collect all the milestone percent fields
   // for all of the percent fields except this one:
@@ -122,10 +127,23 @@ $(function(){
         url: url,
         data: data,
         error: function(jqe, err_str, err) {
-          console.log("oh my god there was an error, I have no idea what to do: " + err_str);
+          console.log("oh my god there was a milestone saving error, I have no idea what to do: " + err_str);
         }
       })
     };
+  });
+
+  $('#save-job').on('click', function (event) {
+    var url = '/jobs/' + job_id;
+    var data = {""}
+    $.ajax({
+      type: "PUT",
+      url: url,
+      data: data
+      error: function(jqe, err_str, err) {
+          console.log("oh my god there was a jobs saving error, I have no idea what to do: " + err_str);
+      }
+    })
   });
 
   $('.button_to').on('ajax:success', function(event, data, status, xhr){
