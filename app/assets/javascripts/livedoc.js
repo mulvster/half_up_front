@@ -83,38 +83,41 @@ $(function(){
   });
 
 
-  $('#allMilestones').on('click', function (event) {
+
+  //updates milestones to db on click of SAVE button
+  $('#allMilestones').on('click', '.save-milestone-btn', function (event) {
     console.log('detected click', arguments);
-    if (event.target.nodeName === 'BUTTON') {
-      var milestoneId = $(event.target).attr(MILESTONE_DATA_ATTRIBUTE_NAME);
-      var list = $('#allMilestones').find('dl[data-milestone-id=' + milestoneId + ']');
-      var values = $.map($.makeArray(list.find('dd')), function (dd) {
-        console.log(arguments);
-        return $(dd).text();
-      });
-      var fields = ["name", "start_date", "end_date", "requirements_summary"];
+    var milestoneId = $(event.target).attr(MILESTONE_DATA_ATTRIBUTE_NAME);
+    var list = $('#allMilestones').find('dl[data-milestone-id=' + milestoneId + ']');
+    var values = $.map($.makeArray(list.find('dd')), function (dd) {
+      console.log(arguments);
+      return $(dd).text();
+    });
+    var fields = ["name", "start_date", "end_date", "requirements_summary"];
 
-      var data = fields.reduce(function(previous, current, index) {
-        previous[current] = values[index];
-        return previous;
-      }, {});
+    var data = fields.reduce(function(previous, current, index) {
+      previous[current] = values[index];
+      return previous;
+    }, {});
 
-      var job_id = parseInt(window.location.pathname.substring(6));
-      var url = '/jobs/' + job_id + '/milestones/' + milestoneId;
-      $.ajax({
-        type: "PUT",
-        url: url,
-        data: data
-      })
-      }
-    ;
+    var job_id = parseInt(window.location.pathname.substring(6));
+    var url = '/jobs/' + job_id + '/milestones/' + milestoneId;
+    $.ajax({
+      type: "PUT",
+      url: url,
+      data: data
+    });
   });
 
-  $('.button_to').on('ajax:success', function(event, data, status, xhr){
+  $('.new-milestone-form').on('ajax:success', function(event, data, status, xhr){
     console.log("THIS IS XHR", xhr)
     $('#allMilestones').append(renderMilestone(xhr.responseJSON));
     $('#allMilestones').find('dd').attr("contenteditable", !liveInfo.isEmployer);
     $('.button_to').on('click', handleNewMilestone(xhr.responseJSON));
+  });
+
+  $('.new-requirement-form').on('ajax:success', function(event, data, status, xhr){
+
   });
 
   // debugger;
@@ -128,8 +131,7 @@ $(function(){
     dispatcher.bind("new_milestone", function(message) {
       console.log("MESSAGE", message.milestoneid)
       // $('#allMilestones').find("dl[data-milestone-id='" + message.milestoneid + "']")
-      $('#allMilestones').append(renderMilestone(message.responseJSON));
-
+      $('#allMilestones').append(renderMilestone(message));
 
     });
 

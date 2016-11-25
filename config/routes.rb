@@ -12,7 +12,9 @@ Rails.application.routes.draw do
   resources :users, only: [:create, :new, :edit, :show, :update]
 
   resources :jobs, only: [:create, :new, :show, :edit, :destroy, :index] do
-    resources :milestones, only: [:create, :edit, :destroy, :update]
+    resources :milestones, only: [:create, :edit, :destroy, :update] do
+      resources :requirements, only: [:create, :edit, :destroy, :update]
+    end
   end
      #index may go away later
 

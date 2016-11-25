@@ -12,6 +12,7 @@
   width: 200px;
   border: 2px solid black;
   border-radius: 10px;
+  vertical-align: top;
 }
 
 .delete-milestone-btn {
@@ -28,8 +29,26 @@
 .save-milestone-btn {
   border-radius: 10px;
   border: 1px solid black;
+  font-size: 10px;
 }
 
 .save-milestone-btn:hover {
   background-color: #9b9393;
+}
+
+.req-btn {
+  padding-top: 5px;
+  border-radius: 10px;
+  border: 1px solid black;
+  font-size: 8px;
+  float: right;
+}
+
+.requirement {
+  width: 200px;
+  border-top: 1px solid black
+}
+
+#allMilestones {
+  padding-top: 20px;
 }
