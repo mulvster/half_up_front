@@ -28,7 +28,7 @@ function getLiveInfo() {
 <br>
 <br>
 
-<section id="allMilestones">
+<section id="allMilestones" data-job="<%= @job.id %>">
   <%= button_to "+ Milestone", job_milestones_path(@job.id), :id => "new-milestone-btn", form_class: 'new-milestone-form', :class => "milestones", :method => :post, :remote => true %>
   <% @job.milestones.each do |milestone| %>
     <%= render 'milestone', milestone: milestone %>

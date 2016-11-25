@@ -3,7 +3,7 @@ class RequirementsController < ApplicationController
     milestone = Milestone.find params[:milestone_id]
     requirement = milestone.requirements.new()
      if requirement.save
-      render json: milestone
+      render json: requirement
     else
       render nothing: true, status: 400
     end

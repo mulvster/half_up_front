@@ -10,6 +10,7 @@ WebsocketRails::EventMap.describe do
   # subscribe :update_details, 'livedoc#update_details'
   subscribe :update, 'livedoc#update'
   subscribe :updatemilestone, 'livedoc#updatemilestone'
+  subscribe :updaterequirement, 'livedoc#updaterequirement'
 
   #
   # Here is an example of mapping namespaced events:

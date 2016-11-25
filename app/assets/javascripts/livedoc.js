@@ -24,50 +24,75 @@ function handleUpdate(event) {
 
 }
 function handleNewMilestone(event) {
-  console.log(event.id)
   dispatcher.trigger('updatemilestone', {
     milestoneid: event
   });
 }
 
 function handleRequirement(event) {
-
+  console.log("THIS IS EVENT", event)
+  dispatcher.trigger('updaterequirement', {
+    requirementid: event
+  });
 }
 
 function renderMilestone(milestone) {
   let container = $('<article>').addClass("milestone");
+  let deletebutton = $('<button>').addClass('delete-milestone-btn').text('X');
+  deletebutton.attr(MILESTONE_DATA_ATTRIBUTE_NAME, milestone.id);
+  container.append(deletebutton);
+
+
   let list = $('<dl>');
   list.attr(MILESTONE_DATA_ATTRIBUTE_NAME, milestone.id);
 
   let nameLabel = $('<dt>');
   nameLabel.text('Name');
   let nameValue = $('<dd>').addClass('name freelancer-editable');
-  nameValue.text(milestone.name);
+  nameValue.text("");
   list.append(nameLabel, nameValue);
 
   let startDateLabel = $('<dt>');
   startDateLabel.text('Start Date');
   let startDateValue = $('<dd>').addClass('start-date freelancer-editable');
-  startDateValue.text(milestone.start_date);
+  startDateValue.text("");
   list.append(startDateLabel, startDateValue);
 
   let endDateLabel = $('<dt>');
   endDateLabel.text('End Date');
   let endDateValue = $('<dd>').addClass('end-date freelancer-editable');
-  endDateValue.text(milestone.end_date);
+  endDateValue.text("");
   list.append(endDateLabel, endDateValue);
 
   let requirementSummaryLabel = $('<dt>');
   requirementSummaryLabel.text('Summary of Requirements');
   let requirementSummaryValue = $('<dd>').addClass('summary freelancer-editable');
-  requirementSummaryValue.text(milestone.requirements_summary);
+  requirementSummaryValue.text("");
   list.append(requirementSummaryLabel, requirementSummaryValue);
 
-  let button = $('<button>').addClass('save-milestone-btn');
+  let button = $('<button>').addClass('save-milestone-btn').text('Save');
   button.attr(MILESTONE_DATA_ATTRIBUTE_NAME, milestone.id);
+  let requirementbutton = $('<button>').addClass('req-btn').text('+ Requirement')
+  requirementbutton.attr(MILESTONE_DATA_ATTRIBUTE_NAME, milestone.id);
+  requirementbutton.on("click", function(event) {
+    var milestone_id = milestone.id;
+    var job_id = milestone.job_id;
+    var url = "/jobs/" + job_id + "/milestones/" + milestone_id + "/requirements/";
+
+    $.ajax({
+      url: url,
+      method: "POST"
+    }).done(function(data) {
+      console.log("THIS IS DATA", data)
+      $("dl[data-milestone-id='" + data.milestone_id + "']").append(getRequirement(data));
+      $('#allMilestones').find('dd').attr("contenteditable", !getLiveInfo().isEmployer);
+
+    });
+
+  });
 
 
-  container.append(list, button);
+  container.append(list, button, requirementbutton);
   return container;
 }
 
@@ -138,9 +163,13 @@ $(function(){
     $('.new-requirement-form').on('click', handleRequirement(xhr.responseJSON));
   });
 
-  $('.delete-milestone-btn').on('click', function (event) {
+  $('.button_to').on('ajax:success', function(event, data, status, xhr){
     $(this).closest('.milestone').remove();
   });
+
+  // $('.delete-milestone-btn').on('click', function (event) {
+  //   $(this).closest('.milestone').remove();
+  // });
 
   // debugger;
   if(liveInfo.isEmployer) {
@@ -159,6 +188,12 @@ $(function(){
       console.log("MESSAGE", message.milestoneid)
       // $('#allMilestones').find("dl[data-milestone-id='" + message.milestoneid + "']")
       $('#allMilestones').append(renderMilestone(message));
+
+    });
+
+    dispatcher.bind("new_requirement", function(message) {
+      console.log("MESSAGE", message.requirementid)
+      $("dl[data-milestone-id='" + message.requirementid.milestone_id + "']").append(getRequirement(message.requirementid));
 
     });
 
