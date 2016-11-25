@@ -41,6 +41,10 @@ body.homepage {
     top: 0;
   }
 
+img#logo {
+    float:right;
+}
+
   div#title {
     border: 5px solid white;
     left: 52.5%;
@@ -299,4 +303,7 @@ a, a:link, a:visited {
     transition: color .2s ease-out;
 }
 
+.paypaylogo {
+    padding-bottom: 20px;
+}
 

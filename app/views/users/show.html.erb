@@ -32,14 +32,12 @@
               </h5>
 
               <h4><%= @user.first_name %> <%= @user.last_name %>
-                <p> <%= current_user.first_name %> </p>
               </h4>
-
-              <small><cite title="Vancouver,Canada"><%= @user.city %> <%= @user.province %> <%= @user.country %>
-                <i class="glyphicon glyphicon-map-marker">
+              <small><cite title="Vancouver,Canada"><%= @user.country %>
+                <i class="glyphicon glyphicon-map-marker">  <%= @user.country %>
                 </i></cite></small>
               <p>
-                <i class="glyphicon glyphicon-envelope"></i>april.mulvey@gmail.com
+                <i class="glyphicon glyphicon-envelope"></i> <%= @user.email %>
                 <br/>
               <p id="portext">Portfolio</p>
               <ul class="dropdown-menu" role="menu">

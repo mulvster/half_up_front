@@ -8,15 +8,3 @@ document.addEventListener('DOMContentLoaded', function () {
         passive: true
     });
 });
-
-
-document.addEventListener('DOMContentLoaded', function () {
-    var paralaxContainer = document.getElementById('second-container');
-    paralaxContainer.style.height = window.innerHeight + 'px';
-    var image = document.getElementById('secondimage');
-    window.addEventListener('scroll', function (){
-            image.style.top = window.pageYOffset * 0.5 + 'px';
-        }, {
-        passive: true
-    });
-});

@@ -5,7 +5,7 @@ class JobsController < ApplicationController
       #session[:job_id] = job.id
       redirect_to job_path(job)
     else
-      redirect_to new_job_path
+      redirect_to new_job_path/
     end
   end
 
