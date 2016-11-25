@@ -12,10 +12,13 @@ var dispatcher = new WebSocketRails('localhost:3000/websocket', false);
 // }
 
 function handleUpdate(event) {
+  console.log("THIS IS EVENT", $(this).closest(
+  "[data-requirement-id]").data('requirement-id'));
   dispatcher.trigger('update', {
     field: $(this).data("update-field"),
     idMilestone: $(this).closest("[data-milestone-id]").data('milestone-id'),
-     //name/details/startdate
+    idRequirement:  $(this).closest(
+  "[data-requirement-id]").data('requirement-id'),
     text: $(this).text()
   });
 
@@ -25,6 +28,10 @@ function handleNewMilestone(event) {
   dispatcher.trigger('updatemilestone', {
     milestoneid: event
   });
+}
+
+function handleRequirement(event) {
+
 }
 
 function renderMilestone(milestone) {
@@ -59,14 +66,23 @@ function renderMilestone(milestone) {
   let button = $('<button>').addClass('save-milestone-btn');
   button.attr(MILESTONE_DATA_ATTRIBUTE_NAME, milestone.id);
 
-  newList = $(`
-    <div class='foo'>
-      <p> yo mama </p>
-
-    `)
 
   container.append(list, button);
   return container;
+}
+
+function getRequirement(requirement) {
+
+return $newRequirement = $(`
+  <dl class="requirement" data-requirement-id="${requirement.id}">
+    Requirement
+    <dt>Name</dt>
+    <dd class="req-name freelancer-editable" data-update-field="req-name"> </dd>
+    <dt>Details</dt>
+    <dd class="details freelancer-editable" data-update-field="details"> </dd>
+  </dl>
+
+  `)
 }
 
 // }
@@ -113,19 +129,30 @@ $(function(){
     console.log("THIS IS XHR", xhr)
     $('#allMilestones').append(renderMilestone(xhr.responseJSON));
     $('#allMilestones').find('dd').attr("contenteditable", !liveInfo.isEmployer);
-    $('.button_to').on('click', handleNewMilestone(xhr.responseJSON));
+    $('.new-milestone-form').on('click', handleNewMilestone(xhr.responseJSON));
   });
 
   $('.new-requirement-form').on('ajax:success', function(event, data, status, xhr){
+    $(this).closest('.milestone').append(getRequirement(xhr.responseJSON));
+    $('#allMilestones').find('dd').attr("contenteditable", !liveInfo.isEmployer)
+    $('.new-requirement-form').on('click', handleRequirement(xhr.responseJSON));
+  });
 
+  $('.delete-milestone-btn').on('click', function (event) {
+    $(this).closest('.milestone').remove();
   });
 
   // debugger;
   if(liveInfo.isEmployer) {
 
     dispatcher.bind("replace_field", function(message) {
+      if (!message.idRequirement) {
       var element = $("dl[data-milestone-id='" + message.idMilestone + "'] ." +  message.field)
       element.text(message.text);
+    } else {
+      var element = $("dl[data-requirement-id='" + message.idRequirement + "'] ." + message.field)
+      element.text(message.text);
+    }
     });
 
     dispatcher.bind("new_milestone", function(message) {

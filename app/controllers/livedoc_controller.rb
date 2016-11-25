@@ -25,7 +25,7 @@ class LivedocController < WebsocketRails::BaseController
     puts "made it to update function"
     # broadcast_message broadcast_key, message[:text]
     # broadcast_message broadcast_key, {text: message[:text], field: 'name'}
-    broadcast_message 'replace_field', {field: message[:field], text: message[:text], idMilestone: message[:idMilestone]}
+    broadcast_message 'replace_field', {field: message[:field], text: message[:text], idMilestone: message[:idMilestone], idRequirement: message[:idRequirement]}
   end
 
   def updatemilestone

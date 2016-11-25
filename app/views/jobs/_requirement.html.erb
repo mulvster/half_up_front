@@ -1,8 +1,9 @@
-      <dl class="requirement" data-requirement-if=" <%= requirement.id %>">
-        Requirement
-        <dt>Name</dt>
-        <dd class="req-name freelancer-editable" data-update-field="req-name"><%=requirement.name %> </dd>
-        <dt>Details</dt>
-        <dd class="details freelancer-editable" data-update-field="details"> <%=requirement.details %></dd>
+<dl class="requirement" data-requirement-id=" <%= requirement.id %>">
+  Requirement
+  <dt>Name</dt>
+  <dd class="req-name freelancer-editable" data-update-field="req-name"><%=requirement.name %> </dd>
+  <dt>Details</dt>
+  <dd class="details freelancer-editable" data-update-field="details"> <%=requirement.details %></dd>
+</dl>
 
-      </dl>
+<!-- $('.requirement.hidden').clone().removeClass('hidden').appendTo('.somewhere'); -->

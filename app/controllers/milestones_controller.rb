@@ -26,8 +26,9 @@ class MilestonesController < ApplicationController
   end
 
   def destroy
+    # binding.pry
     @milestone = Milestone.find(params[:id])
     @milestone.destroy
-    flash[:notice] = "Milestone Deleted"
+    render nothing: true
   end
 end
