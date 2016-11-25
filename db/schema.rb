@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161125225226) do
+ActiveRecord::Schema.define(version: 20161125234124) do
 
   create_table "attachments", force: :cascade do |t|
     t.string   "name"
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 20161125225226) do
     t.datetime "end_date"
     t.text     "contract_text"
     t.binary   "contract_pdf"
-    t.integer  "final_budget"
+    t.integer  "budget"
     t.boolean  "contract_signed"
     t.boolean  "contract_completed"
     t.text     "employer_review"
