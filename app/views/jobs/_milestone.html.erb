@@ -8,14 +8,14 @@
 
   <dt>Budget</dt>
   <span>Percent:</span>
-  <span>
-    <%= link_to '#' do %>
-      <%= image_tag 'crazy_green_up.png', id: 'arrow', alt: 'up arrow', height: '25px', width: '25px' %>
-    <% end %>
+  <span class="budget">
+
+    <%= image_tag 'crazy_green_up.png',   id: 'up-arrow', :class => 'arrow', alt: 'up arrow', height: '25px', width: '25px' %>
+
     <dd class="payment-percentage freelancer-editable" data-update-field="payment-percentage"><%= milestone.payment_percentage %></dd><span>%</span>
-    <%= link_to '#' do %>
-      <%= image_tag 'crazy_green_down.png', id: 'arrow', alt: 'down arrow', height: '25px', width: '25px' %>
-    <% end %>
+
+    <%= image_tag 'crazy_green_down.png', id: 'down-arrow', :class => 'arrow', alt: 'down arrow', height: '25px', width: '25px' %>
+
   </span>
   <dd contenteditable="true">Amount:</dd>
   <span class="$-sign">$</span>

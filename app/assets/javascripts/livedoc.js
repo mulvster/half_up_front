@@ -12,15 +12,52 @@ var dispatcher = new WebSocketRails('localhost:3000/websocket', false);
 // }
 
 function handleUpdate(event) {
-
+  console.log("handleUpdate", event)
   dispatcher.trigger('update', {
     field: $(this).data("update-field"),
     idMilestone: $(this).closest("[data-milestone-id]").data('milestone-id'),
      //name/details/startdate
     text: $(this).text()
   });
+}
+
+function handleBudgetChange(event) {
+  console.log('handleBudgetChange invoked');
+  var idName = event.target.id;
+  // if (event.target.id === 'up-arrow') {
+  //   console.log($(this).next().html());
+  //   var oneMore = Math.min(Number($(this).next().html()) + 1, 100);
+  //   $(this).next().html(oneMore);
+  //   console.log(oneMore);
+  //   dispatcher.trigger('update', {
+  //     field: $(this).data("update-field"),
+  //     idMilestone: $(this).closest("[data-milestone-id]").data('milestone-id'),
+  //     text: oneMore
+  //   });
+  // } else {
+  //   console.log($(this).prev().prev().html());
+  //   var oneLess = Math.max(Number($(this).prev().prev().html()) -1, 0);
+  //   console.log(oneLess);
+  //   dispatcher.trigger('update', {
+  //     field: $(this).data("update-field"),
+  //     idMilestone: $(this).closest("[data-milestone-id]").data('milestone-id'),
+  //     text: oneLess
+  //   });
+  // }
+
+  var budgetValueNode = $(this).parent().children('.payment-percentage');
+  var oldValue = Number(budgetValueNode.html());
+  // var deltaBudget = -1;
+  // if (event.target.id === 'up-arrow') {
+  //   deltaBudget = 1;
+  // }
+  var deltaBudget = event.target.id === 'up-arrow' ? 1 : -1;
+  var newValue = oldValue + deltaBudget;
+  newValue = Math.max(0, Math.min(100, newValue));
+  budgetValueNode.html(newValue);
 
 }
+
 
 function renderMilestone(milestone) {
   let container = $('<article>');
@@ -80,7 +117,7 @@ $(function(){
   });
 
   $('#allMilestones').on('click', function (event) {
-    console.log('detected click', arguments);
+    //console.log('detected click', arguments);
     if (event.target.nodeName === 'BUTTON') {
       var milestoneId = $(event.target).attr(MILESTONE_DATA_ATTRIBUTE_NAME);
       var list = $('#allMilestones').find('dl[data-milestone-id=' + milestoneId + ']');
@@ -100,10 +137,12 @@ $(function(){
       $.ajax({
         type: "PUT",
         url: url,
-        data: data
+        data: data,
+        error: function(jqe, err_str, err) {
+          console.log("oh my god there was an error, I have no idea what to do: " + err_str);
+        }
       })
-      }
-    ;
+    };
   });
 
   $('.button_to').on('ajax:success', function(event, data, status, xhr){
@@ -124,6 +163,7 @@ $(function(){
     $('.milestone .freelancer-editable #allMilestones').attr("contenteditable", true);
     // $('.milestone .freelancer-editable #allMilestones').on('input', handleUpdate);
     $('#allMilestones').on('input', '[data-update-field]', handleUpdate);
+    $('.arrow').on('click', handleBudgetChange);
 
   }
 });

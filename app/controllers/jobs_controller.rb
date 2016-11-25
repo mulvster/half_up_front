@@ -18,6 +18,7 @@ class JobsController < ApplicationController
   end
 
   def edit
+    puts "jobcontroller edit"
   end
 
   def destroy

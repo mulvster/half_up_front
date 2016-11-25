@@ -22,7 +22,7 @@ class MilestonesController < ApplicationController
     milestone.start_date = params[:start_date]
     milestone.end_date = params[:end_date]
     milestone.requirements_summary = params[:requirements_summary]
-    milestone.save
+    milestone.save!
     render json: ""
   end
 

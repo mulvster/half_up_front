@@ -29,13 +29,13 @@ function getLiveInfo() {
 
 <h3> Job Budget: </h3>
 <%= link_to '#' do %>
-  <%= image_tag 'crazy_green_up.png', id: 'arrow', alt: 'up arrow', height: '40px', width: '40px' %>
+  <%= image_tag 'crazy_green_up.png', id: 'up-arrow', alt: 'up arrow', height: '40px', width: '40px' %>
 <% end %>
 <span class="$-sign">$</span>
 <%= text_field_tag :final_budget %>
 
 <%= link_to '#' do %>
-  <%= image_tag 'crazy_green_down.png', id: 'arrow', alt: 'down arrow', height: '40px', width: '40px' %>
+  <%= image_tag 'crazy_green_down.png', id: 'down-arrow', :class => 'arrow', alt: 'down arrow', height: '40px', width: '40px' %>
 <% end %>
 
 
