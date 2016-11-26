@@ -8,6 +8,14 @@
     <h2>Brief:</h2>
       <%= text_field("jobs", "brief", class:"brief center-block") %>
     </section>
+    <script>
+      function getLiveInfo() {
+        return {
+          isFreelancer: <%= @job.freelancer_id == current_user.id %>,
+          isEmployer: <%= @job.employer_id == current_user.id %>
+        };
+      }
+    </script>
 
     <br>
     <br>
@@ -220,7 +228,7 @@
       <div class="dynamic-form">
         <a id="add">Add</a> | <a id="remove">Remove</a>
           <div class="inputs">
-          <div> 
+          <div>
           <%= text_field('jobs', 'website_examples', class:"brief center-block", placeholder: "Websites") %>
           </div>
       </div>
