@@ -23,25 +23,39 @@ var dispatcher = new WebSocketRails('localhost:3000/websocket', false);
 
 
 function budgetRedistributor(jobBudget, currentMilestone, allMilestones) {
-  budgetRemaining = jobBudget;
-  allMilestones.children().forEach(function(milestone) {
-    if (milestone !== currentMilestone) {
-      newAmount = Math.floor(jobBudget * milestone.find('.payment-percentage') / 100);
+  console.log("jobBudget: " + jobBudget.html() + "currentMilestone: " + currentMilestone + "allMilestones: " + allMilestones.children('milestone'));
+  budgetRemaining = jobBudget.html();
+  console.log(budgetRemaining);
+  var newAmount;
+  allMilestones.children('.milestone').each(function() {
+    console.log($(this).find('.milestone-amount').html());
+    if ($(this) !== currentMilestone) {
+      newAmount = Math.floor(jobBudget.html() * $(this).find('.payment-percentage').html() / 100);
     } else {
-      newAmount = milestone.find('.milestone-amount');
+      newAmount = $(this).find('.milestone-amount').html();
     }
-    milestone.find('.milestone-amount') = newAmount;
+    console.log(newAmount);
+    $(this).find('.milestone-amount').html(newAmount);
     budgetRemaining -= newAmount;
+    console.log($(this).find('.milestone-amount').html());
+    console.log("budgetRemaining: " + budgetRemaining);
   });
-  // loop over non-calling milestones, adding $1 till budgetRemaining depleted
+  //loop over non-calling milestones, adding $1 till budgetRemaining depleted
   var modulizer = 0;
+  milestoneCount = allMilestones.children('.milestone').length;
   while (budgetRemaining > 0) {
-    var index = modulizer % allMilestones.children().length;
-    if (allMilestones.children()[index] !== currentMilestone) {
+    //var index = modulizer % allMilestones.children('.milestone').length;
+    console.log(allMilestones.children('.milestone').length);
+
+    if ($(this) !== currentMilestone) {
       allMilestones.children()[index].find('.milestone-amount') += 1;
       budgetRemaining --;
+      //console.log(budgetRemaining);
     }
   }
+  allMilestones.children('milestone').each(function(milestone){
+    console.log(milestone.find('milestone-amount').html());
+  })
 }
 
 function handleJobBudgetChange(event) {
@@ -76,7 +90,7 @@ function handleMilestoneBudgetChange(event) {
   var deltaBudget = event.target.className === 'arrow up-arrow' ? 1.0 : -1.0;
   var newValue = oldValue + deltaBudget;
   newValue = Math.max(0, Math.min(100, newValue));
-  //round if needed:
+  // round if needed:
   roundedValue = deltaBudget > 0 ? Math.floor(newValue) : Math.ceil(newValue);
   budgetValueNode.html(roundedValue.toFixed(1));
   actualDelta = roundedValue - oldValue;
