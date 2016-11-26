@@ -23,12 +23,11 @@ var dispatcher = new WebSocketRails('localhost:3000/websocket', false);
 
 // This could use some significant refactoring.
 function budgetRedistributor(jobBudget, currentMilestone, allMilestones) {
-  console.log("jobBudget: " + jobBudget.html() + "currentMilestone: " + currentMilestone + "allMilestones: " + allMilestones.children('milestone'));
-  var budgetRemaining = jobBudget.html() - currentMilestone.find('.milestone-amount').html();
-  console.log(budgetRemaining);
+
+  console.log("Budget Remaining after this milestone subtraction: " + budgetRemaining);
 
   // dealing with percentage distribution:
-  var newPercentageRemaining = 100 - currentMilestone.find('.payment-percentage').html();
+  var newPercentageRemaining = 50 - currentMilestone.find('.payment-percentage').html();
   console.log("New remaining percentage: " + newPercentageRemaining);
   var previousTotalRemainingPercentage = 0;
   allMilestones.children('.milestone').each(function() {
@@ -51,16 +50,17 @@ function budgetRedistributor(jobBudget, currentMilestone, allMilestones) {
   });
 
   // dealing with amount distribution:
+  var budgetRemaining = Math.ceil(jobBudget.html() / 2);
   var newAmount;
   allMilestones.children('.milestone').each(function() {
 
-    console.log($(this).find('.milestone-amount').html());
-    if ($(this) !== currentMilestone) {
+    console.log("old amount: " + $(this).find('.milestone-amount').html());
+    if ($(this).find('dl').html() !== currentMilestone.find('dl').html()) {
       newAmount = Math.floor(jobBudget.html() * $(this).find('.payment-percentage').html() / 100);
     } else {
-      newAmount = $(this).find('.milestone-amount').html();
+      newAmount = Math.floor(jobBudget.html() * $(this).find('.payment-percentage').html() / 100);
     }
-    console.log(newAmount);
+    console.log("new Amount: " + newAmount);
     $(this).find('.milestone-amount').html(newAmount);
     budgetRemaining -= newAmount;
     console.log($(this).find('.milestone-amount').html());
@@ -72,7 +72,6 @@ function budgetRedistributor(jobBudget, currentMilestone, allMilestones) {
   rotatingMilestone = allMilestones.children('.milestone').first();
   console.log("BUDGET REMAINING BEFORE DELUGE: " + budgetRemaining);
   while (budgetRemaining > 0) {
-    //var index = modulizer % allMilestones.children('.milestone').length;
     console.log(allMilestones.children('.milestone').length);
 
     // **** the following line is hideous and doesn't work. TO BE FIXED. ****
@@ -119,21 +118,14 @@ function handleMilestoneBudgetChange(event) {
 
   var deltaBudget = event.target.className === 'arrow up-arrow' ? 1.0 : -1.0;
   var newValue = oldValue + deltaBudget;
-  newValue = Math.max(0, Math.min(100, newValue));
+  newValue = Math.max(0, Math.min(50, newValue));
   // round if needed:
   roundedValue = deltaBudget > 0 ? Math.floor(newValue) : Math.ceil(newValue);
   budgetValueNode.html(roundedValue.toFixed(1));
   actualDelta = roundedValue - oldValue;
-  // subfunction to
-  //    a) be extracted, time permitting and
-  //    b) fill in all the $ per milestones.
-  budgetRedistributor($('.job-budget'), $(this).closest('.milestone'), $('#allMilestones'));
-
-  // collect all the milestone percent fields
-  // for all of the percent fields except this one:
-    // reset to add to 100 by SOME FORMULA
-    // add or subtract to one decimal place.
-
+  if (actualDelta > 0) {
+    budgetRedistributor($('.job-budget'), $(this).closest('.milestone'), $('#allMilestones'));
+  }
 }
 
 

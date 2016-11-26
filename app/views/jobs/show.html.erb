@@ -44,6 +44,11 @@ function getLiveInfo() {
 
 <br>
 <br>
+
+<span class="huf-container"> <h4>Half Up Front: </h4> $ <span class="huf-budget"><%= (@job.budget / 2).floor %> </span></span>
+
+<br>
+<br>
 <%= button_to "Add Milestone", job_milestones_path(@job.id), :id => "new-milestone-btn", :class => "milestones", :method => :post, :remote => true %>
 
 <section id="allMilestones">
