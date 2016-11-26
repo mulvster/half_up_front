@@ -30,7 +30,7 @@
   <%= image_tag 'hayden.jpg', id: "profile_photo", alt: "profile_photo", height: '150px' %>
 
 
-  <h4 id="user-full-name"><%= @user.first_name %> <%= @user.last_name %></h4>
+  <h4 id="user-full-name"><%= @user.first_name %> <%= best_in_place @user, :last_name %></h4>
 
   <i class="glyphicon glyphicon-map-marker"></i>  <%= @user.country %> <%= @user.city %> <%= @user.province %>
 
@@ -42,7 +42,21 @@
 
   <a href="http://127.0.0.1:3000/jobs/new" class="btn btn-lg btn-success">Work with me!</a>
 
+  <br>
 
+  <h3>Hourly Rate: </h3> <%= best_in_place @user, :hourly_rate %>
+
+  <br>
+
+  <p>Summary: <%= best_in_place @user, :summary %></p>
+
+  <br>
+
+  <p> Git Hub: <%= best_in_place @user, :git %></p>
+
+  <br>
+
+  <p>Linked: <%= best_in_place @user, :linked_in %></p>
 
 </section>
 
