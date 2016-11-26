@@ -1,16 +1,244 @@
-<h1>New Job</h1>
+<%= provide :body_class, 'new-job' %>
 
-<%= render 'form' %>
+<%= form_for @job do |f| %>
 
-<%= form_for :job, url: '/jobs' do |f| %>
+    <br>
 
-  Contract Text: <%= f.text_field :contract_text %>
-  Date Created: <%= f.text_field :created_at %>
+    <section class="textType">
+    <h2>Brief:</h2>
+      <%= text_field("jobs", "brief", class:"brief center-block") %>
+    </section>
+
+    <br>
+    <br>
+
+    <section class="textType">
+      <h2>Objective:</h2>
+    <%= text_field("jobs", "objective", class:"jobtype center-block") %>
+    </section>
 
 
-  <%= f.submit "Submit" %>
+    <br>
+    <br>
 
+    <h2>What Kind of Project?</h2>
+    <section class="project">
+      <div class="row project">
+        <div class="col-xs-offset-2 col-xs-3 ">
+          <label class="radio-btn" for="newproject">
+            <div class="glyphicon glyphicon-plus"></div>
+            <p>New Project</p>
+            <%= radio_button("jobs", "project_type", "new", id: "newproject") %>
+          </label>
+        </div>
+
+        <div class="col-xs-offset-3 col-xs-3">
+          <label class="radio-btn" for="existingproject">
+            <div class="glyphicon glyphicon-arrow-right"></div>
+            <p>Existing Project</p>
+            <%= radio_button("jobs", "project_type", "existing", id: "existingproject") %>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <br>
+
+    <h2>What Kind of Price Point?</h2>
+    <section class="pricepoint">
+      <div class="row price">
+        <div class="col-xs-offset-1 col-xs-3 ">
+          <label class="radio-btn" for="fixed">
+            <div class="glyphicon fa fa-dollar"></div>
+            <p>Fixed Budget</p>
+            <%= radio_button("jobs", "pre_price", "fixed", id: "fixed") %>
+          </label>
+        </div>
+
+
+        <div class="col-xs-offset-1 col-xs-3 ">
+          <label class="radio-btn" for="flexible">
+            <div class="glyphicon fa fa-dollar"></div>
+            <div class="glyphicon fa fa-dollar"></div>
+            <p>Flexible Budget</p>
+            <%= radio_button("jobs", "pre_price", "flexible", id: "flexible") %>
+          </label>
+        </div>
+
+
+        <div class="col-xs-offset-1 col-xs-3 ">
+          <label class="radio-btn" for="sizable">
+            <div class="glyphicon fa fa-dollar"></div>
+            <div class="glyphicon fa fa-dollar"></div>
+            <div class="glyphicon fa fa-dollar"></div>
+            <p>Sizable Budget</p>
+            <%= radio_button("jobs", "pre_price", "sizable", id: "sizable") %>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <br>
+
+    <h2>How Big of a Website?</h2>
+    <section class="size">
+      <div class="row site">
+        <div class="col-xs-offset-1 col-xs-3 ">
+          <label class="radio-btn" for="small">
+            <div class="glyphicon fa fa-file-text"></div>
+            <p>Small Site</p>
+            <%= radio_button("jobs", "website_size", "small", id: "small") %>
+          </label>
+        </div>
+
+
+        <div class="col-xs-offset-1 col-xs-3 ">
+          <label class="radio-btn" for="medium">
+            <div class="glyphicon fa fa-file-text"></div>
+            <div class="glyphicon fa fa-file-text"></div>
+            <p>Medium Site</p>
+            <%= radio_button("jobs", "website_size", "medium", id: "medium") %>
+          </label>
+        </div>
+
+        <div class="col-xs-offset-1 col-xs-3 ">
+          <label class="radio-btn" for="large">
+            <div class="glyphicon fa fa-file-text"></div>
+            <div class="glyphicon fa fa-file-text"></div>
+            <div class="glyphicon fa fa-file-text"></div>
+            <p>Large Site</p>
+            <%= radio_button("jobs", "website_size", "large", id: "large") %>
+          </label>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <br>
+
+    <h2>Additional Costs</h2>
+    <section class="extra">
+      <div class="row xcost">
+        <div class="col-xs-offset-1 col-xs-3 ">
+          <label class="check-btn" for="photos">
+            <div class="glyphicon fa fa-camera"></div>
+            <p>Photos</p>
+            <%= check_box :jobs, :photos, options = {}, on_value = 'yes', off_value = 'no' %>
+
+
+          </label>
+        </div>
+
+
+        <div class="col-xs-offset-1 col-xs-3 ">
+          <label class="check-btn" for="designer">
+            <div class="glyphicon fa fa-paint-brush"></div>
+            <p>Designer</p>
+            <%= check_box :jobs, :designer, options = {}, on_value = 'yes', off_value = 'no' %>
+          </label>
+        </div>
+
+
+        <div class="col-xs-offset-1 col-xs-3 ">
+          <label class="check-btn" for="seo">
+            <div class="glyphicon fa fa-search"></div>
+            <p>SEO</p>
+            <%= check_box :jobs, :seo, options = {}, on_value = 'yes', off_value = 'no' %>
+          </label>
+        </div>
+
+
+      </div>
+
+      <br>
+
+      <div class="row xcost">
+
+        <div class="col-xs-offset-1 col-xs-3 ">
+          <label class="check-btn" for="domain">
+            <div class="glyphicon fa fa-desktop"></div>
+            <p>Domain</p>
+            <%= check_box :jobs, :domain, options = {}, on_value = 'yes', off_value = 'no' %>
+          </label>
+        </div>
+
+
+        <div class="col-xs-offset-1 col-xs-3 ">
+          <label class="check-btn" for="hosting">
+            <div class="glyphicon fa fa-server"></div>
+            <p>Hosting</p>
+            <%= check_box :jobs, :hosting, options = {}, on_value = 'yes', off_value = 'no' %>
+          </label>
+        </div>
+
+
+        <div class="col-xs-offset-1 col-xs-3 ">
+          <label class="check-btn" for="Mobile">
+            <div class="glyphicon fa fa-mobile"></div>
+            <p>Mobile</p>
+            <%= check_box :jobs, :mobile, options = {}, on_value = 'yes', off_value = 'no' %>
+          </label>
+        </div>
+      </div>
+
+      <br>
+
+      <div class="row xcost">
+
+        <div class="col-xs-offset-1 col-xs-3 ">
+          <label class="check-btn" for="analytics">
+            <div class="glyphicon fa fa-line-chart"></div>
+            <p>Analytics</p>
+            <%= check_box :jobs, :analytics, options = {}, on_value = 'yes', off_value = 'no' %>
+          </label>
+        </div>
+
+        <div class="col-xs-offset-1 col-xs-3 ">
+          <label class="check-btn" for="seo">
+            <div class="glyphicon fa fa-shopping-cart"></div>
+            <p>E-Commerce</p>
+            <%= check_box :jobs, :ecommerce, options = {}, on_value = 'yes', off_value = 'no' %>
+          </label>
+        </div>
+
+
+        <div class="col-xs-offset-1 col-xs-3 ">
+          <label class="check-btn" for="cms">
+            <div class="glyphicon fa fa-pencil"></div>
+            <p>CMS</p>
+            <%= check_box :jobs, :cms, options = {}, on_value = 'yes', off_value = 'no' %>
+          </label>
+        </div>
+
+
+      </div>
+    </section>
+
+    <br>
+    <h2>Link Examples</h2>
+    <section class="addexamples">
+      <div class="dynamic-form">
+        <a id="add">Add</a> | <a id="remove">Remove</a>
+          <div class="inputs">
+          <div> 
+          <%= text_field('jobs', 'website_examples', class:"brief center-block", placeholder: "Websites") %>
+          </div>
+      </div>
+    </section>
+    </div>
+
+<br>
+
+    <section class="summary">
+      <div class="row">
+        <div class="col-md-12 ">
+          <div class="form-group">
+            <%= text_area('jobs', 'job_details', class:"brief center-block", size: "100x5", placeholder:"Summary") %>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class='submitJob'>
+    <%= f.submit %>
+    </div>
 <% end %>
-
-
-<%= link_to 'Back', jobs_path %>

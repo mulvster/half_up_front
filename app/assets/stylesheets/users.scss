@@ -1,3 +1,22 @@
-// Place all the styles related to the Users controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.btn-nav {
+  background-color: red;
+}
+
+
+.container {
+  width: 50%;
+  height: 100%;
+  margin-left: 25%;
+  border: 1px solid black;
+}
+
+#profile_photo {
+  border-radius: 120px;
+  margin-top: 10px;
+}
+
+h4 {
+  margin-bottom: 25px;
+  margin-top: 15px;
+}

@@ -1,59 +1,64 @@
-<%= provide(:body_class, 'users-show') %>
-<body class="users-show">
+<section class="container center-block">
+  <script>
+    document.godHelpMe_allowed_to_edit = <%=@allowed_to_edit%>;
+  </script>
 
+    <div class="tab-pane panel active" id="tab1"  > </div>
+    <div class="tab-pane panel active" id="tab2" > </div>
 
-<div class="row">
+    <div class="tabnav">
 
-</div>
-</article>
-<div id="profile_page">
-
-  <div class="container">
-    <
-
-    <div class="row">
-
-
-      <div class="col-xs-12 col-sm-6 col-md-6 col-md-offset-3">
-        <div class="well well-sm ">
-          <div class="edit">
-            <%= link_to 'Edit', edit_user_path(@user) %>
-          </div>
-          <div class="row">
-            <div class="col-sm-6 col-md-4">
-              <%= image_tag @user.profile_image, id: "logo", alt: "logo", height: '80px' %>
-            </div>
-            <div class="col-sm-6 col-md-8">
-              <h5>
-                Rating <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-              </h5>
-
-              <h4><%= @user.first_name %> <%= @user.last_name %>
-                <p> <%= current_user.first_name %> </p>
-              </h4>
-
-              <small><cite title="Vancouver,Canada"><%= @user.city %> <%= @user.province %> <%= @user.country %>
-                <i class="glyphicon glyphicon-map-marker">
-                </i></cite></small>
-              <p>
-                <i class="glyphicon glyphicon-envelope"></i>april.mulvey@gmail.com
-                <br/>
-              <p id="portext">Portfolio</p>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Twitter</a></li>
-                <li><a href="https:www.google.com">Google +</a></li>
-                <li><a href="https://www.facebook.com">Facebook</a></li>
-                <li><a href="www.github.com">Github</a></li>
-              </ul>
-            </div>
-          </div>
+      <div class="btn-group btn-group-justified " >
+        <div class="btn-group" role="group">
+          <button id="b1" type="button" class="btn btn-nav" href="#tab1" data-toggle="tab">
+            <div class="visible">Profile <span class="glyphicon glyphicon-user" aria-hidden="true"> </span></div>
+          </button>
         </div>
       </div>
+
+      <div class="btn-group btn-group-justified ">
+        <div class="btn-group" role="group">
+          <button id="b2" type="button" class="btn btn-nav" href="#tab2" data-toggle="tab">
+            <div class="visible">Jobs <span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span></div>
+          </button>
+        </div>
+      </div>
+
     </div>
-  </div>
-</div>
+
+
+  <%= image_tag 'hayden.jpg', id: "profile_photo", alt: "profile_photo", height: '150px' %>
+
+
+  <h4 id="user-full-name"><%= @user.first_name %> <%= best_in_place @user, :last_name %></h4>
+
+  <i class="glyphicon glyphicon-map-marker"></i>  <%= @user.country %> <%= @user.city %> <%= @user.province %>
+
+  <br>
+
+  <i class="glyphicon glyphicon-envelope"></i> <%= best_in_place @user, :email %>
+
+  <a href="#" id="user-save" data-user-id="<%= @user.id %>" class="btn btn-primary btn-primary">Save profile changes</a>
+
+  <a href="http://127.0.0.1:3000/jobs/new" class="btn btn-lg btn-success">Work with me!</a>
+
+  <br>
+
+  <h3>Hourly Rate: </h3> <%= best_in_place @user, :hourly_rate %>
+
+  <br>
+
+  <p>Summary: <%= best_in_place @user, :summary %></p>
+
+  <br>
+
+  <p> Git Hub: <%= best_in_place @user, :git %></p>
+
+  <br>
+
+  <p>Linked: <%= best_in_place @user, :linked_in %></p>
+
 </section>
-</body>
+
+<%= link_to 'Edit Profile', edit_user_path(@user) %>
+

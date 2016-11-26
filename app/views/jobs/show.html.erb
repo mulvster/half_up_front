@@ -14,19 +14,24 @@ function getLiveInfo() {
 
 <p id="notice"><%= notice %></p>
 
-<!-- <iframe src="https://appear.in/half-up-front/<%= @job.id %>" width="400" height="480" frameborder="0"></iframe> -->
+<iframe src="https://appear.in/half-up-front/<%= @job.id %>" width="400" height="480" frameborder="0"></iframe>
 
 <h3>Welcome <%= current_user.first_name %> </h3>
 
 
-<!-- <div class="requirement">
-  <div class="title">Title</div>
-  <div class="details">Detials</div>
-</div>
- -->
+
 
 <br>
 <br>
+
+<!--<div class="chat">-->
+<!--<div class="messagelist">-->
+
+<!--</div>-->
+<!--<form>-->
+<!--<input />-->
+<!--</form>-->
+<!--</div>-->
 
 <section id="allMilestones" data-job="<%= @job.id %>">
   <%= button_to "+ Milestone", job_milestones_path(@job.id), :id => "new-milestone-btn", form_class: 'new-milestone-form', :class => "milestones", :method => :post, :remote => true %>
