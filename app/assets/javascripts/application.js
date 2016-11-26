@@ -15,7 +15,9 @@
 //require bootstrap-sprockets
 //= require turbolinks
 //= require parallax
-//= require_tree .
+//= require_tree
 //= require chat
-//
+//= require best_in_place
+
+
 

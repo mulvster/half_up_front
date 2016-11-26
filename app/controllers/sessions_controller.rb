@@ -17,6 +17,8 @@ class SessionsController < ApplicationController
 
   def create
     user = User.from_omniauth(request.env['omniauth.auth'])
+    # puts  "Moth #{request.env['omniauth.auth']} #{user}"
+    session[:user_id] = user.id # is jeremy crazy???  or maybe not crazy ENOUGH
     redirect_to user_path(user)
   end
 

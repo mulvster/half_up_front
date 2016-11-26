@@ -55,6 +55,9 @@ GEM
     autoprefixer-rails (6.5.3)
       execjs
     bcrypt (3.1.11)
+    best_in_place (3.0.3)
+      actionpack (>= 3.2)
+      railties (>= 3.2)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     bootstrap (4.0.0.alpha5)
@@ -71,7 +74,7 @@ GEM
     coffee-script (2.4.1)
       coffee-script-source
       execjs
-    coffee-script-source (1.10.0)
+    coffee-script-source (1.11.1)
     concurrent-ruby (1.0.2)
     debug_inspector (0.0.2)
     em-hiredis (0.3.1)
@@ -221,6 +224,7 @@ PLATFORMS
 DEPENDENCIES
   actioncable!
   bcrypt (~> 3.1.7)
+  best_in_place (~> 3.0.1)
   bootstrap (~> 4.0.0.alpha5)
   byebug
   coffee-rails (~> 4.1.0)

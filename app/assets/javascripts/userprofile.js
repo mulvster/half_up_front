@@ -8,4 +8,5 @@ $(function() {
         activeEl = $( ".btn-nav" ).index( this );
 
     });
+
 });

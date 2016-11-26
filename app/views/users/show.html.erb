@@ -1,30 +1,33 @@
 <section class="container center-block">
-  <div class="tab-content " style="margin-top:10px; "></div>
-  <div class="tab-pane panel  active" id="tab1"></div>
-  <div class="tab-pane panel" id="tab2"></div>
 
+    <div class="tab-pane panel active" id="tab1"  > </div>
+    <div class="tab-pane panel active" id="tab2" > </div>
 
-  <div class="tabnav">
-    <div class="btn-group btn-group-justified ">
-      <div class="btn-group  " role="group">
-        <button id="b1" type="button" class="btn btn-nav" href="#tab1" data-toggle="tab">
-          <div class="visible">Profile <span class="glyphicon glyphicon-user" aria-hidden="true"> </span></div>
-        </button>
+    <div class="tabnav">
+
+      <div class="btn-group btn-group-justified " >
+        <div class="btn-group" role="group">
+          <button id="b1" type="button" class="btn btn-nav" href="#tab1" data-toggle="tab">
+            <div class="visible">Profile <span class="glyphicon glyphicon-user" aria-hidden="true"> </span></div>
+          </button>
+        </div>
       </div>
 
-      <div class="btn-group" role="group">
-        <button type="button" class="btn btn-nav" href="#tab5" data-toggle="tab">
-          <div class="visible">Jobs <span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span></div>
-        </button>
+      <div class="btn-group btn-group-justified ">
+        <div class="btn-group" role="group">
+          <button id="b2" type="button" class="btn btn-nav" href="#tab2" data-toggle="tab">
+            <div class="visible">Jobs <span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span></div>
+          </button>
+        </div>
       </div>
+
     </div>
-  </div>
 
 
   <%= image_tag 'hayden.jpg', id: "profile_photo", alt: "profile_photo", height: '150px' %>
 
 
-  <h4><%= @user.first_name %> <%= @user.last_name %></h4>
+  <h4 contenteditable="<%=@allowed_to_edit%>"><%= @user.first_name %> <%= @user.last_name %></h4>
 
   <i class="glyphicon glyphicon-map-marker"></i>  <%= @user.country %> <%= @user.city %> <%= @user.province %>
 
@@ -35,4 +38,6 @@
   <a href="http://127.0.0.1:3000/jobs/new" class="btn btn-lg btn-success">Work with me!</a>
 
 </section>
+
+<%= link_to 'Edit Profile', edit_user_path(@user) %>
 

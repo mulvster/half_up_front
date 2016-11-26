@@ -19,6 +19,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find params[:id]
+    @allowed_to_edit = (session[:user_id] == params[:id].to_i).to_s
+    # puts "Godzilla .#{session[:user_id]},#{session[:user_id].class},#{params[:id]},#{params[:id].class},#{@allowed_to_edit}."
   end
 
   def update
