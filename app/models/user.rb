@@ -8,12 +8,15 @@ has_secure_password
 
 
   def self.from_omniauth(auth_hash)
+
     user = find_or_create_by(uid: auth_hash['uid'], provider: auth_hash['provider'])
     user.first_name = auth_hash['info']['first_name']
     user.last_name = auth_hash['info']['last_name']
-    user.city = auth_hash['info']['city']
-    user.province = auth_hash['info']['province']
     user.email = auth_hash['info']['email']
+    user.country = auth_hash['extra']['address']['country']
+    user.province =  auth_hash['extra']['address']['region']
+    user.city = auth_hash['extra']['address']['locality']
+
     user.password = SecureRandom.urlsafe_base64
     user.uid = auth_hash['info']['uid']
     user.save!
