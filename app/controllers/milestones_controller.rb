@@ -17,18 +17,20 @@ class MilestonesController < ApplicationController
 
   def update
     milestone = Milestone.find(params[:id])
-    milestone.name = params[:name]
-    milestone.start_date = params[:start_date]
-    milestone.end_date = params[:end_date]
-    milestone.requirements_summary = params[:requirements_summary]
-    milestone.save
+    milestone.update(milestone_params)
+
     render json: ""
   end
 
   def destroy
-    # binding.pry
     @milestone = Milestone.find(params[:id])
     @milestone.destroy
-    render nothing: true
+    render json: @milestone
+  end
+
+private
+
+  def milestone_params
+    params.require(:milestone).permit(:name, :start_date, :end_date, :requirements_summary, requirements_attributes: [:id, :name, :details])
   end
 end

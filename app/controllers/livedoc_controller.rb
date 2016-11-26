@@ -24,6 +24,9 @@ class LivedocController < WebsocketRails::BaseController
     broadcast_message 'new_requirement', {requirementid: message[:requirementid]}
   end
 
+  def destroymilestone
+    broadcast_message 'bye_milestone', {milestone: message[:milestone]}
+  end
   # evntually add id so that we can do it through unique milestones??
   # def post_message
   #   broadcast_message :receive_message, message[:content]

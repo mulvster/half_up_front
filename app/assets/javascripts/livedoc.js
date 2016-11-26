@@ -12,8 +12,6 @@ var dispatcher = new WebSocketRails('localhost:3000/websocket', false);
 // }
 
 function handleUpdate(event) {
-  console.log("THIS IS EVENT", $(this).closest(
-  "[data-requirement-id]").data('requirement-id'));
   dispatcher.trigger('update', {
     field: $(this).data("update-field"),
     idMilestone: $(this).closest("[data-milestone-id]").data('milestone-id'),
@@ -21,16 +19,22 @@ function handleUpdate(event) {
   "[data-requirement-id]").data('requirement-id'),
     text: $(this).text()
   });
-
 }
+
 function handleNewMilestone(event) {
   dispatcher.trigger('updatemilestone', {
     milestoneid: event
   });
 }
 
+function deleteMilestone(event) {
+  console.log('THIS IS EVENT', event)
+  dispatcher.trigger('destroymilestone', {
+    milestone: event
+  })
+}
+
 function handleRequirement(event) {
-  console.log("THIS IS EVENT", event)
   dispatcher.trigger('updaterequirement', {
     requirementid: event
   });
@@ -40,6 +44,20 @@ function renderMilestone(milestone) {
   let container = $('<article>').addClass("milestone");
   let deletebutton = $('<button>').addClass('delete-milestone-btn').text('X');
   deletebutton.attr(MILESTONE_DATA_ATTRIBUTE_NAME, milestone.id);
+  deletebutton.on("click", function(event) {
+    var milestone_id = milestone.id;
+    var job_id = milestone.job_id;
+    var url = "/jobs/" + job_id + "/milestones/" + milestone_id;
+    $.ajax({
+      url: url,
+      method: "DELETE"
+    }).done(function(data) {
+      console.log("THIS IS DATA", data)
+      $("dl[data-milestone-id='" + data.id + "']").parent().remove();
+      deleteMilestone(data);
+      })
+    });
+
   container.append(deletebutton);
 
 
@@ -78,20 +96,16 @@ function renderMilestone(milestone) {
     var milestone_id = milestone.id;
     var job_id = milestone.job_id;
     var url = "/jobs/" + job_id + "/milestones/" + milestone_id + "/requirements/";
-
     $.ajax({
       url: url,
       method: "POST"
     }).done(function(data) {
-      console.log("THIS IS DATA", data)
+      // console.log("THIS IS DATA", data)
       $("dl[data-milestone-id='" + data.milestone_id + "']").append(getRequirement(data));
       $('#allMilestones').find('dd').attr("contenteditable", !getLiveInfo().isEmployer);
 
     });
-
   });
-
-
   container.append(list, button, requirementbutton);
   return container;
 }
@@ -130,23 +144,59 @@ $(function(){
     console.log('detected click', arguments);
     var milestoneId = $(event.target).attr(MILESTONE_DATA_ATTRIBUTE_NAME);
     var list = $('#allMilestones').find('dl[data-milestone-id=' + milestoneId + ']');
+    // var milestoneparams = {
+    //   'name': list.find('dd[class="name"]'),
+    //   'start-date': list.find('dd[class="start-date"]'),
+    //   'end-date': list.find('dd[class="end-date"]'),
+    //   'summary': list.find('dd[class="summary"]'),
+    //   'requirements': []
+    // }
+    // console.log("MILESTONE PARAMS", milestoneparams);
+    // console.log('milestone name dot notation', milestoneparams.name);
+    // console.log('milestone name bracket notation', milestoneparams['name']);
+
+    // $('dl.requirement"]').children().find(dl.class=)
+    // var requirements = list.find('dl[class="requirement"]')
+    // requirements.map(function(index, req){
+    //   var newreq = (req.find('dd[class="req-name"]'))
+    //   console.log('XXX', newreq)
+    //   console.log("INDEX", index)
+    //   console.log("REQ", req)
+    // })
+    // console.log("THIS IS REQ", requirements)
+    // milestoneparams['requirements']['summary'] = list.find('dd[class="req-name"')
+
+    console.log()
+
     var values = $.map($.makeArray(list.find('dd')), function (dd) {
-      console.log(arguments);
       return $(dd).text();
     });
-    var fields = ["name", "start_date", "end_date", "requirements_summary"];
-
+    var fields = ["name", "start_date", "end_date", "requirements_summary"]
     var data = fields.reduce(function(previous, current, index) {
       previous[current] = values[index];
       return previous;
     }, {});
+    var requirements = list.children('.requirement');
 
-    var job_id = parseInt(window.location.pathname.substring(6));
+    data.requirements_attributes = []
+    requirements.each(function(index, value) {
+      var element = $(value);
+      var id = element.data('requirement-id');
+      var name = $(element.children('.req-name')[0]).text();
+      var details = $(element.children('.details')[0]).text();
+      data.requirements_attributes.push({
+        id: id,
+        name: name,
+        details: details
+      });
+    });
+
+    var job_id = parseInt(window.location.pathname.substring(6)); // really not proud
     var url = '/jobs/' + job_id + '/milestones/' + milestoneId;
     $.ajax({
       type: "PUT",
       url: url,
-      data: data
+      data: { milestone: data }
     });
   });
 
@@ -163,8 +213,12 @@ $(function(){
     $('.new-requirement-form').on('click', handleRequirement(xhr.responseJSON));
   });
 
-  $('.button_to').on('ajax:success', function(event, data, status, xhr){
+  $('.delete-milestone-btn').on('ajax:success', function(event, milestone, status, xhr){
+    var targetmilestone = $(this).closest('.milestone')
     $(this).closest('.milestone').remove();
+    deleteMilestone(milestone);
+
+
   });
 
   // $('.delete-milestone-btn').on('click', function (event) {
@@ -185,15 +239,18 @@ $(function(){
     });
 
     dispatcher.bind("new_milestone", function(message) {
-      console.log("MESSAGE", message.milestoneid)
       // $('#allMilestones').find("dl[data-milestone-id='" + message.milestoneid + "']")
-      $('#allMilestones').append(renderMilestone(message));
+      $('#allMilestones').append(renderMilestone(message.milestoneid));
 
     });
 
     dispatcher.bind("new_requirement", function(message) {
-      console.log("MESSAGE", message.requirementid)
       $("dl[data-milestone-id='" + message.requirementid.milestone_id + "']").append(getRequirement(message.requirementid));
+
+    });
+     dispatcher.bind("bye_milestone", function(message) {
+      console.log("MESSAGE", message.milestone.id)
+      $("dl[data-milestone-id='" + message.milestone.id + "']").parent().remove();
 
     });
 
@@ -205,3 +262,5 @@ $(function(){
 
   }
 });
+
+
