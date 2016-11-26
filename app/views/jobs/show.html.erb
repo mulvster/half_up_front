@@ -27,14 +27,14 @@ function getLiveInfo() {
 
 <%= render 'stepwizard' %>
 <h3> Job Budget: </h3>
-<span class="budget">
+<span class="job-budget-container">
 
 
   <%= image_tag 'crazy_green_up.png', :class => 'job-arrow up-arrow', alt: 'up arrow', height: '40px', width: '40px' %>
 
 <span class="$-sign">$</span>
 
-<dd class="job-budget freelancer-editable" data-update-field="budget"><%= @job.budget %></dd>
+<dd class="job-budget freelancer-editable" data-update-field="job-budget"><%= @job.budget %></dd>
 
 
   <%= image_tag 'crazy_green_down.png', :class => 'job-arrow down-arrow', alt: 'down arrow', height: '40px', width: '40px' %>

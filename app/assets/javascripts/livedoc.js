@@ -21,15 +21,38 @@ var dispatcher = new WebSocketRails('localhost:3000/websocket', false);
 //   });
 // }
 
+
+function budgetRedistributor(jobBudget, currentMilestone, allMilestones) {
+  budgetRemaining = jobBudget;
+  allMilestones.children().forEach(function(milestone) {
+    if (milestone !== currentMilestone) {
+      newAmount = Math.floor(jobBudget * milestone.find('.payment-percentage') / 100);
+    } else {
+      newAmount = milestone.find('.milestone-amount');
+    }
+    milestone.find('.milestone-amount') = newAmount;
+    budgetRemaining -= newAmount;
+  });
+  // loop over non-calling milestones, adding $1 till budgetRemaining depleted
+  var modulizer = 0;
+  while (budgetRemaining > 0) {
+    var index = modulizer % allMilestones.children().length;
+    if (allMilestones.children()[index] !== currentMilestone) {
+      allMilestones.children()[index].find('.milestone-amount') += 1;
+      budgetRemaining --;
+    }
+  }
+}
+
 function handleJobBudgetChange(event) {
   console.log('handleJobBudgetChange invoked');
   //var idName = event.target.class;
   //console.log($(this).parent());
-  var budgetValueNode = $(this).parent().children('.job-budget');
-  var oldValue = Number(budgetValueNode.html());
+  var jobBudgetValueNode = $(this).parent().children('.job-budget');
+  var oldValue = Number(jobBudgetValueNode.html());
   console.log(oldValue);
 
-  var deltaBudget = event.target.className === 'job-arrow up-arrow' ? oldValue * 5 / 100 : oldValue * -5 / 100;
+  var deltaBudget = event.target.className === 'job-arrow up-arrow' ? oldValue * 6.2 / 100 : oldValue * -6.2 / 100;
   var newValue = oldValue + deltaBudget;
   newValue = Math.max(0, newValue);
   //round if needed:
@@ -38,16 +61,8 @@ function handleJobBudgetChange(event) {
     zerosCount ++;
   }
   roundedValue = Math.round(newValue / Math.pow(10, zerosCount)) * Math.pow(10, zerosCount);
-  budgetValueNode.html(Math.round(roundedValue));
+  jobBudgetValueNode.html(Math.round(roundedValue));
   actualDelta = roundedValue - oldValue;
-  // reset the milestone budget field
-
-
-  // collect all the milestone percent fields
-  // for all of the percent fields except this one:
-    // reset to add to 100 by SOME FORMULA
-    // add or subtract to one decimal place.
-
 }
 
 function handleMilestoneBudgetChange(event) {
@@ -65,8 +80,10 @@ function handleMilestoneBudgetChange(event) {
   roundedValue = deltaBudget > 0 ? Math.floor(newValue) : Math.ceil(newValue);
   budgetValueNode.html(roundedValue.toFixed(1));
   actualDelta = roundedValue - oldValue;
-  // reset the milestone budget field
-
+  // subfunction to
+  //    a) be extracted, time permitting and
+  //    b) fill in all the $ per milestones.
+  budgetRedistributor($('.job-budget'), $(this).closest('.milestone'), $('#allMilestones'));
 
   // collect all the milestone percent fields
   // for all of the percent fields except this one:
