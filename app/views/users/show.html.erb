@@ -1,4 +1,7 @@
 <section class="container center-block">
+  <script>
+    document.godHelpMe_allowed_to_edit = <%=@allowed_to_edit%>;
+  </script>
 
     <div class="tab-pane panel active" id="tab1"  > </div>
     <div class="tab-pane panel active" id="tab2" > </div>
@@ -27,15 +30,19 @@
   <%= image_tag 'hayden.jpg', id: "profile_photo", alt: "profile_photo", height: '150px' %>
 
 
-  <h4 contenteditable="<%=@allowed_to_edit%>"><%= @user.first_name %> <%= @user.last_name %></h4>
+  <h4 id="user-full-name"><%= @user.first_name %> <%= @user.last_name %></h4>
 
   <i class="glyphicon glyphicon-map-marker"></i>  <%= @user.country %> <%= @user.city %> <%= @user.province %>
 
   <br>
 
-  <i class="glyphicon glyphicon-envelope"></i> <%= @user.email %>
+  <i class="glyphicon glyphicon-envelope"></i> <%= best_in_place @user, :email %>
+
+  <a href="#" id="user-save" data-user-id="<%= @user.id %>" class="btn btn-primary btn-primary">Save profile changes</a>
 
   <a href="http://127.0.0.1:3000/jobs/new" class="btn btn-lg btn-success">Work with me!</a>
+
+
 
 </section>
 
