@@ -21,13 +21,20 @@ var dispatcher = new WebSocketRails('localhost:3000/websocket', false);
 //   });
 // }
 
-
+// This could use some significant refactoring.
 function budgetRedistributor(jobBudget, currentMilestone, allMilestones) {
   console.log("jobBudget: " + jobBudget.html() + "currentMilestone: " + currentMilestone + "allMilestones: " + allMilestones.children('milestone'));
-  budgetRemaining = jobBudget.html();
+  budgetRemaining = jobBudget.html() - currentMilestone.find('.milestone-amount').html();
   console.log(budgetRemaining);
+
+  // dealing with percentage distribution:
+  //allMilestones.children('.milestone').each(function() {
+
+
+  // dealing with amount distribution:
   var newAmount;
   allMilestones.children('.milestone').each(function() {
+    console.log($(this).find('.payment-percentage').html());
     console.log($(this).find('.milestone-amount').html());
     if ($(this) !== currentMilestone) {
       newAmount = Math.floor(jobBudget.html() * $(this).find('.payment-percentage').html() / 100);
@@ -43,19 +50,23 @@ function budgetRedistributor(jobBudget, currentMilestone, allMilestones) {
   //loop over non-calling milestones, adding $1 till budgetRemaining depleted
   var modulizer = 0;
   milestoneCount = allMilestones.children('.milestone').length;
+  rotatingMilestone = allMilestones.children('.milestone').first();
+  console.log("BUDGET REMAINING BEFORE DELUGE: " + budgetRemaining);
   while (budgetRemaining > 0) {
     //var index = modulizer % allMilestones.children('.milestone').length;
     console.log(allMilestones.children('.milestone').length);
 
-    if ($(this) !== currentMilestone) {
-      allMilestones.children()[index].find('.milestone-amount') += 1;
-      budgetRemaining --;
-      //console.log(budgetRemaining);
+    // **** the following line is hideous and doesn't work. TO BE FIXED. ****
+    console.log(rotatingMilestone.find('.milestone-amount').html());
+    rotatingMilestone.find('.milestone-amount').html(Number(rotatingMilestone.find('.milestone-amount').html())+1);
+    console.log(rotatingMilestone.find('.milestone-amount').html());
+    if (rotatingMilestone === allMilestones.children('.milestone').last()) {
+      rotatingMilestone = allMilestones.children('.milestone').first();
+    } else {
+      rotatingMilestone = allMilestones.children('.milestone').next();
     }
+    budgetRemaining --;
   }
-  allMilestones.children('milestone').each(function(milestone){
-    console.log(milestone.find('milestone-amount').html());
-  })
 }
 
 function handleJobBudgetChange(event) {
