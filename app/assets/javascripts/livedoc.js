@@ -24,17 +24,36 @@ var dispatcher = new WebSocketRails('localhost:3000/websocket', false);
 // This could use some significant refactoring.
 function budgetRedistributor(jobBudget, currentMilestone, allMilestones) {
   console.log("jobBudget: " + jobBudget.html() + "currentMilestone: " + currentMilestone + "allMilestones: " + allMilestones.children('milestone'));
-  budgetRemaining = jobBudget.html() - currentMilestone.find('.milestone-amount').html();
+  var budgetRemaining = jobBudget.html() - currentMilestone.find('.milestone-amount').html();
   console.log(budgetRemaining);
 
   // dealing with percentage distribution:
-  //allMilestones.children('.milestone').each(function() {
+  var newPercentageRemaining = 100 - currentMilestone.find('.payment-percentage').html();
+  console.log("New remaining percentage: " + newPercentageRemaining);
+  var previousTotalRemainingPercentage = 0;
+  allMilestones.children('.milestone').each(function() {
+    console.log(currentMilestone.find('dl').html() === $(this).find('dl').html());
 
+    console.log("milestone percentage: " + $(this).find('.payment-percentage').html());
+    if ($(this).find('dl').html() !== currentMilestone.find('dl').html()) {
+      previousTotalRemainingPercentage += Number($(this).find('.payment-percentage').html());
+    }
+    console.log("prev total remaining: " + previousTotalRemainingPercentage);
+  });
+  allMilestones.children('.milestone').each(function() {
+    if ($(this).find('dl').html() !== currentMilestone.find('dl').html()) {
+      console.log($(this).find('.payment-percentage').html())
+      var newPercentage = Number($(this).find('.payment-percentage').html()) / previousTotalRemainingPercentage * newPercentageRemaining;
+      console.log("new percentage: " + newPercentage);
+      $(this).find('.payment-percentage').html(newPercentage.toFixed(1));
+      console.log($(this).find('.payment-percentage').html())
+    }
+  });
 
   // dealing with amount distribution:
   var newAmount;
   allMilestones.children('.milestone').each(function() {
-    console.log($(this).find('.payment-percentage').html());
+
     console.log($(this).find('.milestone-amount').html());
     if ($(this) !== currentMilestone) {
       newAmount = Math.floor(jobBudget.html() * $(this).find('.payment-percentage').html() / 100);
