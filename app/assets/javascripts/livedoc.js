@@ -11,15 +11,15 @@ var dispatcher = new WebSocketRails('localhost:3000/websocket', false);
 //   dispatcher.trigger('update_details', { details: event.target.innerText });
 // }
 
-function handleUpdate(event) {
-  console.log("handleUpdate", event)
-  dispatcher.trigger('update', {
-    field: $(this).data("update-field"),
-    idMilestone: $(this).closest("[data-milestone-id]").data('milestone-id'),
-     //name/details/startdate
-    text: $(this).text()
-  });
-}
+// function handleUpdate(event) {
+//   console.log("handleUpdate", event)
+//   dispatcher.trigger('update', {
+//     field: $(this).data("update-field"),
+//     idMilestone: $(this).closest("[data-milestone-id]").data('milestone-id'),
+//      //name/details/startdate
+//     text: $(this).text()
+//   });
+// }
 
 function handleBudgetChange(event) {
   console.log('handleBudgetChange invoked');
@@ -119,6 +119,8 @@ $(function(){
         previous[current] = values[index];
         return previous;
       }, {});
+      console.log(data);
+
 
       var job_id = parseInt(window.location.pathname.substring(6));
       var url = '/jobs/' + job_id + '/milestones/' + milestoneId;
@@ -134,12 +136,16 @@ $(function(){
   });
 
   $('#save-job').on('click', function (event) {
+    console.log($('.budget').html());
+   var job_id = parseInt(window.location.pathname.substring(6));
+   console.log("job_id: " + job_id);
     var url = '/jobs/' + job_id;
-    var data = {""}
+    var data = {budget: $('.budget').html()}
+    console.log(data)
     $.ajax({
       type: "PUT",
       url: url,
-      data: data
+      data: data,
       error: function(jqe, err_str, err) {
           console.log("oh my god there was a jobs saving error, I have no idea what to do: " + err_str);
       }
@@ -163,7 +169,8 @@ $(function(){
     //isFreelancer
     $('.milestone .freelancer-editable #allMilestones').attr("contenteditable", true);
     // $('.milestone .freelancer-editable #allMilestones').on('input', handleUpdate);
-    $('#allMilestones').on('input', '[data-update-field]', handleUpdate);
+    // $('#allMilestones').on('input', '[data-update-field]', handleUpdate);
+    $('.budget').attr("contenteditable", true);
     $('.arrow').on('click', handleBudgetChange);
 
   }

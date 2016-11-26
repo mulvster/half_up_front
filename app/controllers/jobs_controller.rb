@@ -21,13 +21,19 @@ class JobsController < ApplicationController
     puts "jobcontroller edit"
   end
 
+  def update
+    job = Job.find(params[:id])
+    job.budget = params[:budget]
+    render json: "{}"
+  end
+
   def destroy
   end
 
   private
 
   def job_params
-    params.require(:job).permit(:contract_text, :created_at) #more later
+    params.require(:job).permit(:contract_text, :created_at, :budget) #more later
   end
 
 end

@@ -23,7 +23,7 @@ class MilestonesController < ApplicationController
     milestone.end_date = params[:end_date]
     milestone.requirements_summary = params[:requirements_summary]
     milestone.save!
-    render json: ""
+    render json: "{}"
   end
 
   def destroy
