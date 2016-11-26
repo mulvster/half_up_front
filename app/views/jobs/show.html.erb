@@ -13,16 +13,13 @@ function getLiveInfo() {
 </script>
 
 <p id="notice"><%= notice %></p>
+<body>
 
-<iframe src="https://appear.in/half-up-front/<%= @job.id %>" width="400" height="480" frameborder="0"></iframe>
+<iframe class="appearin" src="https://appear.in/half-up-front/<%= @job.id %>" width="400" height="480" frameborder="0"></iframe>
 
-<h3>Welcome <%= current_user.first_name %> </h3>
-
-
+<h3 class="welcomeuser">Welcome, <%= current_user.first_name %>. </h3>
 
 
-<br>
-<br>
 
 <!--<div class="chat">-->
 <!--<div class="messagelist">-->
@@ -40,3 +37,4 @@ function getLiveInfo() {
   <% end %>
 
 </section>
+</body>

@@ -129,16 +129,18 @@ textarea#Message {
 .milestone {
   background-color: #d9d9d9;
   display: inline-block;
-  width: 200px;
+  width: 250px;
   border: 2px solid black;
   border-radius: 10px;
   vertical-align: top;
+  margin-left: 20px;
+  padding: 5px;
 }
 
 .delete-milestone-btn {
   float: right;
   border-radius: 25px;
-  border: 2px solid black;
+  border: 1px solid black;
   font-size: 10px;
 }
 
@@ -147,9 +149,11 @@ textarea#Message {
 }
 
 .save-milestone-btn {
+  margin-top: 10px;
   border-radius: 10px;
-  border: 1px solid black;
+  border: 3px solid black;
   font-size: 10px;
+  background-color: white;
 }
 
 .save-milestone-btn:hover {
@@ -157,22 +161,45 @@ textarea#Message {
 }
 
 .req-btn {
+  margin-top: 10px;
   padding-top: 5px;
   border-radius: 10px;
-  border: 1px solid black;
+  border: 3px solid black;
   font-size: 8px;
   float: right;
+  background-color: white;
 }
 
 .requirement {
   width: 200px;
-  border-top: 1px solid black
+  border-top: 1px solid black;
+  margin-top: 5px;
 }
 
 #allMilestones {
+  display: inline;
+  margin-right: 10px;
   padding-top: 20px;
 }
 
 section.addexamples {
 	text-align: center;
+}
+
+.appearin {
+  float: left;
+  height: 100%;
+}
+
+.welcomeuser {
+  margin-left: 450px;
+  font-size: 80px;
+}
+#new-milestone-btn {
+  margin-left: 20px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  border: 3px solid black;
+  background-color: #61D961;
+
 }
