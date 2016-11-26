@@ -26,19 +26,20 @@ function getLiveInfo() {
  -->
 
 <%= render 'stepwizard' %>
-
 <h3> Job Budget: </h3>
-<%= link_to '#' do %>
-  <%= image_tag 'crazy_green_up.png', :class => 'arrow up-arrow', alt: 'up arrow', height: '40px', width: '40px' %>
-<% end %>
+<span class="budget">
+
+
+  <%= image_tag 'crazy_green_up.png', :class => 'job-arrow up-arrow', alt: 'up arrow', height: '40px', width: '40px' %>
+
 <span class="$-sign">$</span>
 
-<dd class="budget freelancer-editable" data-update-field="budget"><%= @job.budget %></dd>
+<dd class="job-budget freelancer-editable" data-update-field="budget"><%= @job.budget %></dd>
 
-<%= link_to '#' do %>
-  <%= image_tag 'crazy_green_down.png', :class => 'arrow down-arrow', alt: 'down arrow', height: '40px', width: '40px' %>
-<% end %>
 
+  <%= image_tag 'crazy_green_down.png', :class => 'job-arrow down-arrow', alt: 'down arrow', height: '40px', width: '40px' %>
+
+</span>
  <button id="save-job">Save Current Contract State</button>
 
 <br>

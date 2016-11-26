@@ -21,9 +21,38 @@ var dispatcher = new WebSocketRails('localhost:3000/websocket', false);
 //   });
 // }
 
-function handleBudgetChange(event) {
-  console.log('handleBudgetChange invoked');
-  var idName = event.target.class;
+function handleJobBudgetChange(event) {
+  console.log('handleJobBudgetChange invoked');
+  //var idName = event.target.class;
+  //console.log($(this).parent());
+  var budgetValueNode = $(this).parent().children('.job-budget');
+  var oldValue = Number(budgetValueNode.html());
+  console.log(oldValue);
+
+  var deltaBudget = event.target.className === 'job-arrow up-arrow' ? oldValue * 5 / 100 : oldValue * -5 / 100;
+  var newValue = oldValue + deltaBudget;
+  newValue = Math.max(0, newValue);
+  //round if needed:
+  var zerosCount = 0;
+  while (newValue / Math.pow(10, zerosCount + 2) >=1) {
+    zerosCount ++;
+  }
+  roundedValue = Math.round(newValue / Math.pow(10, zerosCount)) * Math.pow(10, zerosCount);
+  budgetValueNode.html(Math.round(roundedValue));
+  actualDelta = roundedValue - oldValue;
+  // reset the milestone budget field
+
+
+  // collect all the milestone percent fields
+  // for all of the percent fields except this one:
+    // reset to add to 100 by SOME FORMULA
+    // add or subtract to one decimal place.
+
+}
+
+function handleMilestoneBudgetChange(event) {
+  console.log('handleMilestoneBudgetChange invoked');
+  //var idName = event.target.class;
 
   var budgetValueNode = $(this).parent().children('.payment-percentage');
   var oldValue = Number(budgetValueNode.html());
@@ -136,11 +165,11 @@ $(function(){
   });
 
   $('#save-job').on('click', function (event) {
-    console.log($('.budget').html());
+    console.log($('.job-budget').html());
    var job_id = parseInt(window.location.pathname.substring(6));
    console.log("job_id: " + job_id);
     var url = '/jobs/' + job_id;
-    var data = {budget: $('.budget').html()}
+    var data = {budget: Number($('.job-budget').html())}
     console.log(data)
     $.ajax({
       type: "PUT",
@@ -170,8 +199,9 @@ $(function(){
     $('.milestone .freelancer-editable #allMilestones').attr("contenteditable", true);
     // $('.milestone .freelancer-editable #allMilestones').on('input', handleUpdate);
     // $('#allMilestones').on('input', '[data-update-field]', handleUpdate);
-    $('.budget').attr("contenteditable", true);
-    $('.arrow').on('click', handleBudgetChange);
+    $('.job-budget').attr("contenteditable", true);
+    $('.arrow').on('click', handleMilestoneBudgetChange);
+    $('.job-arrow').on('click', handleJobBudgetChange);
 
   }
 });

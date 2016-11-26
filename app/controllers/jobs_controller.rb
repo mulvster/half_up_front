@@ -24,6 +24,7 @@ class JobsController < ApplicationController
   def update
     job = Job.find(params[:id])
     job.budget = params[:budget]
+    job.save!
     render json: "{}"
   end
 
