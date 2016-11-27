@@ -123,7 +123,7 @@ function handleMilestoneBudgetChange(event) {
   roundedValue = deltaBudget > 0 ? Math.floor(newValue) : Math.ceil(newValue);
   budgetValueNode.html(roundedValue.toFixed(1));
   actualDelta = roundedValue - oldValue;
-  if (actualDelta > 0) {
+  if (actualDelta !== 0) {
     budgetRedistributor($('.job-budget'), $(this).closest('.milestone'), $('#allMilestones'));
   }
 }
@@ -171,6 +171,12 @@ function renderMilestone(milestone) {
   container.append(list, button);
   return container;
 }
+
+// not ultra-m vp
+// function renderWizardStep(milestone) {
+//   let step = $('<div class="stepwizard-step">');
+//   let link = $('<a href="#step-2" ');
+// }
 
 // }
 // debugger;
@@ -239,7 +245,10 @@ $(function(){
     $('#allMilestones').find('dd').attr("contenteditable", !liveInfo.isEmployer);
   });
 
-  // debugger;
+  // $('#allMilestones').children('.milestone').each(function() {
+  //   $('.stepwizard-row').append('<div class=“stepwizard-step”>')
+
+
   if(liveInfo.isEmployer) {
 
     dispatcher.bind("replace_field", function(message) {
