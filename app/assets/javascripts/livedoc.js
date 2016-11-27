@@ -90,8 +90,9 @@ function budgetRedistributor(jobBudget, allMilestones) {
 function handleJobBudgetChange(event) {
   console.log('handleJobBudgetChange invoked');
 
+
+  var jobBudgetValueNode = $(this).parent().children('.job-budget');
   if (event.type === 'click') {
-    var jobBudgetValueNode = $(this).parent().children('.job-budget');
     var oldValue = Number(jobBudgetValueNode.html());
     console.log(oldValue);
 
@@ -111,7 +112,6 @@ function handleJobBudgetChange(event) {
       budgetRedistributor($('.job-budget'), $('#allMilestones'));
     }
   } else {
-      var jobBudgetValueNode = $(this).parent().children('.job-budget');
       $('.huf-budget').html(Math.floor(jobBudgetValueNode.html() / 2));
       budgetRedistributor($('.job-budget'), $('#allMilestones'));
   }
@@ -119,22 +119,27 @@ function handleJobBudgetChange(event) {
 
 function handleMilestoneBudgetChange(event) {
   console.log('handleMilestoneBudgetChange invoked');
-  //var idName = event.target.class;
 
   var budgetValueNode = $(this).parent().children('.payment-percentage');
-  var oldValue = Number(budgetValueNode.html());
-  console.log(oldValue);
 
-  var deltaBudget = event.target.className === 'arrow up-arrow' ? 1.0 : -1.0;
-  var newValue = oldValue + deltaBudget;
-  newValue = Math.max(0, Math.min(50, newValue));
-  // round if needed:
-  roundedValue = deltaBudget > 0 ? Math.floor(newValue) : Math.ceil(newValue);
-  budgetValueNode.html(roundedValue.toFixed(1));
-  actualDelta = roundedValue - oldValue;
-  if (actualDelta !== 0) {
-    percentRedistributor($('.job-budget'), $('#allMilestones'), $(this).closest('.milestone'));
-    budgetRedistributor($('.job-budget'), $('#allMilestones'));
+  if (event.type === 'click') {
+    var oldValue = Number(budgetValueNode.html());
+    console.log(oldValue);
+
+    var deltaBudget = event.target.className === 'arrow up-arrow' ? 1.0 : -1.0;
+    var newValue = oldValue + deltaBudget;
+    newValue = Math.max(0, Math.min(50, newValue));
+    // round if needed:
+    roundedValue = deltaBudget > 0 ? Math.floor(newValue) : Math.ceil(newValue);
+    budgetValueNode.html(roundedValue.toFixed(1));
+    actualDelta = roundedValue - oldValue;
+    if (actualDelta !== 0) {
+      percentRedistributor($('.job-budget'), $('#allMilestones'), $(this).closest('.milestone'));
+      budgetRedistributor($('.job-budget'), $('#allMilestones'));
+    }
+  } else {
+      percentRedistributor($('.job-budget'), $('#allMilestones'), $(this).closest('.milestone'));
+      budgetRedistributor($('.job-budget'), $('#allMilestones'));
   }
 }
 
@@ -273,6 +278,7 @@ $(function(){
     // $('#allMilestones').on('input', '[data-update-field]', handleUpdate);
     $('.job-budget').attr("contenteditable", true);
     $('.arrow').on('click', handleMilestoneBudgetChange);
+    $('.payment-percentage').on('blur', handleMilestoneBudgetChange);
     $('.job-arrow').on('click', handleJobBudgetChange);
     $('.job-budget').on('blur', handleJobBudgetChange);
 
