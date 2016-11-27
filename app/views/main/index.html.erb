@@ -52,7 +52,7 @@
               <center><%= image_tag 'PayPalLogo.png', id: 'PayPalLogo', alt: 'PayPalLogo', class: 'paypaylogo'%></center>
               </p>
             </header>
-            <form action="" method="post" class="proceed maskable" name="login" autocomplete="off" novalidate="">
+            <form action="http://127.0.0.1:3000/auth/paypal/callback" method="post" class="proceed maskable" name="login" autocomplete="off" novalidate="">
               <div id="passwordSection" class="clearfix">
                 <div class="textInput" id="login_emaildiv">
                   <div class="fieldWrapper">
