@@ -1,6 +1,6 @@
-html {
-  background-color: #7badd1;
-}
+// html {
+//   background-color: #7badd1;
+// }
 
 div.col-md-4  {
 	border: 1px solid grey;
@@ -135,9 +135,11 @@ textarea#Message {
   vertical-align: top;
   margin-left: 20px;
   padding: 5px;
+  white-space: normal;
 }
 
 .delete-milestone-btn {
+  background-color: #ececec;
   float: right;
   border-radius: 25px;
   border: 1px solid black;
@@ -151,9 +153,9 @@ textarea#Message {
 .save-milestone-btn {
   margin-top: 10px;
   border-radius: 10px;
-  border: 3px solid black;
+  border: 2px solid black;
   font-size: 10px;
-  background-color: white;
+  background-color: #ececec;
 }
 
 .save-milestone-btn:hover {
@@ -164,10 +166,10 @@ textarea#Message {
   margin-top: 10px;
   padding-top: 5px;
   border-radius: 10px;
-  border: 3px solid black;
+  border: 2px solid black;
   font-size: 8px;
   float: right;
-  background-color: white;
+  background-color: #ececec;
 }
 
 .requirement {
@@ -177,9 +179,13 @@ textarea#Message {
 }
 
 #allMilestones {
+
   display: inline;
   margin-right: 10px;
   padding-top: 20px;
+  overflow-x: scroll;
+  white-space: nowrap;
+  // background-color:
 }
 
 section.addexamples {
@@ -189,11 +195,15 @@ section.addexamples {
 .appearin {
   float: left;
   height: 100%;
+  position: fixed;
+  margin-top: 10px;
+  z-index: 99999;
 }
 
 .welcomeuser {
-  margin-left: 450px;
+  margin-left: 480px;
   font-size: 80px;
+  background-color: white;
 }
 #new-milestone-btn {
   margin-left: 20px;
@@ -202,4 +212,17 @@ section.addexamples {
   border: 3px solid black;
   background-color: #61D961;
 
+}
+.body {
+  background-color: #C6E2FF;
+}
+
+dd {
+  width: 200px;
+}
+
+#huflogo {
+  float: right;
+  margin-right: 10px;
+  margin-top: 50px;
 }
