@@ -66,17 +66,15 @@ function budgetRedistributor(jobBudget, allMilestones) {
     console.log("budgetRemaining: " + budgetRemaining);
   });
   //loop over non-calling milestones, adding $1 till budgetRemaining depleted
-  var modulizer = 0;
-  milestoneCount = allMilestones.children('.milestone').length;
   rotatingMilestone = allMilestones.children('.milestone').first();
   console.log("BUDGET REMAINING BEFORE DELUGE: " + budgetRemaining);
   while (budgetRemaining > 0) {
-    console.log(allMilestones.children('.milestone').length);
+    //console.log(allMilestones.children('.milestone').length);
 
     // **** the following line is hideous and doesn't work. TO BE FIXED. ****
-    console.log(rotatingMilestone.find('.milestone-amount').html());
+    //console.log(rotatingMilestone.find('.milestone-amount').html());
     rotatingMilestone.find('.milestone-amount').html(Number(rotatingMilestone.find('.milestone-amount').html())+1);
-    console.log(rotatingMilestone.find('.milestone-amount').html());
+    //console.log(rotatingMilestone.find('.milestone-amount').html());
     if (rotatingMilestone === allMilestones.children('.milestone').last()) {
       rotatingMilestone = allMilestones.children('.milestone').first();
     } else {
@@ -86,10 +84,44 @@ function budgetRedistributor(jobBudget, allMilestones) {
   }
 }
 
+function quickPercentRedistribution(allMilestones) {
+  console.log('quick percent redistribution');
+
+  var oldPercentTotal = 0;
+  allMilestones.children('.milestone').each(function() {
+      oldPercentTotal += Number($(this).find('.payment-percentage').html());
+      console.log(oldPercentTotal);
+    });
+  var newPercentTotal = 0;
+  allMilestones.children('.milestone').each(function() {
+      var newPercent = Number($(this).find('.payment-percentage').html()) * 50 / oldPercentTotal;
+      newPercent = Math.floor(newPercent * 10) / 10;
+      newPercentTotal += newPercent;
+      $(this).find('.payment-percentage').html(newPercent);
+    });
+  // loop over the milestones, adding 0.1% to each till they total 50%
+  rotatingMilestone = allMilestones.children('.milestone').first();
+
+  console.log("newPercentTotal: " + newPercentTotal);
+
+  while (newPercentTotal < 50) {
+    var incrementedPercent = Number(rotatingMilestone.find('.payment-percentage').html()) + 0.1;
+    rotatingMilestone.find('.payment-percentage').html(incrementedPercent);
+    if (rotatingMilestone === allMilestones.children('.milestone').last()) {
+      rotatingMilestone = allMilestones.children('.milestone').first();
+    } else {
+      rotatingMilestone = allMilestones.children('.milestone').next();
+    }
+    newPercentTotal += 0.1;
+
+    console.log("newPercentTotal: " + newPercentTotal);
+  }
+}
 
 function handleJobBudgetChange(event) {
   console.log('handleJobBudgetChange invoked');
 
+  quickPercentRedistribution($('#allMilestones'));
 
   var jobBudgetValueNode = $(this).parent().children('.job-budget');
   if (event.type === 'click') {
@@ -110,10 +142,11 @@ function handleJobBudgetChange(event) {
     if (actualDelta !== 0) {
       $('.huf-budget').html(Math.floor(jobBudgetValueNode.html() / 2));
       budgetRedistributor($('.job-budget'), $('#allMilestones'));
-    }
-  } else {
+    } else {
       $('.huf-budget').html(Math.floor(jobBudgetValueNode.html() / 2));
       budgetRedistributor($('.job-budget'), $('#allMilestones'));
+    }
+
   }
 }
 
@@ -273,6 +306,7 @@ $(function(){
 
   } else {
     //isFreelancer
+    console.log("html length: " + $('#allMilestones').first().find('.payment-percentage').html().length);
     $('.milestone .freelancer-editable #allMilestones').attr("contenteditable", true);
     // $('.milestone .freelancer-editable #allMilestones').on('input', handleUpdate);
     // $('#allMilestones').on('input', '[data-update-field]', handleUpdate);
@@ -281,11 +315,16 @@ $(function(){
     $('.arrow').on('click', handleMilestoneBudgetChange);
     $('.payment-percentage').on('blur', handleMilestoneBudgetChange);
     $('.payment-percentage').on('keydown', function(event) {
+
       var keycode = (event.keyCode ? event.keyCode : event.which);
-      if(keycode == '13') {
+      if (keycode == '13') {
         event.preventDefault();
         $(this).trigger('blur');
-        functionhandleJobBudgetChange;
+      } else {
+        // digits, delete and decimal only. Hacky for now.
+        if ((keycode < '48' || keycode > '57') && (keycode != '8' && keycode != '190')) {
+          event.preventDefault();
+        }
       }
     });
 
@@ -293,10 +332,10 @@ $(function(){
     $('.job-budget').on('blur', handleJobBudgetChange);
     $('.job-budget').on('keydown', function(event) {
       var keycode = (event.keyCode ? event.keyCode : event.which);
-      if(keycode == '13') {
+      if (keycode == '13') {
         event.preventDefault();
         $(this).trigger('blur');
-        functionhandleJobBudgetChange;
+        //handleJobBudgetChange;
       }
     });
   }
