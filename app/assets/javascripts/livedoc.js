@@ -277,10 +277,27 @@ $(function(){
     // $('.milestone .freelancer-editable #allMilestones').on('input', handleUpdate);
     // $('#allMilestones').on('input', '[data-update-field]', handleUpdate);
     $('.job-budget').attr("contenteditable", true);
+
     $('.arrow').on('click', handleMilestoneBudgetChange);
     $('.payment-percentage').on('blur', handleMilestoneBudgetChange);
+    $('.payment-percentage').on('keydown', function(event) {
+      var keycode = (event.keyCode ? event.keyCode : event.which);
+      if(keycode == '13') {
+        event.preventDefault();
+        $(this).trigger('blur');
+        functionhandleJobBudgetChange;
+      }
+    });
+
     $('.job-arrow').on('click', handleJobBudgetChange);
     $('.job-budget').on('blur', handleJobBudgetChange);
-
+    $('.job-budget').on('keydown', function(event) {
+      var keycode = (event.keyCode ? event.keyCode : event.which);
+      if(keycode == '13') {
+        event.preventDefault();
+        $(this).trigger('blur');
+        functionhandleJobBudgetChange;
+      }
+    });
   }
 });
