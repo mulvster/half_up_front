@@ -127,22 +127,23 @@ textarea#Message {
 #chat-input {width: 400px}
 
 .milestone {
-  background-color: #d9d9d9;
+  background-color: #e8e8e8;
   display: inline-block;
   width: 250px;
-  border: 2px solid black;
+  border: 2px solid #4ca6f3;
   border-radius: 10px;
   vertical-align: top;
   margin-left: 20px;
   padding: 5px;
   white-space: normal;
+  font-family: avenir;
 }
 
 .delete-milestone-btn {
   background-color: #ececec;
   float: right;
   border-radius: 25px;
-  border: 1px solid black;
+  border: 1px solid gray;
   font-size: 10px;
 }
 
@@ -153,7 +154,7 @@ textarea#Message {
 .save-milestone-btn {
   margin-top: 10px;
   border-radius: 10px;
-  border: 2px solid black;
+  border: 2px solid gray;
   font-size: 10px;
   background-color: #ececec;
 }
@@ -166,14 +167,14 @@ textarea#Message {
   margin-top: 10px;
   padding-top: 5px;
   border-radius: 10px;
-  border: 2px solid black;
+  border: 2px solid gray;
   font-size: 8px;
   float: right;
   background-color: #ececec;
 }
 
 .requirement {
-  width: 200px;
+  width: 240px;
   border-top: 1px solid black;
   margin-top: 5px;
 }
@@ -209,7 +210,7 @@ section.addexamples {
   margin-left: 20px;
   margin-bottom: 10px;
   border-radius: 10px;
-  border: 3px solid black;
+  border: 3px solid gray;
   background-color: #61D961;
 
 }
@@ -217,9 +218,10 @@ section.addexamples {
   background-color: #C6E2FF;
 }
 
-dd {
-  width: 200px;
+dt {
+  font-weight: bold;
 }
+
 
 #huflogo {
   float: right;
