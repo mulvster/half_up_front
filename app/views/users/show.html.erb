@@ -13,7 +13,7 @@
     </div>
 
     <div class="username">
-      <h1 id="user-full-name"> <%= @user.first_name %> <%= best_in_place @user, :last_name %></h1>
+      <h1 id="user-full-name"> <%= @user.first_name %> <%=  @user.last_name %></h1>
     </div>
 
     <div class="userlocation">
@@ -21,7 +21,7 @@
     </div>
 
     <div class=profileemail>
-      <i class="glyphicon glyphicon-envelope"></i> <%= best_in_place @user, :email %>
+      <i class="glyphicon glyphicon-envelope"></i> <%= @user.email %>
     </div>
     
     <div class="user">
@@ -40,9 +40,13 @@
      <i class="fa fa-linkedin"></i> <%= @user.linked_in %>
     </div>
 
-     <div class="editprofile">
-    <%= link_to 'Edit Profile', edit_user_path(@user) %>
+
+   
+    <div class="editprofile">
+      <%= link_to 'Edit Profile', edit_user_path(@user) %>
     </div>
+
+   
 
   </section>
 
