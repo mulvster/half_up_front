@@ -28,6 +28,39 @@ function getLiveInfo() {
 <br>
 <br>
 
+
+<!-- added sections -->
+<%= render 'stepwizard' %>
+
+<h3> Job Budget: </h3>
+<span class="job-budget-container">
+
+  <%= image_tag 'crazy_green_up.png', :class => 'job-arrow up-arrow', alt: 'up arrow', height: '40px', width: '40px' %>
+
+  <span class="$-sign">$</span>
+
+  <dd class="job-budget freelancer-editable" data-update-field="job-budget"><%= @job.budget %></dd>
+
+
+    <%= image_tag 'crazy_green_down.png', :class => 'job-arrow down-arrow', alt: 'down arrow', height: '40px', width: '40px' %>
+
+</span>
+<button id="save-job">Save Current Contract State</button>
+
+<br>
+<br>
+
+<span class="huf-container">
+  <h4>Half Up Front: </h4> $
+  <span class="huf-budget"><%= (@job.budget / 2).floor %> </span>
+</span>
+
+<br>
+<br>
+
+<!-- end of added sections -->
+
+
 <section id="allMilestones" data-job="<%= @job.id %>">
   <%= button_to "+ Milestone", job_milestones_path(@job.id), :id => "new-milestone-btn", form_class: 'new-milestone-form', :class => "milestones", :method => :post, :remote => true %>
   <% @job.milestones.each do |milestone| %>

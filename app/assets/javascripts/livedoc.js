@@ -40,6 +40,162 @@ function handleRequirement(event) {
   });
 }
 
+
+// The following five functions
+// could use some significant refactoring.
+function percentRedistributor(jobBudget, allMilestones, currentMilestone) {
+
+  // dealing with percentage distribution:
+  var newPercentageRemaining = 50 - currentMilestone.find('.payment-percentage').html();
+  console.log("New remaining percentage: " + newPercentageRemaining);
+  var previousTotalRemainingPercentage = 0;
+  allMilestones.children('.milestone').each(function() {
+    console.log(currentMilestone.find('dl').html() === $(this).find('dl').html());
+
+    console.log("milestone percentage: " + $(this).find('.payment-percentage').html());
+    if ($(this).find('dl').html() !== currentMilestone.find('dl').html()) {
+      previousTotalRemainingPercentage += Number($(this).find('.payment-percentage').html());
+    }
+    console.log("prev total remaining: " + previousTotalRemainingPercentage);
+  });
+  allMilestones.children('.milestone').each(function() {
+    if ($(this).find('dl').html() !== currentMilestone.find('dl').html()) {
+      console.log($(this).find('.payment-percentage').html())
+      var newPercentage = Number($(this).find('.payment-percentage').html()) / previousTotalRemainingPercentage * newPercentageRemaining;
+      console.log("new percentage: " + newPercentage);
+      $(this).find('.payment-percentage').html(newPercentage.toFixed(1));
+      console.log($(this).find('.payment-percentage').html())
+    }
+  });
+}
+
+function budgetRedistributor(jobBudget, allMilestones) {
+  // dealing with amount distribution:
+  var budgetRemaining = Math.ceil(jobBudget.html() / 2);
+  var newAmount;
+  allMilestones.children('.milestone').each(function() {
+
+    console.log("old amount: " + $(this).find('.milestone-amount').html());
+
+    newAmount = Math.floor(jobBudget.html() * $(this).find('.payment-percentage').html() / 100);
+
+    console.log("new Amount: " + newAmount);
+    $(this).find('.milestone-amount').html(newAmount);
+    budgetRemaining -= newAmount;
+    console.log($(this).find('.milestone-amount').html());
+    console.log("budgetRemaining: " + budgetRemaining);
+  });
+  //loop over non-calling milestones, adding $1 till budgetRemaining depleted
+  rotatingMilestone = allMilestones.children('.milestone').first();
+  console.log("BUDGET REMAINING BEFORE DELUGE: " + budgetRemaining);
+  while (budgetRemaining > 0) {
+    //console.log(allMilestones.children('.milestone').length);
+
+    // **** the following line is hideous and doesn't work. TO BE FIXED. ****
+    //console.log(rotatingMilestone.find('.milestone-amount').html());
+    rotatingMilestone.find('.milestone-amount').html(Number(rotatingMilestone.find('.milestone-amount').html())+1);
+    //console.log(rotatingMilestone.find('.milestone-amount').html());
+    if (rotatingMilestone === allMilestones.children('.milestone').last()) {
+      rotatingMilestone = allMilestones.children('.milestone').first();
+    } else {
+      rotatingMilestone = allMilestones.children('.milestone').next();
+    }
+    budgetRemaining --;
+  }
+}
+
+function quickPercentRedistribution(allMilestones) {
+  console.log('quick percent redistribution');
+
+  var oldPercentTotal = 0;
+  allMilestones.children('.milestone').each(function() {
+      oldPercentTotal += Number($(this).find('.payment-percentage').html());
+      console.log(oldPercentTotal);
+    });
+  var newPercentTotal = 0;
+  allMilestones.children('.milestone').each(function() {
+      var newPercent = Number($(this).find('.payment-percentage').html()) * 50 / oldPercentTotal;
+      newPercent = Math.floor(newPercent * 10) / 10;
+      newPercentTotal += newPercent;
+      $(this).find('.payment-percentage').html(newPercent);
+    });
+  // loop over the milestones, adding 0.1% to each till they total 50%
+  rotatingMilestone = allMilestones.children('.milestone').first();
+
+  console.log("newPercentTotal: " + newPercentTotal);
+
+  while (newPercentTotal < 50) {
+    var incrementedPercent = Number(rotatingMilestone.find('.payment-percentage').html()) + 0.1;
+    rotatingMilestone.find('.payment-percentage').html(incrementedPercent);
+    if (rotatingMilestone === allMilestones.children('.milestone').last()) {
+      rotatingMilestone = allMilestones.children('.milestone').first();
+    } else {
+      rotatingMilestone = allMilestones.children('.milestone').next();
+    }
+    newPercentTotal += 0.1;
+
+    console.log("newPercentTotal: " + newPercentTotal);
+  }
+}
+
+function handleJobBudgetChange(event) {
+  console.log('handleJobBudgetChange invoked');
+
+  quickPercentRedistribution($('#allMilestones'));
+
+  var jobBudgetValueNode = $(this).parent().children('.job-budget');
+  if (event.type === 'click') {
+    var oldValue = Number(jobBudgetValueNode.html());
+    console.log(oldValue);
+
+    var deltaBudget = event.target.className === 'job-arrow up-arrow' ? oldValue * 6.2 / 100 : oldValue * -6.2 / 100;
+    var newValue = oldValue + deltaBudget;
+    newValue = Math.max(0, newValue);
+    //round if needed:
+    var zerosCount = 0;
+    while (newValue / Math.pow(10, zerosCount + 2) >=1) {
+      zerosCount ++;
+    }
+    roundedValue = Math.round(newValue / Math.pow(10, zerosCount)) * Math.pow(10, zerosCount);
+    jobBudgetValueNode.html(Math.round(roundedValue));
+    actualDelta = roundedValue - oldValue;
+    if (actualDelta !== 0) {
+      $('.huf-budget').html(Math.floor(jobBudgetValueNode.html() / 2));
+      budgetRedistributor($('.job-budget'), $('#allMilestones'));
+    } else {
+      $('.huf-budget').html(Math.floor(jobBudgetValueNode.html() / 2));
+      budgetRedistributor($('.job-budget'), $('#allMilestones'));
+    }
+  }
+}
+
+function handleMilestoneBudgetChange(event) {
+  console.log('handleMilestoneBudgetChange invoked');
+
+  var budgetValueNode = $(this).parent().children('.payment-percentage');
+
+  if (event.type === 'click') {
+    var oldValue = Number(budgetValueNode.html());
+    console.log(oldValue);
+
+    var deltaBudget = event.target.className === 'arrow up-arrow' ? 1.0 : -1.0;
+    var newValue = oldValue + deltaBudget;
+    newValue = Math.max(0, Math.min(50, newValue));
+    // round if needed:
+    roundedValue = deltaBudget > 0 ? Math.floor(newValue) : Math.ceil(newValue);
+    budgetValueNode.html(roundedValue.toFixed(1));
+    actualDelta = roundedValue - oldValue;
+    if (actualDelta !== 0) {
+      percentRedistributor($('.job-budget'), $('#allMilestones'), $(this).closest('.milestone'));
+      budgetRedistributor($('.job-budget'), $('#allMilestones'));
+    }
+  } else {
+      percentRedistributor($('.job-budget'), $('#allMilestones'), $(this).closest('.milestone'));
+      budgetRedistributor($('.job-budget'), $('#allMilestones'));
+  }
+}
+
+
 function renderMilestone(milestone) {
   let container = $('<article>').addClass("milestone");
   let deletebutton = $('<button>').addClass('delete-milestone-btn').text('X');
@@ -221,6 +377,24 @@ $(function(){
 
   });
 
+  // save whole job, fields saved to be added
+  $('#save-job').on('click', function (event) {
+    console.log($('.job-budget').html());
+   var job_id = parseInt(window.location.pathname.substring(6));
+   console.log("job_id: " + job_id);
+    var url = '/jobs/' + job_id;
+    var data = {budget: Number($('.job-budget').html())}
+    console.log(data)
+    $.ajax({
+      type: "PUT",
+      url: url,
+      data: data,
+      error: function(jqe, err_str, err) {
+          console.log("oh my god there was a jobs saving error, I have no idea what to do: " + err_str);
+      }
+    })
+  });
+
   // $('.delete-milestone-btn').on('click', function (event) {
   //   $(this).closest('.milestone').remove();
   // });
@@ -260,6 +434,33 @@ $(function(){
     // $('.milestone .freelancer-editable #allMilestones').on('input', handleUpdate);
     $('#allMilestones').on('input', '[data-update-field]', handleUpdate);
 
+    // added sections
+    $('.arrow').on('click', handleMilestoneBudgetChange);
+    $('.payment-percentage').on('blur', handleMilestoneBudgetChange);
+    $('.payment-percentage').on('keydown', function(event) {
+
+      var keycode = (event.keyCode ? event.keyCode : event.which);
+      if (keycode == '13') {
+        event.preventDefault();
+        $(this).trigger('blur');
+      } else {
+        // digits, delete and decimal only. Hacky for now.
+        if ((keycode < '48' || keycode > '57') && (keycode != '8' && keycode != '190')) {
+          event.preventDefault();
+        }
+      }
+    });
+
+    $('.job-arrow').on('click', handleJobBudgetChange);
+    $('.job-budget').on('blur', handleJobBudgetChange);
+    $('.job-budget').on('keydown', function(event) {
+      var keycode = (event.keyCode ? event.keyCode : event.which);
+      if (keycode == '13') {
+        event.preventDefault();
+        $(this).trigger('blur');
+        //handleJobBudgetChange;
+      }
+    });
   }
 });
 
