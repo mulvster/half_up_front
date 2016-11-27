@@ -2,6 +2,14 @@
   <script>
     document.godHelpMe_allowed_to_edit = <%=@allowed_to_edit%>;
   </script>
+  <script>
+  function getLiveInfo() {
+    return {
+      isFreelancer: <%= @job.freelancer_id == current_user.id %>,
+      isEmployer: <%= @job.employer_id == current_user.id %>
+    };
+  }
+  </script>
 
 
   <section class="header">
