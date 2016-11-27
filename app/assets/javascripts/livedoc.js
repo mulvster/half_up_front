@@ -22,9 +22,8 @@ var dispatcher = new WebSocketRails('localhost:3000/websocket', false);
 // }
 
 // This could use some significant refactoring.
-function budgetRedistributor(jobBudget, currentMilestone, allMilestones) {
+function percentRedistributor(jobBudget, allMilestones, currentMilestone) {
 
-  console.log("Budget Remaining after this milestone subtraction: " + budgetRemaining);
 
   // dealing with percentage distribution:
   var newPercentageRemaining = 50 - currentMilestone.find('.payment-percentage').html();
@@ -48,18 +47,18 @@ function budgetRedistributor(jobBudget, currentMilestone, allMilestones) {
       console.log($(this).find('.payment-percentage').html())
     }
   });
+}
 
+function budgetRedistributor(jobBudget, allMilestones) {
   // dealing with amount distribution:
   var budgetRemaining = Math.ceil(jobBudget.html() / 2);
   var newAmount;
   allMilestones.children('.milestone').each(function() {
 
     console.log("old amount: " + $(this).find('.milestone-amount').html());
-    if ($(this).find('dl').html() !== currentMilestone.find('dl').html()) {
-      newAmount = Math.floor(jobBudget.html() * $(this).find('.payment-percentage').html() / 100);
-    } else {
-      newAmount = Math.floor(jobBudget.html() * $(this).find('.payment-percentage').html() / 100);
-    }
+
+    newAmount = Math.floor(jobBudget.html() * $(this).find('.payment-percentage').html() / 100);
+
     console.log("new Amount: " + newAmount);
     $(this).find('.milestone-amount').html(newAmount);
     budgetRemaining -= newAmount;
@@ -87,25 +86,35 @@ function budgetRedistributor(jobBudget, currentMilestone, allMilestones) {
   }
 }
 
+
 function handleJobBudgetChange(event) {
   console.log('handleJobBudgetChange invoked');
-  //var idName = event.target.class;
-  //console.log($(this).parent());
-  var jobBudgetValueNode = $(this).parent().children('.job-budget');
-  var oldValue = Number(jobBudgetValueNode.html());
-  console.log(oldValue);
 
-  var deltaBudget = event.target.className === 'job-arrow up-arrow' ? oldValue * 6.2 / 100 : oldValue * -6.2 / 100;
-  var newValue = oldValue + deltaBudget;
-  newValue = Math.max(0, newValue);
-  //round if needed:
-  var zerosCount = 0;
-  while (newValue / Math.pow(10, zerosCount + 2) >=1) {
-    zerosCount ++;
+  if (event.type === 'click') {
+    var jobBudgetValueNode = $(this).parent().children('.job-budget');
+    var oldValue = Number(jobBudgetValueNode.html());
+    console.log(oldValue);
+
+    var deltaBudget = event.target.className === 'job-arrow up-arrow' ? oldValue * 6.2 / 100 : oldValue * -6.2 / 100;
+    var newValue = oldValue + deltaBudget;
+    newValue = Math.max(0, newValue);
+    //round if needed:
+    var zerosCount = 0;
+    while (newValue / Math.pow(10, zerosCount + 2) >=1) {
+      zerosCount ++;
+    }
+    roundedValue = Math.round(newValue / Math.pow(10, zerosCount)) * Math.pow(10, zerosCount);
+    jobBudgetValueNode.html(Math.round(roundedValue));
+    actualDelta = roundedValue - oldValue;
+    if (actualDelta !== 0) {
+      $('.huf-budget').html(Math.floor(jobBudgetValueNode.html() / 2));
+      budgetRedistributor($('.job-budget'), $('#allMilestones'));
+    }
+  } else {
+      var jobBudgetValueNode = $(this).parent().children('.job-budget');
+      $('.huf-budget').html(Math.floor(jobBudgetValueNode.html() / 2));
+      budgetRedistributor($('.job-budget'), $('#allMilestones'));
   }
-  roundedValue = Math.round(newValue / Math.pow(10, zerosCount)) * Math.pow(10, zerosCount);
-  jobBudgetValueNode.html(Math.round(roundedValue));
-  actualDelta = roundedValue - oldValue;
 }
 
 function handleMilestoneBudgetChange(event) {
@@ -124,7 +133,8 @@ function handleMilestoneBudgetChange(event) {
   budgetValueNode.html(roundedValue.toFixed(1));
   actualDelta = roundedValue - oldValue;
   if (actualDelta !== 0) {
-    budgetRedistributor($('.job-budget'), $(this).closest('.milestone'), $('#allMilestones'));
+    percentRedistributor($('.job-budget'), $('#allMilestones'), $(this).closest('.milestone'));
+    budgetRedistributor($('.job-budget'), $('#allMilestones'));
   }
 }
 
@@ -264,6 +274,7 @@ $(function(){
     $('.job-budget').attr("contenteditable", true);
     $('.arrow').on('click', handleMilestoneBudgetChange);
     $('.job-arrow').on('click', handleJobBudgetChange);
+    $('.job-budget').on('blur', handleJobBudgetChange);
 
   }
 });
