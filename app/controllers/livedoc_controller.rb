@@ -8,6 +8,19 @@ class LivedocController < WebsocketRails::BaseController
   #   field: 'details',
   #   text: $(this).text()
   # }
+
+  # re-entering these in case we need them
+  # def update_title
+  #   puts "LivedocCont update_title"
+  #   broadcast_message :replace_title, message[:title]
+  # end
+
+  # # { details: event.target.innerText }
+  # def update_details
+  #   puts "LivedocCont update_details"
+  #   broadcast_message :replace_details, message[:details]
+  # end
+
   def update
     puts "made it to update function"
     # broadcast_message broadcast_key, message[:text]
