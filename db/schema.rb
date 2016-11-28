@@ -59,16 +59,16 @@ ActiveRecord::Schema.define(version: 20161127040634) do
 
   create_table "milestones", force: :cascade do |t|
     t.string   "name"
-    t.datetime "start_date"
-    t.datetime "end_date"
+    t.string   "start_date"
+    t.string   "end_date"
     t.decimal  "payment_percentage",            precision: 4, scale: 1
     t.boolean  "payment_renegotiable"
     t.text     "requirements_summary"
     t.text     "milestone_elaboration"
     t.boolean  "all_requirements_renegotiable"
     t.boolean  "completed"
-    t.string   "created_at",                                            null: false
-    t.string   "updated_at",                                            null: false
+    t.datetime   "created_at",                                            null: false
+    t.datetime   "updated_at",                                            null: false
     t.integer  "job_id"
   end
 
