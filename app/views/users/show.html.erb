@@ -4,13 +4,16 @@
   </script>
 
 
+
 <br>
 <br>
   <section class="header">
 
- <!--    <a href="http://127.0.0.1:3000/jobs/new" class="btn btn-lg btn-success">Work with <%= @user.first_name %>!</a> -->
 
- <%= button_to "Work with me" , "/jobs/" + @user.id.to_s + "/", :controller => "jobs", :action => "create", form_class: "btn btn-lg btn-success", :class => "btn btn-lg btn-success", :method => :post %>
+
+
+<!--  <%= button_to "Work with me" , "/jobs/" + @user.id.to_s + "/", :controller => "jobs", :action => "create", form_class: "btn btn-lg btn-success", :class => "btn btn-lg btn-success", :method => :post %> -->
+
 
     <div class="profilephoto">
       <%= image_tag 'hayden.jpg', id: "profile_photo", alt: "profile_photo", height: '255px' %>
@@ -32,9 +35,11 @@
      <i class="glyphicon glyphicon-user"></i> <%= @user.user_type %>
     </div>
 
+  <% if @user.user_type == 'Freelancer' %>
     <div class="user">
       <i class="glyphicon glyphicon-usd"></i> <%= @user.hourly_rate %>
     </div>
+  <% end %>
 
     <div class="github">
      <i class="fa fa-github"></i> <%= @user.git %>
@@ -45,12 +50,12 @@
     </div>
 
 
-
+    <% if current_user.id == @user.id %>
     <div class="editprofile">
       <%= link_to 'Edit Profile', edit_user_path(@user) %>
     </div>
 
-
+   <% end %>
 
   </section>
 
@@ -63,7 +68,10 @@
 
    </section>
 
+   <% if @user.user_type == 'Employer' %>
+    <%= button_to "Work with me" , "/jobs/" + @user.id.to_s + "/", :controller => "jobs", :action => "create", form_class: "btn btn-lg btn-success", :class => "btn btn-lg btn-success", :method => :post %>
+ <!--   <a href="http://127.0.0.1:3000/jobs/new" class="btn btn-lg btn-success">Work with <%= @user.first_name %>!</a> -->
+   <% end %>
+
 </section>
-
-
 

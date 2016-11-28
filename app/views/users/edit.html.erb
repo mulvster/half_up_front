@@ -2,6 +2,7 @@
   <%= form_for @user, url: user_path do |f| %>
 
   <section class="header">
+    <div class="editprofilecont">
     
 
     <div class="profilephoto">
@@ -43,11 +44,12 @@
   <section class="summary">
 
     <div class="summary">
-      <h4>Summary: </h4> <%= f.text_area :summary %>
+      <h4>Summary: </h4> <%= f.text_area :summary, size: "100 x 10" %>
     </div>
 
    </section>
   
+  </div>
 </section>
 
 
