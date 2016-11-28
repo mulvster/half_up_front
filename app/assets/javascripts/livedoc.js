@@ -21,6 +21,15 @@ function handleUpdate(event) {
   });
 }
 
+function handleJobUpdate(event) {
+  console.log($(this));
+  dispatcher.trigger('updatejob', {
+    field: $(this).data("job-update-field"),
+    //idJob: $(this).closest("[data-job-id]").data('job-id'),
+    text: $(this).text()
+  });
+}
+
 function handleNewMilestone(event) {
   dispatcher.trigger('updatemilestone', {
     milestoneid: event
@@ -141,6 +150,7 @@ function quickPercentRedistribution(allMilestones) {
 
 function handleJobBudgetChange(event) {
   console.log('handleJobBudgetChange invoked');
+  console.log($(this).closest("[data-job-id]").data('job-id'));
 
   quickPercentRedistribution($('#allMilestones'));
 
@@ -446,13 +456,22 @@ $(function(){
   if(liveInfo.isEmployer) {
 
     dispatcher.bind("replace_field", function(message) {
+      console.log("replace_field: " + message);
       if (!message.idRequirement) {
-      var element = $("dl[data-milestone-id='" + message.idMilestone + "'] ." +  message.field)
-      element.text(message.text);
-    } else {
-      var element = $("dl[data-requirement-id='" + message.idRequirement + "'] ." + message.field)
-      element.text(message.text);
-    }
+        var element = $("dl[data-milestone-id='" + message.idMilestone + "'] ." +  message.field)
+        element.text(message.text);
+      } else {
+        var element = $("dl[data-requirement-id='" + message.idRequirement + "'] ." + message.field)
+        element.text(message.text);
+      }
+    });
+
+    dispatcher.bind("replace_job_field", function(message) {
+      console.log("replace-job-field: " + message);
+      var element1 = $(".job-budget");
+      element1.text(message.text);
+      var element2 = $(".huf-budget");
+      element2.text(Math.floor(message.text / 2));
     });
 
     dispatcher.bind("new_milestone", function(message) {
@@ -474,18 +493,16 @@ $(function(){
   } else {
     //isFreelancer
     $('.milestone .freelancer-editable #allMilestones').attr("contenteditable", true);
-    // $('.milestone .freelancer-editable #allMilestones').on('input', handleUpdate);
+    $('.job-budget').attr("contenteditable", true);
     $('#allMilestones').on('input', '[data-update-field]', handleUpdate);
+    $('.job-budget').on('input', handleJobUpdate);
 
-
-    // added sections
 
     $('.arrow').on('click', handleMilestoneBudgetChange);
 
     $('.arrow').on('click', function(event) {
       $('#allMilestones').children('.milestone').each(function() {
         $(this).find('.payment-percentage').trigger('input');
-       // $(this).parent().find('.payment-percentage').trigger('input');
         $(this).find('.milestone-amount').trigger('input');
       });
     });
@@ -506,6 +523,12 @@ $(function(){
     });
 
     $('.job-arrow').on('click', handleJobBudgetChange);
+    $('.job-arrow').on('click', function(event) {
+      $(this).parent().find('.job-budget').trigger('input');
+      //$(this).find('.milestone-amount').trigger('input');
+    });
+
+
     $('.job-budget').on('blur', handleJobBudgetChange);
     $('.job-budget').on('keydown', function(event) {
 
@@ -515,6 +538,11 @@ $(function(){
         $(this).trigger('blur');
       }
     });
+
+
+
+
+
   }
 });
 

@@ -28,6 +28,11 @@ class LivedocController < WebsocketRails::BaseController
     broadcast_message 'replace_field', {field: message[:field], text: message[:text], idMilestone: message[:idMilestone], idRequirement: message[:idRequirement]}
   end
 
+  def updatejob
+    puts "made it to job update function"
+    broadcast_message 'replace_job_field', {field: message[:field], text: message[:text]}
+  end
+
   def updatemilestone
     puts "made it to update milestone"
     broadcast_message 'new_milestone', {milestoneid: message[:milestoneid]}
