@@ -480,9 +480,13 @@ $(function(){
     // added sections
 
     $('.arrow').on('click', handleMilestoneBudgetChange);
-    // *BUG* loads one behind. Not sure why yet.
+
     $('.arrow').on('click', function(event) {
-      $(this).parent().find('.payment-percentage').trigger('input');
+      $('#allMilestones').children('.milestone').each(function() {
+        $(this).find('.payment-percentage').trigger('input');
+       // $(this).parent().find('.payment-percentage').trigger('input');
+        $(this).find('.milestone-amount').trigger('input');
+      });
     });
 
     $('.payment-percentage').on('blur', handleMilestoneBudgetChange);
