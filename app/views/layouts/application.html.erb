@@ -25,7 +25,8 @@
   <%= csrf_meta_tags %>
 </head>
 
-<nav>
+<nav class="global_nav">
+ <%= image_tag 'huflogo.png', id: "huflogo", alt: "huflogo", height: '50px', width: '100px' %>
 </nav>
 <body class="<%= yield :body_class %>">
 
