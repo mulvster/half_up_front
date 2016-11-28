@@ -4,10 +4,13 @@
   </script>
 
 
-
+<br>
+<br>
   <section class="header">
-    
-    <a href="http://127.0.0.1:3000/jobs/new" class="btn btn-lg btn-success">Work with <%= @user.first_name %>!</a>
+
+ <!--    <a href="http://127.0.0.1:3000/jobs/new" class="btn btn-lg btn-success">Work with <%= @user.first_name %>!</a> -->
+
+ <%= button_to "Work with me" , "/jobs/" + @user.id.to_s + "/", :controller => "jobs", :action => "create", form_class: "btn btn-lg btn-success", :class => "btn btn-lg btn-success", :method => :post %>
 
     <div class="profilephoto">
       <%= image_tag 'hayden.jpg', id: "profile_photo", alt: "profile_photo", height: '255px' %>
@@ -24,7 +27,7 @@
     <div class=profileemail>
       <i class="glyphicon glyphicon-envelope"></i> <%= @user.email %>
     </div>
-    
+
     <div class="user">
      <i class="glyphicon glyphicon-user"></i> <%= @user.user_type %>
     </div>
@@ -42,16 +45,16 @@
     </div>
 
 
-   
+
     <div class="editprofile">
       <%= link_to 'Edit Profile', edit_user_path(@user) %>
     </div>
 
-   
+
 
   </section>
 
-  
+
   <section class="summary">
 
     <div class="summary">
@@ -59,7 +62,7 @@
     </div>
 
    </section>
-  
+
 </section>
 
 
