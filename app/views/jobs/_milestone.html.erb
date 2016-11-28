@@ -12,12 +12,13 @@
 
         <%= image_tag 'crazy_green_up.png', :class =>  'arrow up-arrow', alt: 'up arrow', height: '25px', width: '25px' %>
 
-        <dd class="payment-percentage freelancer-editable" data-update-field="payment-percentage"><%= milestone.payment_percentage %></dd><span>%</span>
+        <dd class="payment-percentage freelancer-editable" data-update-field="payment-percentage"><%= milestone.payment_percentage %></dd>
+        <span>%</span>
 
         <%= image_tag 'crazy_green_down.png', :class => 'arrow down-arrow', alt: 'down arrow', height: '25px', width: '25px' %>
 
       </span>
-      <dd contenteditable="true">Amount:</dd>
+      <span>Amount:</span>
         <span class="$-sign">$</span>
         <span class="milestone-amount"><%= (@job.budget.to_i * milestone.payment_percentage.to_i / 100 ).to_i%></span>
 

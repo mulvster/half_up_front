@@ -226,6 +226,12 @@ function renderMilestone(milestone) {
   nameValue.text("");
   list.append(nameLabel, nameValue);
 
+  let budgetLabel = $('<dt>');
+  budgetLabel.text('Budget');
+  let budgetValue = $('<dd>').addClass('payment-percentage freelancer-editable');
+  budgetValue.text("");
+  list.append(budgetLabel, budgetValue);
+
   let startDateLabel = $('<dt>');
   startDateLabel.text('Start Date');
   let startDateValue = $('<dd>').addClass('start-date freelancer-editable');
@@ -327,7 +333,7 @@ $(function(){
     var values = $.map($.makeArray(list.find('dd')), function (dd) {
       return $(dd).text();
     });
-    var fields = ["name", "start_date", "end_date", "requirements_summary"]
+    var fields = ["name", "payment_percentage", "start_date", "end_date", "requirements_summary"]
     var data = fields.reduce(function(previous, current, index) {
       previous[current] = values[index];
       return previous;
@@ -383,7 +389,9 @@ $(function(){
    var job_id = parseInt(window.location.pathname.substring(6));
    console.log("job_id: " + job_id);
     var url = '/jobs/' + job_id;
-    var data = {budget: Number($('.job-budget').html())}
+    var data = {
+      budget: Number($('.job-budget').html())
+    }
     console.log(data)
     $.ajax({
       type: "PUT",

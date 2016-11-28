@@ -43,6 +43,6 @@ class MilestonesController < ApplicationController
 private
 
   def milestone_params
-    params.require(:milestone).permit(:name, :start_date, :end_date, :requirements_summary, requirements_attributes: [:id, :name, :details])
+    params.require(:milestone).permit(:name, :payment_percentage, :start_date, :end_date, :requirements_summary, requirements_attributes: [:id, :name, :details])
   end
 end
