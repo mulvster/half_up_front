@@ -5,6 +5,7 @@
  
 
 
+
   <section class="header">
     
    
@@ -62,7 +63,9 @@
     </div>
 
    </section>
+
    <% if @user.user_type == 'Employer' %>
    <a href="http://127.0.0.1:3000/jobs/new" class="btn btn-lg btn-success">Work with <%= @user.first_name %>!</a>
    <% end %>
+=
 </section>
