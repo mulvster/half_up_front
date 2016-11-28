@@ -2,19 +2,12 @@
   <script>
     document.godHelpMe_allowed_to_edit = <%=@allowed_to_edit%>;
   </script>
-  <script>
-  function getLiveInfo() {
-    return {
-      isFreelancer: <%= @job.freelancer_id == current_user.id %>,
-      isEmployer: <%= @job.employer_id == current_user.id %>
-    };
-  }
-  </script>
+ 
 
 
   <section class="header">
     
-    <a href="http://127.0.0.1:3000/jobs/new" class="btn btn-lg btn-success">Work with <%= @user.first_name %>!</a>
+   
 
     <div class="profilephoto">
       <%= image_tag 'hayden.jpg', id: "profile_photo", alt: "profile_photo", height: '255px' %>
@@ -35,10 +28,12 @@
     <div class="user">
      <i class="glyphicon glyphicon-user"></i> <%= @user.user_type %>
     </div>
-
+  
+  <% if @user.user_type == 'Freelancer' %>
     <div class="user">
       <i class="glyphicon glyphicon-usd"></i> <%= @user.hourly_rate %>
     </div>
+  <% end %>
 
     <div class="github">
      <i class="fa fa-github"></i> <%= @user.git %>
@@ -49,11 +44,12 @@
     </div>
 
 
-   
+    <% if current_user.id == @user.id %>
     <div class="editprofile">
       <%= link_to 'Edit Profile', edit_user_path(@user) %>
     </div>
-
+   
+   <% end %>
    
 
   </section>
@@ -66,7 +62,9 @@
     </div>
 
    </section>
-  
+   <% if @user.user_type == 'Employer' %>
+   <a href="http://127.0.0.1:3000/jobs/new" class="btn btn-lg btn-success">Work with <%= @user.first_name %>!</a>
+   <% end %>
 </section>
 
 
