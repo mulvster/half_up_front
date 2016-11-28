@@ -125,16 +125,17 @@ function quickPercentRedistribution(allMilestones) {
   console.log("newPercentTotal: " + newPercentTotal);
 
   while (newPercentTotal < 50) {
-    var incrementedPercent = Number(rotatingMilestone.find('.payment-percentage').html()) + 0.1;
+    var incrementedPercent = (Number(rotatingMilestone.find('.payment-percentage').html()) + 0.1).toFixed(1);
     rotatingMilestone.find('.payment-percentage').html(incrementedPercent);
     if (rotatingMilestone === allMilestones.children('.milestone').last()) {
       rotatingMilestone = allMilestones.children('.milestone').first();
     } else {
       rotatingMilestone = allMilestones.children('.milestone').next();
     }
+
     newPercentTotal += 0.1;
 
-    console.log("newPercentTotal: " + newPercentTotal);
+    console.log("newPercentTotal: " + newPercentTotal.toFixed(1));
   }
 }
 
