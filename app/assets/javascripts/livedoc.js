@@ -476,8 +476,15 @@ $(function(){
     // $('.milestone .freelancer-editable #allMilestones').on('input', handleUpdate);
     $('#allMilestones').on('input', '[data-update-field]', handleUpdate);
 
+
     // added sections
+
     $('.arrow').on('click', handleMilestoneBudgetChange);
+    // *BUG* loads one behind. Not sure why yet.
+    $('.arrow').on('click', function(event) {
+      $(this).parent().find('.payment-percentage').trigger('input');
+    });
+
     $('.payment-percentage').on('blur', handleMilestoneBudgetChange);
     $('.payment-percentage').on('keydown', function(event) {
 
