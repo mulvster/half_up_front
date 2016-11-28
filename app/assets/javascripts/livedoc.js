@@ -305,6 +305,7 @@ $(function(){
   $('#allMilestones').on('click', '.save-milestone-btn', function (event) {
     console.log('detected click', arguments);
     var milestoneId = $(event.target).attr(MILESTONE_DATA_ATTRIBUTE_NAME);
+    console.log(milestoneId);
     var list = $('#allMilestones').find('dl[data-milestone-id=' + milestoneId + ']');
     // var milestoneparams = {
     //   'name': list.find('dd[class="name"]'),
@@ -386,21 +387,54 @@ $(function(){
   // save whole job, fields saved to be added
   $('#save-job').on('click', function (event) {
     console.log($('.job-budget').html());
-   var job_id = parseInt(window.location.pathname.substring(6));
-   console.log("job_id: " + job_id);
-    var url = '/jobs/' + job_id;
-    var data = {
+    var job_id = parseInt(window.location.pathname.substring(6));
+    console.log("job_id: " + job_id);
+    var url_j = '/jobs/' + job_id;
+    var data_j = {
       budget: Number($('.job-budget').html())
     }
-    console.log(data)
+    console.log(data_j)
     $.ajax({
       type: "PUT",
-      url: url,
-      data: data,
-      error: function(jqe, err_str, err) {
-          console.log("oh my god there was a jobs saving error, I have no idea what to do: " + err_str);
-      }
-    })
+      url: url_j,
+      data: data_j
+    });
+    $('#allMilestones').children('.milestone').each(function() {
+      var milestoneId = $(this).find('.save-milestone-btn').attr(MILESTONE_DATA_ATTRIBUTE_NAME);
+      console.log(milestoneId);
+      var list = $('#allMilestones').find('dl[data-milestone-id=' + milestoneId + ']');
+
+      var values = $.map($.makeArray(list.find('dd')), function (dd) {
+        return $(dd).text();
+      });
+      var fields = ["name", "payment_percentage", "start_date", "end_date", "requirements_summary"]
+      var data = fields.reduce(function(previous, current, index) {
+        previous[current] = values[index];
+        return previous;
+      }, {});
+      var requirements = list.children('.requirement');
+
+      data.requirements_attributes = []
+      requirements.each(function(index, value) {
+        var element = $(value);
+        var id = element.data('requirement-id');
+        var name = $(element.children('.req-name')[0]).text();
+        var details = $(element.children('.details')[0]).text();
+        data.requirements_attributes.push({
+          id: id,
+          name: name,
+          details: details
+        });
+      });
+
+      var job_id = parseInt(window.location.pathname.substring(6)); // really not proud
+      var url = '/jobs/' + job_id + '/milestones/' + milestoneId;
+      $.ajax({
+        type: "PUT",
+        url: url,
+        data: { milestone: data }
+      });
+    });
   });
 
   // $('.delete-milestone-btn').on('click', function (event) {
