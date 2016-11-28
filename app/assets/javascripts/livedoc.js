@@ -159,13 +159,12 @@ function handleJobBudgetChange(event) {
     roundedValue = Math.round(newValue / Math.pow(10, zerosCount)) * Math.pow(10, zerosCount);
     jobBudgetValueNode.html(Math.round(roundedValue));
     actualDelta = roundedValue - oldValue;
-    if (actualDelta !== 0) {
-      $('.huf-budget').html(Math.floor(jobBudgetValueNode.html() / 2));
-      budgetRedistributor($('.job-budget'), $('#allMilestones'));
-    } else {
-      $('.huf-budget').html(Math.floor(jobBudgetValueNode.html() / 2));
-      budgetRedistributor($('.job-budget'), $('#allMilestones'));
-    }
+    $('.huf-budget').html(Math.floor(jobBudgetValueNode.html() / 2));
+    budgetRedistributor($('.job-budget'), $('#allMilestones'));
+  }
+  if (event.type === 'blur') {
+    $('.huf-budget').html(Math.floor(jobBudgetValueNode.html() / 2));
+    budgetRedistributor($('.job-budget'), $('#allMilestones'));
   }
 }
 
@@ -292,6 +291,7 @@ return $newRequirement = $(`
 $(function(){
   var liveInfo = getLiveInfo();
   var requirement = $(".requirement");
+  $('.job-budget').attr("contenteditable", !liveInfo.isEmployer);
   $('#allMilestones').find('dd').attr("contenteditable", !liveInfo.isEmployer);
   $('#allMilestones').on('input', function (event) {
     console.log('all milestone parent received', event.type, event);
@@ -496,11 +496,11 @@ $(function(){
     $('.job-arrow').on('click', handleJobBudgetChange);
     $('.job-budget').on('blur', handleJobBudgetChange);
     $('.job-budget').on('keydown', function(event) {
+
       var keycode = (event.keyCode ? event.keyCode : event.which);
       if (keycode == '13') {
         event.preventDefault();
         $(this).trigger('blur');
-        //handleJobBudgetChange;
       }
     });
   }
