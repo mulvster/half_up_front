@@ -17,6 +17,7 @@ class JobsController < ApplicationController
 
   def show
     @job = Job.find(params[:id])
+
   end
 
   def new
@@ -34,12 +35,7 @@ class JobsController < ApplicationController
   redirect_to job_path(@job)
   end
 
-  def update
-    job = Job.find(params[:id])
-    job.budget = params[:budget]
-    job.save!
-    render json: "{}"
-  end
+
 
   def destroy
   end

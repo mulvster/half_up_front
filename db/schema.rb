@@ -11,9 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20161129002126) do
-
+ActiveRecord::Schema.define(version: 20161129011542) do
 
   create_table "attachments", force: :cascade do |t|
     t.string   "name"
@@ -70,6 +68,7 @@ ActiveRecord::Schema.define(version: 20161129002126) do
     t.string   "cms"
     t.string   "website_examples"
     t.string   "job_details"
+    t.integer  "budget"
   end
 
   create_table "milestones", force: :cascade do |t|

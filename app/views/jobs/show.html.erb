@@ -33,6 +33,16 @@
 <!-- added sections -->
 
 
+
+
+<br>
+<br>
+
+<!-- end of added sections -->
+
+
+
+<section class="col-xl-8 col-xl-offset-4 col-lg-9 col-lg-offset-3 col-md-7 col-md-offset-5 col-sm-6 col-sm-offset-6" id="allMilestones" data-job="<%= @job.id %>">
 <h3> Job Budget: </h3>
 <span class="job-budget-container">
 
@@ -57,15 +67,6 @@
 <br>
 
 <button id="save-job">Save Current Contract State</button>
-
-<br>
-<br>
-
-<!-- end of added sections -->
-
-
-
-<section class="col-xl-8 col-xl-offset-4 col-lg-9 col-lg-offset-3 col-md-7 col-md-offset-5 col-sm-6 col-sm-offset-6" id="allMilestones" data-job="<%= @job.id %>">
   <%= button_to "+ Milestone", job_milestones_path(@job.id), :id => "new-milestone-btn", form_class: 'new-milestone-form', :class => "milestones", :method => :post, :remote => true %>
   <% @job.milestones.each do |milestone| %>
       <%= render 'milestone', milestone: milestone %>
