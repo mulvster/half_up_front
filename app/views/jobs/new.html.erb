@@ -47,7 +47,7 @@
     <section class="project">
       <div class="row project">
         <div class="col-xs-offset-2 col-xs-3 ">
-          <label class="radio-btn" for="newproject">
+          <label class="textover" title="Starting something new? Click here!" style="background-color:#FFFFFF; color:#000000" class="radio-btn" for="newproject">
             <div class="glyphicon glyphicon-plus"></div>
             <p>New Project</p>
             <%= radio_button("jobs", "project_type", "new", id: "newproject") %>
@@ -55,7 +55,7 @@
         </div>
 
         <div class="col-xs-offset-3 col-xs-3">
-          <label class="radio-btn" for="existingproject">
+          <label  class="textover" title="Adding to existing project? Click here!" style="background-color:#FFFFFF; color:#000000"  class="radio-btn" for="existingproject">
             <div class="glyphicon glyphicon-arrow-right"></div>
             <p>Existing Project</p>
             <%= radio_button("jobs", "project_type", "existing", id: "existingproject") %>
@@ -70,7 +70,7 @@
     <section class="pricepoint">
       <div class="row price">
         <div class="col-xs-offset-1 col-xs-3 ">
-          <label class="radio-btn" for="fixed">
+          <label  class="textover" title="Can't spend more than what you've got." style="background-color:#FFFFFF; color:#000000"  class="radio-btn" for="fixed">
             <div class="glyphicon fa fa-dollar"></div>
             <p>Fixed Budget</p>
             <%= radio_button("jobs", "pre_price", "fixed", id: "fixed") %>
@@ -79,7 +79,7 @@
 
 
         <div class="col-xs-offset-1 col-xs-3 ">
-          <label class="radio-btn" for="flexible">
+          <label  class="textover" title="Extra money sitting in your piggy bank for the right solution." style="background-color:#FFFFFF; color:#000000"  class="radio-btn" for="flexible">
             <div class="glyphicon fa fa-dollar"></div>
             <div class="glyphicon fa fa-dollar"></div>
             <p>Flexible Budget</p>
@@ -89,7 +89,7 @@
 
 
         <div class="col-xs-offset-1 col-xs-3 ">
-          <label class="radio-btn" for="sizable">
+          <label  class="textover" title="Pay what it takes to get the job done." style="background-color:#FFFFFF; color:#000000"  class="radio-btn" for="sizable">
             <div class="glyphicon fa fa-dollar"></div>
             <div class="glyphicon fa fa-dollar"></div>
             <div class="glyphicon fa fa-dollar"></div>
@@ -106,7 +106,7 @@
     <section class="size">
       <div class="row site">
         <div class="col-xs-offset-1 col-xs-3 ">
-          <label class="radio-btn" for="small">
+          <label  class="textover" title="1-5 pages" style="background-color:#FFFFFF; color:#000000"  class="radio-btn" for="small">
             <div class="glyphicon fa fa-file-text"></div>
             <p>Small Site</p>
             <%= radio_button("jobs", "website_size", "small", id: "small") %>
@@ -115,7 +115,7 @@
 
 
         <div class="col-xs-offset-1 col-xs-3 ">
-          <label class="radio-btn" for="medium">
+          <label class="textover" title="10-20 pages" style="background-color:#FFFFFF; color:#000000"   class="radio-btn" for="medium">
             <div class="glyphicon fa fa-file-text"></div>
             <div class="glyphicon fa fa-file-text"></div>
             <p>Medium Site</p>
@@ -124,7 +124,7 @@
         </div>
 
         <div class="col-xs-offset-1 col-xs-3 ">
-          <label class="radio-btn" for="large">
+          <label class="textover" title="20+ Or full scale app" style="background-color:#FFFFFF; color:#000000"  class="radio-btn" for="large">
             <div class="glyphicon fa fa-file-text"></div>
             <div class="glyphicon fa fa-file-text"></div>
             <div class="glyphicon fa fa-file-text"></div>
@@ -142,7 +142,7 @@
     <section class="extra">
       <div class="row xcost">
         <div class="col-xs-offset-1 col-xs-3 ">
-          <label class="check-btn" for="photos">
+          <label class="textover" title="More than stock photography" style="background-color:#FFFFFF; color:#000000"   class="check-btn" for="photos">
             <div class="glyphicon fa fa-camera"></div>
             <p>Photos</p>
             <%= check_box :jobs, :photos, options = {}, on_value = 'yes', off_value = 'no' %>
@@ -153,7 +153,7 @@
 
 
         <div class="col-xs-offset-1 col-xs-3 ">
-          <label class="check-btn" for="designer">
+          <label class="textover" title="Custom graphics and logos" style="background-color:#FFFFFF; color:#000000"  class="check-btn" for="designer">
             <div class="glyphicon fa fa-paint-brush"></div>
             <p>Designer</p>
             <%= check_box :jobs, :designer, options = {}, on_value = 'yes', off_value = 'no' %>
@@ -162,7 +162,7 @@
 
 
         <div class="col-xs-offset-1 col-xs-3 ">
-          <label class="check-btn" for="seo">
+          <label class="textover" title="Show up in search engines" style="background-color:#FFFFFF; color:#000000"  class="check-btn" for="seo">
             <div class="glyphicon fa fa-search"></div>
             <p>SEO</p>
             <%= check_box :jobs, :seo, options = {}, on_value = 'yes', off_value = 'no' %>
@@ -177,7 +177,7 @@
       <div class="row xcost">
 
         <div class="col-xs-offset-1 col-xs-3 ">
-          <label class="check-btn" for="domain">
+          <label class="textover" title="www.yourwebsite.com" style="background-color:#FFFFFF; color:#000000"  class="check-btn" for="domain">
             <div class="glyphicon fa fa-desktop"></div>
             <p>Domain</p>
             <%= check_box :jobs, :domain, options = {}, on_value = 'yes', off_value = 'no' %>
@@ -186,7 +186,7 @@
 
 
         <div class="col-xs-offset-1 col-xs-3 ">
-          <label class="check-btn" for="hosting">
+          <label class="textover" title="Where your website is saved" style="background-color:#FFFFFF; color:#000000"  class="check-btn" for="hosting">
             <div class="glyphicon fa fa-server"></div>
             <p>Hosting</p>
             <%= check_box :jobs, :hosting, options = {}, on_value = 'yes', off_value = 'no' %>
@@ -195,7 +195,7 @@
 
 
         <div class="col-xs-offset-1 col-xs-3 ">
-          <label class="check-btn" for="Mobile">
+          <label class="textover" title="Formatted for the screens of mobile phones." style="background-color:#FFFFFF; color:#000000"  class="check-btn" for="Mobile">
             <div class="glyphicon fa fa-mobile"></div>
             <p>Mobile</p>
             <%= check_box :jobs, :mobile, options = {}, on_value = 'yes', off_value = 'no' %>
@@ -208,7 +208,7 @@
       <div class="row xcost">
 
         <div class="col-xs-offset-1 col-xs-3 ">
-          <label class="check-btn" for="analytics">
+          <label class="textover" title="Track the visitors to your site." style="background-color:#FFFFFF; color:#000000"  class="check-btn" for="analytics">
             <div class="glyphicon fa fa-line-chart"></div>
             <p>Analytics</p>
             <%= check_box :jobs, :analytics, options = {}, on_value = 'yes', off_value = 'no' %>
@@ -216,7 +216,7 @@
         </div>
 
         <div class="col-xs-offset-1 col-xs-3 ">
-          <label class="check-btn" for="seo">
+          <label class="textover" title="Sell products online" style="background-color:#FFFFFF; color:#000000"  class="check-btn" for="seo">
             <div class="glyphicon fa fa-shopping-cart"></div>
             <p>E-Commerce</p>
             <%= check_box :jobs, :ecommerce, options = {}, on_value = 'yes', off_value = 'no' %>
@@ -225,7 +225,7 @@
 
 
         <div class="col-xs-offset-1 col-xs-3 ">
-          <label class="check-btn" for="cms">
+          <label class="textover" title="Post content frequently" style="background-color:#FFFFFF; color:#000000"  class="check-btn" for="cms">
             <div class="glyphicon fa fa-pencil"></div>
             <p>CMS</p>
             <%= check_box :jobs, :cms, options = {}, on_value = 'yes', off_value = 'no' %>
@@ -242,7 +242,7 @@
       <div class="dynamic-form">
         <a id="add">Add</a> | <a id="remove">Remove</a>
           <div class="inputs">
-          <div>
+          <div class="textover" title="Add exmaples of your favourite websites here." style="background-color:#FFFFFF; color:#000000" >
           <%= text_field('jobs', 'website_examples', class:"brief center-block", placeholder: "Websites") %>
           </div>
       </div>
@@ -254,7 +254,7 @@
     <section class="summary">
       <div class="row">
         <div class="col-md-12 ">
-          <div class="form-group">
+          <div class="textover" title="Explain what you need in more detail here." style="background-color:#FFFFFF; color:#000000"  class="form-group">
             <%= text_area('jobs', 'job_details', class:"brief center-block", size: "100x5", placeholder:"Summary") %>
           </div>
         </div>
