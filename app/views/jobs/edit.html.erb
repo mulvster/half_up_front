@@ -18,7 +18,7 @@
 
   </script>
     <br>
-
+    <div class="background">
     <section class="textType">
     <h2>Brief:</h2>
       <%= text_field("jobs", "brief", class:"brief center-block") %>
@@ -34,7 +34,7 @@
 
     <br>
     <br>
-
+<div>
     <section class="textType">
       <h2>Objective:</h2>
     <%= text_field("jobs", "objective", class:"jobtype center-block") %>
@@ -134,7 +134,7 @@
           </label>
         </div>
       </div>
-      </div>
+
     </section>
 
     <br>
@@ -248,9 +248,9 @@
           </div>
       </div>
     </section>
-    </div>
-
+</div>
 <br>
+
 
     <section class="summary">
       <div class="row">
@@ -263,5 +263,6 @@
     </section>
     <div class='submitJob'>
     <%= f.submit %>
+    </div>
     </div>
 <% end %>
