@@ -4,7 +4,17 @@
   </script>
 
 
+
+<br>
+<br>
   <section class="header">
+
+
+
+ <% if @user.user_type == 'Employer' %>
+    <%= button_to "Work with me" , "/jobs/" + @user.id.to_s + "/", :controller => "jobs", :action => "create", form_class: "btn btn-lg btn-success", :class => "btn btn-lg btn-success", :method => :post %>
+ <!--   <a href="http://127.0.0.1:3000/jobs/new" class="btn btn-lg btn-success">Work with <%= @user.first_name %>!</a> -->
+   <% end %>
 
 
     <div class="profilephoto">
@@ -23,6 +33,12 @@
       <i class="glyphicon glyphicon-envelope"></i> <%= @user.email %>
     </div>
 
+
+    <div class="user">
+     <i class="glyphicon glyphicon-user"></i> <%= @user.user_type %>
+    </div>
+
+  <% if @user.user_type == 'Freelancer' %>
     <div class="user">
       <i class="glyphicon glyphicon-user"></i> <%= @user.user_type %>
     </div>
@@ -59,10 +75,14 @@
       <h4>Bio: </h4> <%= @user.summary %>
     </div>
 
-  </section>
 
-  <% if @user.user_type == 'Employer' %>
-      <a href="http://127.0.0.1:3000/jobs/new" class="btn btn-lg btn-success">Work with <%= @user.first_name %>!</a>
-  <% end %>
+   </section>
+
+
+   <% if current_user.user_type == 'Employer' %>
+    <%= button_to "Work with me" , "/jobs/" + @user.id.to_s + "/", :controller => "jobs", :action => "create", form_class: "btn btn-lg btn-success", :class => "btn btn-lg btn-success", :method => :post %>
+
+   <% end %>
 
 </section>
+
