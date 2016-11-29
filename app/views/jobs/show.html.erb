@@ -4,14 +4,13 @@
 **THIS WILL SHOW A JOB**
 
 <script>
-function getLiveInfo() {
-  return {
-    isFreelancer: <%= @job.freelancer_id == current_user.id %>,
-    isEmployer: <%= @job.employer_id == current_user.id %>
-  };
-}
+  function getLiveInfo() {
+    return {
+      isFreelancer: <%= @job.freelancer_id == current_user.id %>,
+      isEmployer: <%= @job.employer_id == current_user.id %>
+    };
+  }
 </script>
-<%= image_tag 'huflogo.png', id: "huflogo", height: '75px' %>
 
 <p id="notice"><%= notice %></p>
 <body>
@@ -20,21 +19,10 @@ function getLiveInfo() {
 
 <h3 class="welcomeuser">Welcome, <%= current_user.first_name %>. </h3>
 
-
-
-<!--<div class="chat">-->
-<!--<div class="messagelist">-->
-
-<!--</div>-->
-<!--<form>-->
-<!--<input />-->
-<!--</form>-->
-<!--</div>-->
-
 <section class="col-xl-8 col-xl-offset-4 col-lg-8 col-lg-offset-4 col-md-7 col-md-offset-5 col-sm-6 col-sm-offset-6" id="allMilestones" data-job="<%= @job.id %>">
   <%= button_to "+ Milestone", job_milestones_path(@job.id), :id => "new-milestone-btn", form_class: 'new-milestone-form', :class => "milestones", :method => :post, :remote => true %>
   <% @job.milestones.each do |milestone| %>
-    <%= render 'milestone', milestone: milestone %>
+      <%= render 'milestone', milestone: milestone %>
   <% end %>
 
 </section>

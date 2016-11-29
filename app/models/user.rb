@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-has_secure_password
+  has_secure_password
 
   def self.authenticate_with_credentials(email, password)
     user = User.find_by(email: email.downcase.strip).try(:authenticate, password)
@@ -13,7 +13,7 @@ has_secure_password
     user.last_name = auth_hash['info']['last_name']
     user.email = auth_hash['info']['email']
     user.country = auth_hash['extra']['address']['country']
-    user.province =  auth_hash['extra']['address']['region']
+    user.province = auth_hash['extra']['address']['region']
     user.city = auth_hash['extra']['address']['locality']
 
     user.password = SecureRandom.urlsafe_base64
