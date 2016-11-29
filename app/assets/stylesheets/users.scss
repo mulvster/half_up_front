@@ -1,3 +1,7 @@
+section.edit_header {
+  background-color: #7badd1;
+  height: 325px;
+}
 
 .container {
   width: 50%;
@@ -36,10 +40,6 @@ a.btn.btn-lg.btn-success {
 	margin-right: 10px;
 	color:  #efeff5;
 	box-shadow: 0 2px 2px 0 rgba(0,0,0,.20),0 3px 1px -2px rgba(0,0,0,.20),0 1px 5px 0 rgba(0,0,0,.20);
-}
-
-a.btn.btn-lg.btn-success:hover {
-	
 }
 
 .userlocation {
@@ -109,10 +109,20 @@ padding-bottom: 10px;
 padding-right: 10px;
 }
 
+i#edit_github {
+  color: black;
+  font-size: 16px;
+}
+
 
 .fa-github {
 padding-bottom: 10px;
 padding-right: 10px;
+}
+
+i#edit_linkedin {
+  color: black;
+  font-size: 16px;
 }
 
 .fa-linkedin {
@@ -124,6 +134,81 @@ div.editprofilecont {
 	margin-top: 25px;
 }
 
+textarea#user_summary {
+  margin-left: 25px;
+}
 
+.edit_summary {
+  margin-left: 25px;
+}
 
+.edit_submit {
+  margin-left: 25px;
+
+}
+
+.edit-userlocation {
+  margin-bottom: 10px;
+  border-radius: 5px;
+
+}
+
+input#user_email {
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+select#user_user_type {
+  margin-bottom: 10px;
+}
+
+input#user_hourly_rate {
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+input#user_git {
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+input#user_city {
+   margin-left: 10px;
+  border-radius: 5px;
+
+}
+
+input#user_province {
+  margin-left: 10px;
+  border-radius: 5px;
+
+}
+
+input#user_linked_in {
+  border-radius: 5px;
+
+}
+
+input#user_country {
+  border-radius: 5px;
+
+}
+
+input#user_first_name {
+  border-radius: 5px;
+}
+
+input#user_last_name {
+  border-radius: 5px;
+}
+
+textarea#user_summary {
+  border-radius: 5px;
+}
+
+.edit_submit input {
+  border-radius: 10px;
+  border: 3px solid gray;
+  background-color: #61D961;
+}
 
