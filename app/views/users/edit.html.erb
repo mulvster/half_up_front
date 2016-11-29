@@ -1,23 +1,59 @@
-<h1>Editing User</h1>
-
 
   <%= form_for @user, url: user_path do |f| %>
 
-  First Name: <%= f.text_field :first_name %>
-  Last Name: <%= f.text_field :last_name %>
-  User Type: <%= f.select :user_type, [['Freelancer', 'Freelancer'], ['Employer', 'Employer']]%>
-  Email: <%= f.text_field :email %>
-  Password: <%= f.password_field :password %>
-  Password Confirmation: <%= f.password_field :password_confirmation %>
+  <section class="header">
+    <div class="editprofilecont">
+    
 
-Profile Picture: <%= f.file_field :profile_image %>
-  City: <%= f.text_field :city %>
-  Province: <%= f.text_field :province %>
-  Country: <%= f.text_field :country %>
-  Biography: <%= f.text_area :summary %>
-  Hourly Wage: <%= f.text_field :hourly_rate %>
-  Paypal Account: <%= f.text_field :paypal_acct %>
-  Description: <%= f.text_area :description %>
+    <div class="profilephoto">
+      <%= f.file_field :profile_image %>
+    </div>
+
+    <div class="editusername">
+      <h1 id="edit-user-full-name"><%= f.text_field :first_name %> <%= f.text_field :last_name %></h1>
+    </div>
+
+    <div class="edit-userlocation">
+      <i class="glyphicon glyphicon-map-marker"></i>  <%= f.text_field :country %><%= f.text_field :city %> <%= f.text_field :province %>
+    </div>
+
+    <div class=edit-profileemail>
+      <i class="glyphicon glyphicon-envelope"></i> <%= f.text_field :email %>
+    </div>
+    
+    <div class="edit-user">
+     <i class="glyphicon glyphicon-user"></i> <%= f.select :user_type, [['Freelancer', 'Freelancer'], ['Employer', 'Employer']]%>
+    </div>
+
+    <div class="edit-usd">
+      <i class="glyphicon glyphicon-usd"></i> <%= f.number_field :hourly_rate %>
+    </div>
+
+    <div class="edit-github">
+     <i class="fa fa-github"></i> <%= f.url_field :git %>
+    </div>
+
+    <div class="edit-linkedin">
+     <i class="fa fa-linkedin"></i> <%= f.url_field :linked_in %>
+    </div>
+
+
+  </section>
+
+  
+  <section class="summary">
+
+    <div class="summary">
+      <h4>Summary: </h4> <%= f.text_area :summary, size: "100 x 10" %>
+    </div>
+
+   </section>
+  
+  </div>
+</section>
+
+
 
   <%= f.submit "Save Changes" %>
   <% end %>
+

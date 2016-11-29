@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   resources :main, only: [:index]
 
-  resources :sessions, only: [:new, :create, :destroy]
+  resources :sessions, only: [:new, :create, :destroy, :show]
 
   resources :users, only: [:create, :new, :edit, :show, :update]
 
@@ -20,6 +20,9 @@ Rails.application.routes.draw do
 
   resources :tokens, only: [:create]
 
+  get "/auth/paypal/callback", to: "sessions#create"
+
+  post "/jobs/:id", to: "jobs#create"
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

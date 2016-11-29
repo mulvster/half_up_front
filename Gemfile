@@ -37,6 +37,10 @@ gem 'websocket-rails'
 gem 'twilio-ruby' # for interacting with twilio
 gem 'envyable' # for managing environment variables
 
+gem "omniauth-paypal"
+
+
+gem 'best_in_place','~> 3.0.1'
 
 
 # Use ActiveModel has_secure_password

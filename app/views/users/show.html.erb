@@ -1,59 +1,88 @@
-<%= provide(:body_class, 'users-show') %>
-<body class="users-show">
+<section class="container center-block">
+  <script>
+    document.godHelpMe_allowed_to_edit = <%=@allowed_to_edit%>;
+  </script>
 
 
-<div class="row">
 
-</div>
-</article>
-<div id="profile_page">
-
-  <div class="container">
-    <
-
-    <div class="row">
+<br>
+<br>
+  <section class="header">
 
 
-      <div class="col-xs-12 col-sm-6 col-md-6 col-md-offset-3">
-        <div class="well well-sm ">
-          <div class="edit">
-            <%= link_to 'Edit', edit_user_path(@user) %>
-          </div>
-          <div class="row">
-            <div class="col-sm-6 col-md-4">
-              <%= image_tag @user.profile_image, id: "logo", alt: "logo", height: '80px' %>
-            </div>
-            <div class="col-sm-6 col-md-8">
-              <h5>
-                Rating <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-              </h5>
 
-              <h4><%= @user.first_name %> <%= @user.last_name %>
-                <p> <%= current_user.first_name %> </p>
-              </h4>
+ <% if @user.user_type == 'Employer' %>
+    <%= button_to "Work with me" , "/jobs/" + @user.id.to_s + "/", :controller => "jobs", :action => "create", form_class: "btn btn-lg btn-success", :class => "btn btn-lg btn-success", :method => :post %>
+ <!--   <a href="http://127.0.0.1:3000/jobs/new" class="btn btn-lg btn-success">Work with <%= @user.first_name %>!</a> -->
+   <% end %>
 
-              <small><cite title="Vancouver,Canada"><%= @user.city %> <%= @user.province %> <%= @user.country %>
-                <i class="glyphicon glyphicon-map-marker">
-                </i></cite></small>
-              <p>
-                <i class="glyphicon glyphicon-envelope"></i>april.mulvey@gmail.com
-                <br/>
-              <p id="portext">Portfolio</p>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Twitter</a></li>
-                <li><a href="https:www.google.com">Google +</a></li>
-                <li><a href="https://www.facebook.com">Facebook</a></li>
-                <li><a href="www.github.com">Github</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
+
+    <div class="profilephoto">
+      <%= image_tag 'hayden.jpg', id: "profile_photo", alt: "profile_photo", height: '255px' %>
     </div>
-  </div>
-</div>
+
+    <div class="username">
+      <h1 id="user-full-name"> <%= @user.first_name %> <%= @user.last_name %></h1>
+    </div>
+
+    <div class="userlocation">
+      <i class="glyphicon glyphicon-map-marker"></i>  <%= @user.country %> <%= @user.city %> <%= @user.province %>
+    </div>
+
+    <div class=profileemail>
+      <i class="glyphicon glyphicon-envelope"></i> <%= @user.email %>
+    </div>
+
+
+    <div class="user">
+     <i class="glyphicon glyphicon-user"></i> <%= @user.user_type %>
+    </div>
+
+  <% if @user.user_type == 'Freelancer' %>
+    <div class="user">
+      <i class="glyphicon glyphicon-user"></i> <%= @user.user_type %>
+    </div>
+
+    <% if @user.user_type == 'Freelancer' %>
+        <div class="user">
+          <i class="glyphicon glyphicon-usd"></i> <%= @user.hourly_rate %>
+        </div>
+    <% end %>
+
+    <div class="github">
+      <i class="fa fa-github"></i> <%= @user.git %>
+    </div>
+
+    <div class="linkedin">
+      <i class="fa fa-linkedin"></i> <%= @user.linked_in %>
+    </div>
+
+
+    <% if current_user.id == @user.id %>
+        <div class="editprofile">
+          <%= link_to 'Edit Profile', edit_user_path(@user) %>
+        </div>
+
+    <% end %>
+
+
+  </section>
+
+
+  <section class="summary">
+
+    <div class="summary">
+      <h4>Bio: </h4> <%= @user.summary %>
+    </div>
+
+
+   </section>
+
+
+   <% if current_user.user_type == 'Employer' %>
+    <%= button_to "Work with me" , "/jobs/" + @user.id.to_s + "/", :controller => "jobs", :action => "create", form_class: "btn btn-lg btn-success", :class => "btn btn-lg btn-success", :method => :post %>
+
+   <% end %>
+
 </section>
-</body>
+
