@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161127040634) do
+ActiveRecord::Schema.define(version: 20161129002126) do
 
   create_table "attachments", force: :cascade do |t|
     t.string   "name"
@@ -40,12 +40,11 @@ ActiveRecord::Schema.define(version: 20161127040634) do
   create_table "jobs", force: :cascade do |t|
     t.integer  "employer_id"
     t.integer  "freelancer_id"
-    t.datetime "date_initiated"
-    t.datetime "start_date"
-    t.datetime "end_date"
+    t.string   "date_initiated"
+    t.string   "start_date"
+    t.string   "end_date"
     t.text     "contract_text"
     t.binary   "contract_pdf"
-    t.integer  "budget"
     t.boolean  "contract_signed"
     t.boolean  "contract_completed"
     t.text     "employer_review"
@@ -54,7 +53,6 @@ ActiveRecord::Schema.define(version: 20161127040634) do
     t.integer  "freelancer_rating"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
-    t.string   "title"
   end
 
   create_table "milestones", force: :cascade do |t|
@@ -66,24 +64,20 @@ ActiveRecord::Schema.define(version: 20161127040634) do
     t.text     "requirements_summary"
     t.text     "milestone_elaboration"
     t.boolean  "all_requirements_renegotiable"
-    t.boolean  "completed"
-    t.datetime   "created_at",                                            null: false
-    t.datetime   "updated_at",                                            null: false
     t.integer  "job_id"
+    t.boolean  "completed"
+    t.datetime "created_at",                                            null: false
+    t.datetime "updated_at",                                            null: false
   end
-
-  add_index "milestones", ["job_id"], name: "index_milestones_on_job_id"
 
   create_table "requirements", force: :cascade do |t|
     t.string   "name"
     t.text     "details"
     t.boolean  "renegotiable"
+    t.integer  "milestone_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.integer  "milestone_id"
   end
-
-  add_index "requirements", ["milestone_id"], name: "index_requirements_on_milestone_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
@@ -108,7 +102,6 @@ ActiveRecord::Schema.define(version: 20161127040634) do
     t.string   "personal_url"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-    t.string   "uid"
   end
 
 end

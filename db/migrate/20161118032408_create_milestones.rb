@@ -2,8 +2,8 @@ class CreateMilestones < ActiveRecord::Migration
   def change
     create_table :milestones do |t|
       t.string :name
-      t.datetime :start_date
-      t.datetime :end_date
+      t.string :start_date
+      t.string :end_date
       t.integer :payment_percentage
       t.boolean :payment_renegotiable
       t.text :requirements_summary
