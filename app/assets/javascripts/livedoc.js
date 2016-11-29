@@ -70,11 +70,14 @@ function percentRedistributor(jobBudget, allMilestones, currentMilestone) {
   allMilestones.children('.milestone').each(function() {
     if ($(this).find('dl').html() !== currentMilestone.find('dl').html()) {
       console.log($(this).find('.payment-percentage').html())
+
+      // if/else added 2016.11.29
       if (previousTotalRemainingPercentage === 0) {
         var newPercentage = 0;
       } else {
         var newPercentage = Number($(this).find('.payment-percentage').html()) / previousTotalRemainingPercentage * newPercentageRemaining;
       }
+
       console.log("new percentage: " + newPercentage);
       $(this).find('.payment-percentage').html(newPercentage.toFixed(1));
       console.log($(this).find('.payment-percentage').html())
@@ -501,6 +504,19 @@ $(function(){
     $('#allMilestones').on('input', '[data-update-field]', handleUpdate);
     $('.job-budget').on('input', handleJobUpdate);
 
+    // added 2016.11.29
+    $('.job-budget').on('input', function(event) {
+      $('#allMilestones').children('.milestone').each(function() {
+        $(this).find('.payment-percentage').trigger('input');
+        $(this).find('.milestone-amount').trigger('input');
+      });
+    });
+    $('.job-budget').on('blur', function(event) {
+      $('#allMilestones').children('.milestone').each(function() {
+        $(this).find('.payment-percentage').trigger('input');
+        $(this).find('.milestone-amount').trigger('input');
+      });
+    });
 
     $('.arrow').on('click', handleMilestoneBudgetChange);
 
