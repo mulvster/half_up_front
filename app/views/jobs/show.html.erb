@@ -49,7 +49,11 @@ function getLiveInfo() {
 
 <span class="huf-container">
   <h4>Half Up Front: </h4> $
+  <% if @job.budget %>
   <dd class="huf-budget"><%= (@job.budget / 2).floor %> </dd>
+  <% else %>
+  <dd class="huf-budget"> 0 </dd>
+  <% end %>
 </span>
 
 <br>

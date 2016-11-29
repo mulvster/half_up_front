@@ -70,7 +70,11 @@ function percentRedistributor(jobBudget, allMilestones, currentMilestone) {
   allMilestones.children('.milestone').each(function() {
     if ($(this).find('dl').html() !== currentMilestone.find('dl').html()) {
       console.log($(this).find('.payment-percentage').html())
-      var newPercentage = Number($(this).find('.payment-percentage').html()) / previousTotalRemainingPercentage * newPercentageRemaining;
+      if (previousTotalRemainingPercentage === 0) {
+        var newPercentage = 0;
+      } else {
+        var newPercentage = Number($(this).find('.payment-percentage').html()) / previousTotalRemainingPercentage * newPercentageRemaining;
+      }
       console.log("new percentage: " + newPercentage);
       $(this).find('.payment-percentage').html(newPercentage.toFixed(1));
       console.log($(this).find('.payment-percentage').html())
