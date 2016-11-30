@@ -8,17 +8,15 @@
 
     <dt>Budget</dt>
     <span class="budget-container">
-      <span>Percent:</span>
-      <%= image_tag 'crazy_green_up.png', :class =>  'arrow up-arrow', alt: 'up arrow', height: '25px', width: '25px' %>
+      <span>Percent (%)</span>
 
-      <dd class="payment-percentage freelancer-editable" data-update-field="payment-percentage"><%= milestone.payment_percentage %></dd>
-      <span>%</span>
+      <i class="fa fa-arrow-up arrow up-arrow"></i><i class="fa fa-arrow-down arrow down-arrow"></i>
 
-      <%= image_tag 'crazy_green_down.png', :class => 'arrow down-arrow', alt: 'down arrow', height: '25px', width: '25px' %>
+      <dd class="payment-percentage freelancer-editable" data-update-field="payment-percentage"><%= milestone.payment_percentage %> </dd>
 
 
-      <span>Amount:</span>
-      <span class="$-sign">$</span>
+      <span>Amount ($)</span>
+
       <dd class="milestone-amount freelancer-editable" data-update-field="milestone-amount"><%= (@job.budget.to_i * milestone.payment_percentage.to_i / 100 ).to_i%></dd>
     </span>
     <dt>Start Date</dt>

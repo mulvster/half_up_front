@@ -245,6 +245,7 @@ function renderMilestone(milestone) {
 
   let budgetLabel = $('<dt>');
   budgetLabel.text('Budget');
+  budgetLabel.append($)
   let budgetValue = $('<dd>').addClass('payment-percentage freelancer-editable');
   budgetValue.text("");
   list.append(budgetLabel, budgetValue);
