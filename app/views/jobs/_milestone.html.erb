@@ -17,7 +17,7 @@
 
       <span>Amount ($)</span>
 
-      <dd class="milestone-amount freelancer-editable" data-update-field="milestone-amount"><%= (@job.budget.to_i * milestone.payment_percentage.to_i / 100 ).to_i%></dd>
+      <dd class="milestone-amount" data-update-field="milestone-amount"><%= (@job.budget.to_i * milestone.payment_percentage.to_i / 100 ).to_i%></dd>
     </span>
     <dt>Start Date</dt>
     <dd class="start-date freelancer-editable" data-update-field="start-date"><%= milestone.start_date %></dd>

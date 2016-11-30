@@ -245,12 +245,48 @@ function renderMilestone(milestone) {
   nameValue.text("");
   list.append(nameLabel, nameValue);
 
+
   let budgetLabel = $('<dt>');
   budgetLabel.text('Budget');
-  budgetLabel.append($)
-  let budgetValue = $('<dd>').addClass('payment-percentage freelancer-editable');
-  budgetValue.text("");
+
+  let paymentPercentage = $('<dd>').addClass('payment-percentage freelancer-editable');
+  paymentPercentage.text("0");
+  let milestoneAmount = $('<dd>').addClass('milestone-amount');
+  milestoneAmount.text(" ");
+
+  let budgetValue = $('<span class="budget-container">')
+    .append($('<span>Percent (%) </span>'))
+    .append($('<i class="fa fa-arrow-up arrow up-arrow"></i>'))
+    .append($('<i class="fa fa-arrow-down arrow down-arrow"></i>'))
+    .append(paymentPercentage)
+    .append($('<span>Amount ($)</span>'))
+    .append(milestoneAmount)
+    .append($('</span>'));
+
+  budgetValue.on('click', '.arrow', handleMilestoneBudgetChange);
+  budgetValue.on('click', '.arrow', function(event) {
+      $('#allMilestones').children('.milestone').each(function() {
+        $(this).find('.payment-percentage').trigger('input');
+        $(this).find('.milestone-amount').trigger('input');
+      });
+    });
+  budgetValue.on('blur', '.payment-percentage', handleMilestoneBudgetChange);
+  budgetValue.on('keydown', '.payment-percentage', function(event) {
+
+      var keycode = (event.keyCode ? event.keyCode : event.which);
+      if (keycode == '13') {
+        event.preventDefault();
+        $(this).trigger('blur');
+      } else {
+        // digits, delete and decimal only. Hacky for now.
+        if ((keycode < '48' || keycode > '57') && (keycode != '8' && keycode != '190')) {
+          event.preventDefault();
+        }
+      }
+    });
+
   list.append(budgetLabel, budgetValue);
+
 
   let startDateLabel = $('<dt>');
   startDateLabel.text('Start Date');
@@ -269,9 +305,6 @@ function renderMilestone(milestone) {
   let requirementSummaryValue = $('<dd>').addClass('summary freelancer-editable');
   requirementSummaryValue.text("");
   list.append(requirementSummaryLabel, requirementSummaryValue);
-
-  let button = $('<button>').addClass('save-milestone-btn').text('Save');
-  button.attr(MILESTONE_DATA_ATTRIBUTE_NAME, milestone.id);
   let requirementbutton = $('<button>').addClass('req-btn').text('+ Requirement')
   requirementbutton.attr(MILESTONE_DATA_ATTRIBUTE_NAME, milestone.id);
   requirementbutton.on("click", function(event) {
@@ -288,7 +321,11 @@ function renderMilestone(milestone) {
 
     });
   });
-  container.append(list, button, requirementbutton);
+  let savebutton = $('<button>').addClass('save-milestone-btn').text('Save');
+  savebutton.attr(MILESTONE_DATA_ATTRIBUTE_NAME, milestone.id);
+
+
+  container.append(list, requirementbutton, savebutton);
   return container;
 }
 
@@ -551,7 +588,6 @@ $(function(){
     //     $(this).find('.milestone-amount').trigger('input');
     //   });
     // });
-
     $('.job-arrow').on('click', handleJobBudgetChange);
     $('.job-arrow').on('click', function(event) {
       $(this).parent().next().find('.job-budget').trigger('input');
