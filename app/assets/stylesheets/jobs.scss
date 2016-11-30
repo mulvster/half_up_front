@@ -16,8 +16,11 @@ div.col-md-4.glyphicon:hover {
   color: red;
 }
 
-h2 {
+h2.jedit {
   text-align: center;
+  text-decoration: underline;
+  margin-top: 25px;
+  margin-bottom: 15px;
 }
 
 body.new-job {
@@ -33,6 +36,7 @@ body.new-job {
       border: 2px solid #062b93;
       color: #062b93;
       box-shadow: 2px 2px 2px 0 rgba(0, 0, 0, 0.2), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+
     }
 
     &:hover {
@@ -111,6 +115,15 @@ textarea#Message {
 
 .submitJob {
   padding-left: 35%;
+  margin-bottom: 25px;
+  margin-top: 10px;
+
+}
+
+.submitJob input {
+  background-color: #61d961;
+  font-color: white;
+  border: 3px solid grey;
 }
 
 #messages {
@@ -191,6 +204,14 @@ section.addexamples {
   text-align: center;
 }
 
+section.summary {
+  text-align: center;
+}
+
+section.textType {
+  text-align: center;
+}
+
 .appearin {
   float: left;
   height: 100%;
@@ -216,6 +237,7 @@ section.addexamples {
 
 .body {
   background-color: #C6E2FF;
+  border-radius: 5px;
 }
 
 dt {
@@ -236,7 +258,8 @@ textarea#jobs_job_details {
 }
 
 .background {
-  background-color: #60ADf0;
+  background-color: #c7e1f0;
+  border:2px solid black;
 }
 
 label.check-btn {
@@ -245,4 +268,9 @@ label.check-btn {
 
 label.radio-btn {
   background-color: white;
+
+}
+
+p {
+  font-weight: bold;
 }

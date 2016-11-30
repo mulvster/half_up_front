@@ -4,21 +4,12 @@
   </script>
 
 
-
-<br>
-<br>
+  <br>
+  <br>
   <section class="header">
 
-
-
- <% if @user.user_type == 'Employer' %>
-    <%= button_to "Work with me" , "/jobs/" + @user.id.to_s + "/", :controller => "jobs", :action => "create", form_class: "btn btn-lg btn-success", :class => "btn btn-lg btn-success", :method => :post %>
- <!--   <a href="http://127.0.0.1:3000/jobs/new" class="btn btn-lg btn-success">Work with <%= @user.first_name %>!</a> -->
-   <% end %>
-
-
     <div class="profilephoto">
-      <%= image_tag 'profilePlaceholder.png', id: "profile_photo", alt: "profile_photo", height: '255px' %>
+      <%= image_tag 'profilePlaceholder.png', id: "profile_photo", alt: "profile_photo", height: '270px' %>
     </div>
 
     <div class="username">
@@ -26,29 +17,24 @@
     </div>
 
     <div class="userlocation">
-      <i class="glyphicon glyphicon-map-marker"></i>  <%= @user.country %> <%= @user.city %> <%= @user.province %>
+      <i class="fa fa-map-marker"></i>  <%= @user.country %> <%= @user.city %> <%= @user.province %>
     </div>
 
     <div class=profileemail>
-      <i class="glyphicon glyphicon-envelope"></i> <%= @user.email %>
+      <i class="fa fa-envelope"></i> <%= @user.email %>
     </div>
 
+    <% if @user.user_type == 'Freelancer' %>
+        <div class="user">
+          <i class="fa fa-user"></i> <%= @user.user_type %>
+        </div>
 
-    <div class="user">
-     <i class="glyphicon glyphicon-user"></i> <%= @user.user_type %>
-    </div>
-
-  <% if @user.user_type == 'Freelancer' %>
-    <div class="user">
-      <i class="glyphicon glyphicon-user"></i> <%= @user.user_type %>
-    </div>
-
-  <% end %>
+    <% end %>
 
 
     <% if @user.user_type == 'Freelancer' %>
         <div class="user">
-          <i class="glyphicon glyphicon-usd"></i> <%= @user.hourly_rate %>
+          <i class="fa fa-usd"></i> <%= @user.hourly_rate %>
         </div>
     <% end %>
 
@@ -79,13 +65,13 @@
     </div>
 
 
-   </section>
+  </section>
 
 
-   <% if current_user.user_type == 'Employer' %>
-    <%= button_to "Work with me" , "/jobs/" + @user.id.to_s + "/", :controller => "jobs", :action => "create", form_class: "btn btn-lg btn-success", :class => "btn btn-lg btn-success", :method => :post %>
+  <% if current_user.user_type == 'Employer' %>
+      <%= button_to "Work with me", "/jobs/" + @user.id.to_s + "/", :controller => "jobs", :action => "create", form_class: "btn btn-lg btn-success", :class => "btn btn-lg btn-success", :method => :post %>
 
-   <% end %>
+  <% end %>
 
 </section>
 

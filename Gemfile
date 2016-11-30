@@ -15,6 +15,7 @@ gem 'coffee-rails', '~> 4.1.0'
 # gem 'therubyracer', platforms: :ruby
 gem 'bcrypt', '~> 3.1.7'
 
+gem 'tether-rails'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
@@ -34,7 +35,6 @@ gem 'bootstrap', '~> 4.0.0.alpha5'
 
 gem 'websocket-rails'
 
-gem 'twilio-ruby' # for interacting with twilio
 gem 'envyable' # for managing environment variables
 
 gem "omniauth-paypal"

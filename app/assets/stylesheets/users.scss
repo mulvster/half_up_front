@@ -27,7 +27,7 @@ h1#user-full-name {
 
 section.header {
 	background-color: #7badd1;
-	height: 275px;
+	height: 340px;
 	padding-bottom: 25px;
 	position: relative;
 	box-shadow: 0 2px 2px 0 rgba(0,0,0,.20),0 3px 1px -2px rgba(0,0,0,.20),0 1px 5px 0 rgba(0,0,0,.20);
@@ -87,31 +87,33 @@ section.profiledetails {
 	margin-left: 185px;
 }
 
-.glyphicon-envelope {
+.fa-envelope {
 	padding-bottom: 10px;
-	padding-right: 10px;
+	padding-right: 9px;
+    font-size: 12px;
 }
 
-.glyphicon-map-marker {
+.fa-map-marker {
 	padding-right: 10px;
 	padding-bottom: 10px;
+
 }
 
 
-.glyphicon-user {
+.fa-user {
 padding-bottom: 10px;
 padding-right: 10px;
 }
 
 
-.glyphicon-usd {
+.fa-usd {
 padding-bottom: 10px;
 padding-right: 10px;
 }
 
 i#edit_github {
   color: black;
-  font-size: 16px;
+  font-size: 12px;
 }
 
 
@@ -122,7 +124,7 @@ padding-right: 10px;
 
 i#edit_linkedin {
   color: black;
-  font-size: 16px;
+  font-size: 12px;
 }
 
 .fa-linkedin {
@@ -138,12 +140,8 @@ textarea#user_summary {
   margin-left: 25px;
 }
 
-.edit_summary {
-  margin-left: 25px;
-}
-
 .edit_submit {
-  margin-left: 25px;
+  text-align: center;
 
 }
 
