@@ -1,9 +1,6 @@
 class JobsBudgetFieldRename < ActiveRecord::Migration
-  def self.up
-    remove_column :jobs, :final_budget
-  end
-
-  def self.down
-    add_column :jobs, :budget
+  def change
+    remove_column :jobs, :final_budget, :integer
+    add_column :jobs, :budget, :integer, :default => 0
   end
 end
