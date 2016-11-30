@@ -165,7 +165,7 @@ function handleJobBudgetChange(event) {
   console.log("jobBudgetValueNode: " + jobBudgetValueNode);
   if (event.type === 'click') {
     var oldValue = Number(jobBudgetValueNode.html());
-    console.log(oldValue);
+    console.log("oldValue (jobBudgetValueNode): " + oldValue);
 
     var deltaBudget = event.target.className === 'fa fa-arrow-up' ? oldValue * 6.2 / 100 : oldValue * -6.2 / 100;
     var newValue = oldValue + deltaBudget;
@@ -182,6 +182,7 @@ function handleJobBudgetChange(event) {
     budgetRedistributor($('.job-budget'), $('#allMilestones'));
   }
   if (event.type === 'blur') {
+
     $('.huf-budget').html(Math.floor(jobBudgetValueNode.html() / 2));
     budgetRedistributor($('.job-budget'), $('#allMilestones'));
   }
@@ -540,8 +541,8 @@ $(function(){
         $(this).find('.milestone-amount').trigger('input');
       });
       var huf = Math.floor($(this).html() / 2);
-      console.log("HUF: " + huf);
-      console.log($(this).parent().parent().parent().next().find('.huf-budget').html());
+      //console.log("HUF: " + huf);
+      //console.log($(this).parent().parent().parent().next().find('.huf-budget').html());
       $(this).parent().parent().parent().next().find('.huf-budget').html(huf);
     });
     // $('.job-budget').on('blur', function(event) {
@@ -558,7 +559,7 @@ $(function(){
     });
 
 
-    $('.job-budget').on('blur', handleJobBudgetChange);
+    $('.job-budget').on('input', handleJobBudgetChange);
     $('.job-budget').on('keydown', function(event) {
       var keycode = (event.keyCode ? event.keyCode : event.which);
       if (keycode == '13') {
