@@ -500,23 +500,7 @@ $(function(){
   } else {
     //isFreelancer
     $('.milestone .freelancer-editable #allMilestones').attr("contenteditable", true);
-    $('.job-budget').attr("contenteditable", true);
     $('#allMilestones').on('input', '[data-update-field]', handleUpdate);
-    $('.job-budget').on('input', handleJobUpdate);
-
-    // added 2016.11.29
-    $('.job-budget').on('input', function(event) {
-      $('#allMilestones').children('.milestone').each(function() {
-        $(this).find('.payment-percentage').trigger('input');
-        $(this).find('.milestone-amount').trigger('input');
-      });
-    });
-    $('.job-budget').on('blur', function(event) {
-      $('#allMilestones').children('.milestone').each(function() {
-        $(this).find('.payment-percentage').trigger('input');
-        $(this).find('.milestone-amount').trigger('input');
-      });
-    });
 
     $('.arrow').on('click', handleMilestoneBudgetChange);
 
@@ -541,6 +525,25 @@ $(function(){
         }
       }
     });
+
+    // job budget changing functions
+
+    $('.job-budget').attr("contenteditable", true);
+
+    $('.job-budget').on('input', handleJobUpdate);
+
+    // added 2016.11.29
+    $('.job-budget').on('input', function(event) {
+      $('#allMilestones').children('.milestone').each(function() {
+        $(this).find('.milestone-amount').trigger('input');
+      });
+    });
+    // $('.job-budget').on('blur', function(event) {
+    //   $('#allMilestones').children('.milestone').each(function() {
+    //     $(this).find('.payment-percentage').trigger('input');
+    //     $(this).find('.milestone-amount').trigger('input');
+    //   });
+    // });
 
     $('.job-arrow').on('click', handleJobBudgetChange);
     $('.job-arrow').on('click', function(event) {
