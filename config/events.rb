@@ -9,6 +9,7 @@ WebsocketRails::EventMap.describe do
   # subscribe :update_title, 'livedoc#update_title'
   # subscribe :update_details, 'livedoc#update_details'
   subscribe :update, 'livedoc#update'
+  subscribe :updatejob, 'livedoc#updatejob'
   subscribe :updatemilestone, 'livedoc#updatemilestone'
   subscribe :updaterequirement, 'livedoc#updaterequirement'
   subscribe :destroymilestone, 'livedoc#destroymilestone'

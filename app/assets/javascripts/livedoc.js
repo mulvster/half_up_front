@@ -21,6 +21,15 @@ function handleUpdate(event) {
   });
 }
 
+function handleJobUpdate(event) {
+  console.log($(this));
+  dispatcher.trigger('updatejob', {
+    field: $(this).data("job-update-field"),
+    //idJob: $(this).closest("[data-job-id]").data('job-id'),
+    text: $(this).text()
+  });
+}
+
 function handleNewMilestone(event) {
   dispatcher.trigger('updatemilestone', {
     milestoneid: event
@@ -39,6 +48,170 @@ function handleRequirement(event) {
     requirementid: event
   });
 }
+
+
+// The following five functions
+// could use some significant refactoring.
+function percentRedistributor(jobBudget, allMilestones, currentMilestone) {
+
+  // dealing with percentage distribution:
+  var newPercentageRemaining = 50 - currentMilestone.find('.payment-percentage').html();
+  console.log("New remaining percentage: " + newPercentageRemaining);
+  var previousTotalRemainingPercentage = 0;
+  allMilestones.children('.milestone').each(function() {
+    console.log(currentMilestone.find('dl').html() === $(this).find('dl').html());
+
+    console.log("milestone percentage: " + $(this).find('.payment-percentage').html());
+    if ($(this).find('dl').html() !== currentMilestone.find('dl').html()) {
+      previousTotalRemainingPercentage += Number($(this).find('.payment-percentage').html());
+    }
+    console.log("prev total remaining: " + previousTotalRemainingPercentage);
+  });
+  allMilestones.children('.milestone').each(function() {
+    if ($(this).find('dl').html() !== currentMilestone.find('dl').html()) {
+      console.log($(this).find('.payment-percentage').html())
+
+      // if/else added 2016.11.29
+      if (previousTotalRemainingPercentage === 0) {
+        var newPercentage = 0;
+      } else {
+        var newPercentage = Number($(this).find('.payment-percentage').html()) / previousTotalRemainingPercentage * newPercentageRemaining;
+      }
+
+      console.log("new percentage: " + newPercentage);
+      $(this).find('.payment-percentage').html(newPercentage.toFixed(1));
+      console.log($(this).find('.payment-percentage').html())
+    }
+  });
+}
+
+function budgetRedistributor(jobBudget, allMilestones) {
+  // dealing with amount distribution:
+  var budgetRemaining = Math.ceil(jobBudget.html() / 2);
+  var newAmount;
+  allMilestones.children('.milestone').each(function() {
+
+    console.log("old amount: " + $(this).find('.milestone-amount').html());
+
+    newAmount = Math.floor(jobBudget.html() * $(this).find('.payment-percentage').html() / 100);
+
+    console.log("new Amount: " + newAmount);
+    $(this).find('.milestone-amount').html(newAmount);
+    budgetRemaining -= newAmount;
+    console.log($(this).find('.milestone-amount').html());
+    console.log("budgetRemaining: " + budgetRemaining);
+  });
+  //loop over non-calling milestones, adding $1 till budgetRemaining depleted
+  rotatingMilestone = allMilestones.children('.milestone').first();
+  console.log("BUDGET REMAINING BEFORE DELUGE: " + budgetRemaining);
+  while (budgetRemaining > 0) {
+    //console.log(allMilestones.children('.milestone').length);
+
+    // **** the following line is hideous and doesn't work. TO BE FIXED. ****
+    //console.log(rotatingMilestone.find('.milestone-amount').html());
+    rotatingMilestone.find('.milestone-amount').html(Number(rotatingMilestone.find('.milestone-amount').html())+1);
+    //console.log(rotatingMilestone.find('.milestone-amount').html());
+    if (rotatingMilestone === allMilestones.children('.milestone').last()) {
+      rotatingMilestone = allMilestones.children('.milestone').first();
+    } else {
+      rotatingMilestone = allMilestones.children('.milestone').next();
+    }
+    budgetRemaining --;
+  }
+}
+
+function quickPercentRedistribution(allMilestones) {
+  console.log('quick percent redistribution');
+
+  var oldPercentTotal = 0;
+  allMilestones.children('.milestone').each(function() {
+      oldPercentTotal += Number($(this).find('.payment-percentage').html());
+      console.log(oldPercentTotal);
+    });
+  var newPercentTotal = 0;
+  allMilestones.children('.milestone').each(function() {
+      var newPercent = Number($(this).find('.payment-percentage').html()) * 50 / oldPercentTotal;
+      newPercent = Math.floor(newPercent * 10) / 10;
+      newPercentTotal += newPercent;
+      $(this).find('.payment-percentage').html(newPercent);
+    });
+  // loop over the milestones, adding 0.1% to each till they total 50%
+  rotatingMilestone = allMilestones.children('.milestone').first();
+
+  console.log("newPercentTotal: " + newPercentTotal);
+
+  while (newPercentTotal < 50) {
+    var incrementedPercent = (Number(rotatingMilestone.find('.payment-percentage').html()) + 0.1).toFixed(1);
+    rotatingMilestone.find('.payment-percentage').html(incrementedPercent);
+    if (rotatingMilestone === allMilestones.children('.milestone').last()) {
+      rotatingMilestone = allMilestones.children('.milestone').first();
+    } else {
+      rotatingMilestone = allMilestones.children('.milestone').next();
+    }
+
+    newPercentTotal += 0.1;
+
+    console.log("newPercentTotal: " + newPercentTotal.toFixed(1));
+  }
+}
+
+function handleJobBudgetChange(event) {
+  console.log('handleJobBudgetChange invoked');
+  console.log($(this).closest("[data-job-id]").data('job-id'));
+
+  quickPercentRedistribution($('#allMilestones'));
+
+  var jobBudgetValueNode = $(this).parent().children('.job-budget');
+  if (event.type === 'click') {
+    var oldValue = Number(jobBudgetValueNode.html());
+    console.log(oldValue);
+
+    var deltaBudget = event.target.className === 'job-arrow up-arrow' ? oldValue * 6.2 / 100 : oldValue * -6.2 / 100;
+    var newValue = oldValue + deltaBudget;
+    newValue = Math.max(0, newValue);
+    //round if needed:
+    var zerosCount = 0;
+    while (newValue / Math.pow(10, zerosCount + 2) >=1) {
+      zerosCount ++;
+    }
+    roundedValue = Math.round(newValue / Math.pow(10, zerosCount)) * Math.pow(10, zerosCount);
+    jobBudgetValueNode.html(Math.round(roundedValue));
+    actualDelta = roundedValue - oldValue;
+    $('.huf-budget').html(Math.floor(jobBudgetValueNode.html() / 2));
+    budgetRedistributor($('.job-budget'), $('#allMilestones'));
+  }
+  if (event.type === 'blur') {
+    $('.huf-budget').html(Math.floor(jobBudgetValueNode.html() / 2));
+    budgetRedistributor($('.job-budget'), $('#allMilestones'));
+  }
+}
+
+function handleMilestoneBudgetChange(event) {
+  console.log('handleMilestoneBudgetChange invoked');
+
+  var budgetValueNode = $(this).parent().children('.payment-percentage');
+
+  if (event.type === 'click') {
+    var oldValue = Number(budgetValueNode.html());
+    console.log(oldValue);
+
+    var deltaBudget = event.target.className === 'arrow up-arrow' ? 1.0 : -1.0;
+    var newValue = oldValue + deltaBudget;
+    newValue = Math.max(0, Math.min(50, newValue));
+    // round if needed:
+    roundedValue = deltaBudget > 0 ? Math.floor(newValue) : Math.ceil(newValue);
+    budgetValueNode.html(roundedValue.toFixed(1));
+    actualDelta = roundedValue - oldValue;
+    if (actualDelta !== 0) {
+      percentRedistributor($('.job-budget'), $('#allMilestones'), $(this).closest('.milestone'));
+      budgetRedistributor($('.job-budget'), $('#allMilestones'));
+    }
+  } else {
+      percentRedistributor($('.job-budget'), $('#allMilestones'), $(this).closest('.milestone'));
+      budgetRedistributor($('.job-budget'), $('#allMilestones'));
+  }
+}
+
 
 function renderMilestone(milestone) {
   let container = $('<article>').addClass("milestone");
@@ -69,6 +242,12 @@ function renderMilestone(milestone) {
   let nameValue = $('<dd>').addClass('name freelancer-editable');
   nameValue.text("");
   list.append(nameLabel, nameValue);
+
+  let budgetLabel = $('<dt>');
+  budgetLabel.text('Budget');
+  let budgetValue = $('<dd>').addClass('payment-percentage freelancer-editable');
+  budgetValue.text("");
+  list.append(budgetLabel, budgetValue);
 
   let startDateLabel = $('<dt>');
   startDateLabel.text('Start Date');
@@ -130,6 +309,7 @@ return $newRequirement = $(`
 $(function(){
   var liveInfo = getLiveInfo();
   var requirement = $(".requirement");
+  $('.job-budget').attr("contenteditable", !liveInfo.isEmployer);
   $('#allMilestones').find('dd').attr("contenteditable", !liveInfo.isEmployer);
   $('#allMilestones').on('input', function (event) {
     console.log('all milestone parent received', event.type, event);
@@ -143,6 +323,7 @@ $(function(){
   $('#allMilestones').on('click', '.save-milestone-btn', function (event) {
     console.log('detected click', arguments);
     var milestoneId = $(event.target).attr(MILESTONE_DATA_ATTRIBUTE_NAME);
+    console.log(milestoneId);
     var list = $('#allMilestones').find('dl[data-milestone-id=' + milestoneId + ']');
     // var milestoneparams = {
     //   'name': list.find('dd[class="name"]'),
@@ -171,7 +352,7 @@ $(function(){
     var values = $.map($.makeArray(list.find('dd')), function (dd) {
       return $(dd).text();
     });
-    var fields = ["name", "start_date", "end_date", "requirements_summary"]
+    var fields = ["name", "payment_percentage", "start_date", "end_date", "requirements_summary"]
     var data = fields.reduce(function(previous, current, index) {
       previous[current] = values[index];
       return previous;
@@ -221,6 +402,59 @@ $(function(){
 
   });
 
+  // save whole job, fields saved to be added
+  $('#save-job').on('click', function (event) {
+    console.log($('.job-budget').html());
+    var job_id = parseInt(window.location.pathname.substring(6));
+    console.log("job_id: " + job_id);
+    var url_j = '/jobs/' + job_id;
+    var data_j = {
+      budget: Number($('.job-budget').html())
+    }
+    console.log(data_j)
+    $.ajax({
+      type: "PUT",
+      url: url_j,
+      data: data_j
+    });
+    $('#allMilestones').children('.milestone').each(function() {
+      var milestoneId = $(this).find('.save-milestone-btn').attr(MILESTONE_DATA_ATTRIBUTE_NAME);
+      console.log(milestoneId);
+      var list = $('#allMilestones').find('dl[data-milestone-id=' + milestoneId + ']');
+
+      var values = $.map($.makeArray(list.find('dd')), function (dd) {
+        return $(dd).text();
+      });
+      var fields = ["name", "payment_percentage", "start_date", "end_date", "requirements_summary"]
+      var data = fields.reduce(function(previous, current, index) {
+        previous[current] = values[index];
+        return previous;
+      }, {});
+      var requirements = list.children('.requirement');
+
+      data.requirements_attributes = []
+      requirements.each(function(index, value) {
+        var element = $(value);
+        var id = element.data('requirement-id');
+        var name = $(element.children('.req-name')[0]).text();
+        var details = $(element.children('.details')[0]).text();
+        data.requirements_attributes.push({
+          id: id,
+          name: name,
+          details: details
+        });
+      });
+
+      var job_id = parseInt(window.location.pathname.substring(6)); // really not proud
+      var url = '/jobs/' + job_id + '/milestones/' + milestoneId;
+      $.ajax({
+        type: "PUT",
+        url: url,
+        data: { milestone: data }
+      });
+    });
+  });
+
   // $('.delete-milestone-btn').on('click', function (event) {
   //   $(this).closest('.milestone').remove();
   // });
@@ -229,13 +463,22 @@ $(function(){
   if(liveInfo.isEmployer) {
 
     dispatcher.bind("replace_field", function(message) {
+      console.log("replace_field: " + message);
       if (!message.idRequirement) {
-      var element = $("dl[data-milestone-id='" + message.idMilestone + "'] ." +  message.field)
-      element.text(message.text);
-    } else {
-      var element = $("dl[data-requirement-id='" + message.idRequirement + "'] ." + message.field)
-      element.text(message.text);
-    }
+        var element = $("dl[data-milestone-id='" + message.idMilestone + "'] ." +  message.field)
+        element.text(message.text);
+      } else {
+        var element = $("dl[data-requirement-id='" + message.idRequirement + "'] ." + message.field)
+        element.text(message.text);
+      }
+    });
+
+    dispatcher.bind("replace_job_field", function(message) {
+      console.log("replace-job-field: " + message);
+      var element1 = $(".job-budget");
+      element1.text(message.text);
+      var element2 = $(".huf-budget");
+      element2.text(Math.floor(message.text / 2));
     });
 
     dispatcher.bind("new_milestone", function(message) {
@@ -257,8 +500,71 @@ $(function(){
   } else {
     //isFreelancer
     $('.milestone .freelancer-editable #allMilestones').attr("contenteditable", true);
-    // $('.milestone .freelancer-editable #allMilestones').on('input', handleUpdate);
     $('#allMilestones').on('input', '[data-update-field]', handleUpdate);
+
+    $('.arrow').on('click', handleMilestoneBudgetChange);
+
+    $('.arrow').on('click', function(event) {
+      $('#allMilestones').children('.milestone').each(function() {
+        $(this).find('.payment-percentage').trigger('input');
+        $(this).find('.milestone-amount').trigger('input');
+      });
+    });
+
+    $('.payment-percentage').on('blur', handleMilestoneBudgetChange);
+    $('.payment-percentage').on('keydown', function(event) {
+
+      var keycode = (event.keyCode ? event.keyCode : event.which);
+      if (keycode == '13') {
+        event.preventDefault();
+        $(this).trigger('blur');
+      } else {
+        // digits, delete and decimal only. Hacky for now.
+        if ((keycode < '48' || keycode > '57') && (keycode != '8' && keycode != '190')) {
+          event.preventDefault();
+        }
+      }
+    });
+
+    // job budget changing functions
+
+    $('.job-budget').attr("contenteditable", true);
+
+    $('.job-budget').on('input', handleJobUpdate);
+
+    // added 2016.11.29
+    $('.job-budget').on('input', function(event) {
+      $('#allMilestones').children('.milestone').each(function() {
+        $(this).find('.milestone-amount').trigger('input');
+      });
+    });
+    // $('.job-budget').on('blur', function(event) {
+    //   $('#allMilestones').children('.milestone').each(function() {
+    //     $(this).find('.payment-percentage').trigger('input');
+    //     $(this).find('.milestone-amount').trigger('input');
+    //   });
+    // });
+
+    $('.job-arrow').on('click', handleJobBudgetChange);
+    $('.job-arrow').on('click', function(event) {
+      $(this).parent().find('.job-budget').trigger('input');
+      //$(this).find('.milestone-amount').trigger('input');
+    });
+
+
+    $('.job-budget').on('blur', handleJobBudgetChange);
+    $('.job-budget').on('keydown', function(event) {
+
+      var keycode = (event.keyCode ? event.keyCode : event.which);
+      if (keycode == '13') {
+        event.preventDefault();
+        $(this).trigger('blur');
+      }
+    });
+
+
+
+
 
   }
 });

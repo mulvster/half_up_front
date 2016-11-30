@@ -29,6 +29,45 @@
 <!--</form>-->
 <!--</div>-->
 
+
+<!-- added sections -->
+<%= render 'stepwizard' %>
+
+<h3> Job Budget: </h3>
+<span class="job-budget-container">
+
+  <dl data-job-id="<%= @job.id %>">
+    <%= image_tag 'crazy_green_up.png', :class => 'job-arrow up-arrow', alt: 'up arrow', height: '40px', width: '40px' %>
+    <span class="$-sign">$</span>
+    <dd class="job-budget freelancer-editable" data-job-update-field="job-budget"><%= @job.budget %></dd>
+    <%= image_tag 'crazy_green_down.png', :class => 'job-arrow down-arrow', alt: 'down arrow', height: '40px', width: '40px' %>
+
+</span>
+
+
+<br>
+<br>
+
+<span class="huf-container">
+  <h4>Half Up Front: </h4> $
+  <% if @job.budget %>
+  <dd class="huf-budget"><%= (@job.budget / 2).floor %> </dd>
+  <% else %>
+  <dd class="huf-budget"> 0 </dd>
+  <% end %>
+</span>
+
+<br>
+<br>
+
+<button id="save-job">Save Current Contract State</button>
+
+<br>
+<br>
+
+<!-- end of added sections -->
+
+
 <section class="col-xl-8 col-xl-offset-4 col-lg-9 col-lg-offset-3 col-md-7 col-md-offset-5 col-sm-6 col-sm-offset-6" id="allMilestones" data-job="<%= @job.id %>">
   <%= button_to "+ Milestone", job_milestones_path(@job.id), :id => "new-milestone-btn", form_class: 'new-milestone-form', :class => "milestones", :method => :post, :remote => true %>
   <% @job.milestones.each do |milestone| %>

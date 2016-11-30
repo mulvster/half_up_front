@@ -5,6 +5,22 @@
   <dl data-milestone-id="<%= milestone.id %>">
     <dt>Name</dt>
     <dd class="name freelancer-editable" data-update-field="name"><%= milestone.name %></dd>
+
+    <dt>Budget</dt>
+    <span class="budget-container">
+      <span>Percent:</span>
+      <%= image_tag 'crazy_green_up.png', :class =>  'arrow up-arrow', alt: 'up arrow', height: '25px', width: '25px' %>
+
+      <dd class="payment-percentage freelancer-editable" data-update-field="payment-percentage"><%= milestone.payment_percentage %></dd>
+      <span>%</span>
+
+      <%= image_tag 'crazy_green_down.png', :class => 'arrow down-arrow', alt: 'down arrow', height: '25px', width: '25px' %>
+
+
+      <span>Amount:</span>
+      <span class="$-sign">$</span>
+      <dd class="milestone-amount freelancer-editable" data-update-field="milestone-amount"><%= (@job.budget.to_i * milestone.payment_percentage.to_i / 100 ).to_i%></dd>
+    </span>
     <dt>Start Date</dt>
     <dd class="start-date freelancer-editable" data-update-field="start-date"><%= milestone.start_date %></dd>
     <dt>End Date</dt>

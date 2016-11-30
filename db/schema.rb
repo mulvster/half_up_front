@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161124225550) do
+ActiveRecord::Schema.define(version: 20161129011542) do
 
   create_table "attachments", force: :cascade do |t|
     t.string   "name"
@@ -40,12 +40,11 @@ ActiveRecord::Schema.define(version: 20161124225550) do
   create_table "jobs", force: :cascade do |t|
     t.integer  "employer_id"
     t.integer  "freelancer_id"
-    t.datetime "date_initiated"
-    t.datetime "start_date"
-    t.datetime "end_date"
+    t.string   "date_initiated"
+    t.string   "start_date"
+    t.string   "end_date"
     t.text     "contract_text"
     t.binary   "contract_pdf"
-    t.integer  "final_budget"
     t.boolean  "contract_signed"
     t.boolean  "contract_completed"
     t.text     "employer_review"
@@ -69,21 +68,22 @@ ActiveRecord::Schema.define(version: 20161124225550) do
     t.string   "cms"
     t.string   "website_examples"
     t.string   "job_details"
+    t.integer  "budget"
   end
 
   create_table "milestones", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "start_date"
-    t.datetime "end_date"
-    t.integer  "payment_percentage"
-    t.boolean  "payment_renegotiable"
-    t.text     "requirements_summary"
-    t.text     "milestone_elaboration"
-    t.boolean  "all_requirements_renegotiable"
-    t.integer  "job_id"
-    t.boolean  "completed"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.string  "name"
+    t.string  "start_date"
+    t.string  "end_date"
+    t.decimal "payment_percentage",            precision: 4, scale: 1
+    t.boolean "payment_renegotiable"
+    t.text    "requirements_summary"
+    t.text    "milestone_elaboration"
+    t.boolean "all_requirements_renegotiable"
+    t.integer "job_id"
+    t.boolean "completed"
+    t.string  "created_at",                                            null: false
+    t.string  "updated_at",                                            null: false
   end
 
   create_table "requirements", force: :cascade do |t|

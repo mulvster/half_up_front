@@ -34,12 +34,19 @@ class JobsController < ApplicationController
   redirect_to job_path(@job)
   end
 
+  def update
+    job = Job.find(params[:id])
+    job.budget = params[:budget]
+    job.save!
+    render json: "{}"
+  end
+
   def destroy
   end
 
   private
 
   def job_params
-    params.require(:jobs).permit(:contract_text, :created_at, :brief, :objective, :project_type, :pre_price, :website_size, :photos, :designer, :seo, :domain, :hosting, :analytics, :ecommerce, :cms, :website_examples, :job_details)
+    params.require(:jobs).permit(:contract_text, :created_at, :budget, :brief, :objective, :project_type, :pre_price, :website_size, :photos, :designer, :seo, :domain, :hosting, :analytics, :ecommerce, :cms, :website_examples, :job_details)
   end
 end
