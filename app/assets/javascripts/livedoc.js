@@ -1,4 +1,4 @@
-const MILESTONE_DATA_ATTRIBUTE_NAME = 'data-milestone-id';
+var MILESTONE_DATA_ATTRIBUTE_NAME = 'data-milestone-id';
 
 var dispatcher = new WebSocketRails('127.0.0.1:3000/websocket', false);
 
@@ -214,8 +214,8 @@ function handleMilestoneBudgetChange(event) {
 
 
 function renderMilestone(milestone) {
-  let container = $('<article>').addClass("milestone");
-  let deletebutton = $('<button>').addClass('delete-milestone-btn').text('X');
+  var container = $('<article>').addClass("milestone");
+  var deletebutton = $('<button>').addClass('delete-milestone-btn').text('X');
   deletebutton.attr(MILESTONE_DATA_ATTRIBUTE_NAME, milestone.id);
   deletebutton.on("click", function(event) {
     var milestone_id = milestone.id;
@@ -234,42 +234,42 @@ function renderMilestone(milestone) {
   container.append(deletebutton);
 
 
-  let list = $('<dl>');
+  var list = $('<dl>');
   list.attr(MILESTONE_DATA_ATTRIBUTE_NAME, milestone.id);
 
-  let nameLabel = $('<dt>');
+  var nameLabel = $('<dt>');
   nameLabel.text('Name');
-  let nameValue = $('<dd>').addClass('name freelancer-editable');
+  var nameValue = $('<dd>').addClass('name freelancer-editable');
   nameValue.text("");
   list.append(nameLabel, nameValue);
 
-  let budgetLabel = $('<dt>');
+  var budgetLabel = $('<dt>');
   budgetLabel.text('Budget');
-  let budgetValue = $('<dd>').addClass('payment-percentage freelancer-editable');
+  var budgetValue = $('<dd>').addClass('payment-percentage freelancer-editable');
   budgetValue.text("");
   list.append(budgetLabel, budgetValue);
 
-  let startDateLabel = $('<dt>');
+  var startDateLabel = $('<dt>');
   startDateLabel.text('Start Date');
-  let startDateValue = $('<dd>').addClass('start-date freelancer-editable');
+  var startDateValue = $('<dd>').addClass('start-date freelancer-editable');
   startDateValue.text("");
   list.append(startDateLabel, startDateValue);
 
-  let endDateLabel = $('<dt>');
+  var endDateLabel = $('<dt>');
   endDateLabel.text('End Date');
-  let endDateValue = $('<dd>').addClass('end-date freelancer-editable');
+  var endDateValue = $('<dd>').addClass('end-date freelancer-editable');
   endDateValue.text("");
   list.append(endDateLabel, endDateValue);
 
-  let requirementSummaryLabel = $('<dt>');
+  var requirementSummaryLabel = $('<dt>');
   requirementSummaryLabel.text('Summary of Requirements');
-  let requirementSummaryValue = $('<dd>').addClass('summary freelancer-editable');
+  var requirementSummaryValue = $('<dd>').addClass('summary freelancer-editable');
   requirementSummaryValue.text("");
   list.append(requirementSummaryLabel, requirementSummaryValue);
 
-  let button = $('<button>').addClass('save-milestone-btn').text('Save');
+  var button = $('<button>').addClass('save-milestone-btn').text('Save');
   button.attr(MILESTONE_DATA_ATTRIBUTE_NAME, milestone.id);
-  let requirementbutton = $('<button>').addClass('req-btn').text('+ Requirement')
+  var requirementbutton = $('<button>').addClass('req-btn').text('+ Requirement')
   requirementbutton.attr(MILESTONE_DATA_ATTRIBUTE_NAME, milestone.id);
   requirementbutton.on("click", function(event) {
     var milestone_id = milestone.id;
@@ -290,17 +290,8 @@ function renderMilestone(milestone) {
 }
 
 function getRequirement(requirement) {
-
-return $newRequirement = $(`
-  <dl class="requirement" data-requirement-id="${requirement.id}">
-    Requirement
-    <dt>Name</dt>
-    <dd class="req-name freelancer-editable" data-update-field="req-name"> </dd>
-    <dt>Details</dt>
-    <dd class="details freelancer-editable" data-update-field="details"> </dd>
-  </dl>
-
-  `)
+    var newReq = '<dl class="requirement" data-requirement-id="' + requirement.id + '">Requirement<dt>Name</dt><dd class="req-name freelancer-editable" data-update-field="req-name"> </dd><dt>Details</dt><dd class="details freelancer-editable" data-update-field="details"></dd></dl>';
+    return $newRequirement = $(newReq);
 }
 
 // }
