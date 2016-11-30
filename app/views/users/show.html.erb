@@ -9,7 +9,7 @@
   <section class="header">
 
     <div class="profilephoto">
-      <%= image_tag 'profilePlaceholder.png', id: "profile_photo", alt: "profile_photo", height: '255px' %>
+      <%= image_tag 'profilePlaceholder.png', id: "profile_photo", alt: "profile_photo", height: '270px' %>
     </div>
 
     <div class="username">
@@ -17,21 +17,16 @@
     </div>
 
     <div class="userlocation">
-      <i class="fa-map-marker"></i>  <%= @user.country %> <%= @user.city %> <%= @user.province %>
+      <i class="fa fa-map-marker"></i>  <%= @user.country %> <%= @user.city %> <%= @user.province %>
     </div>
 
     <div class=profileemail>
-      <i class="glyphicon glyphicon-envelope"></i> <%= @user.email %>
-    </div>
-
-
-    <div class="user">
-      <i class="glyphicon glyphicon-user"></i> <%= @user.user_type %>
+      <i class="fa fa-envelope"></i> <%= @user.email %>
     </div>
 
     <% if @user.user_type == 'Freelancer' %>
         <div class="user">
-          <i class="glyphicon glyphicon-user"></i> <%= @user.user_type %>
+          <i class="fa fa-user"></i> <%= @user.user_type %>
         </div>
 
     <% end %>
@@ -39,7 +34,7 @@
 
     <% if @user.user_type == 'Freelancer' %>
         <div class="user">
-          <i class="glyphicon glyphicon-usd"></i> <%= @user.hourly_rate %>
+          <i class="fa fa-usd"></i> <%= @user.hourly_rate %>
         </div>
     <% end %>
 
