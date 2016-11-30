@@ -184,6 +184,7 @@ textarea#Message {
   padding-top: 20px;
   overflow-x: scroll;
   white-space: nowrap;
+  margin-bottom: 170px;
   // background-color:
 }
 
@@ -259,6 +260,7 @@ dd.job-budget-freelancer-editable {
   border: 5px solid gray;
   width: 34%;
   height: 150px;
+  background-color: white;
 }
 .allBudget {
   display: inline;
@@ -270,9 +272,11 @@ dd.job-budget-freelancer-editable {
   width: 33%;
   margin: auto;
   height: 150px;
+  background-color: white;
 }
 .navbar-fixed-bottom {
   margin-left: 400px;
+
 }
 .button-container {
   width: 33%;

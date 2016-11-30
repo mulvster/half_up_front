@@ -10,13 +10,13 @@
 
 
 
-<body>
+<body class="jobs-show-body">
 
 <iframe class="appearin" src="https://appear.in/half-up-front/<%= @job.id %>" width="400" height="480" frameborder="0"></iframe>
 
 <br>
 <br>
-<section class="col-xl-8 col-xl-offset-4 col-lg-8 col-lg-offset-4 col-md-7 col-md-offset-5 col-sm-6 col-sm-offset-6" id="allMilestones" data-job="<%= @job.id %>">
+<section class="col-xl-8 col-xl-offset-4 col-lg-9 col-lg-offset-3 col-md-7 col-md-offset-5 col-sm-6 col-sm-offset-6" id="allMilestones" data-job="<%= @job.id %>">
 
   <%= button_to "+ Milestone", job_milestones_path(@job.id), :id => "new-milestone-btn", form_class: 'new-milestone-form', :class => "milestones", :method => :post, :remote => true %>
   <% @job.milestones.each do |milestone| %>
