@@ -1,8 +1,6 @@
 <%= link_to 'Edit', edit_job_path(@job) %> |
 <%= link_to 'Back', jobs_path %>
 
-
-
 <script>
   function getLiveInfo() {
     return {
@@ -12,7 +10,6 @@
   }
 </script>
 
-
 <p id="notice"><%= notice %></p>
 <body>
 
@@ -20,16 +17,7 @@
 
 <h3 class="welcomeuser">Welcome, <%= current_user.first_name %>. </h3>
 
-<!--<div class="chat">-->
-<!--<div class="messagelist">-->
-
-<!--</div>-->
-<!--<form>-->
-<!--<input />-->
-<!--</form>-->
-<!--</div>-->
-
-<section class="col-xl-8 col-xl-offset-4 col-lg-9 col-lg-offset-3 col-md-7 col-md-offset-5 col-sm-6 col-sm-offset-6" id="allMilestones" data-job="<%= @job.id %>">
+<section class="col-xl-8 offset-xl-4 col-lg-9 offset-lg-3 col-md-7 offset-md-5 col-sm-6 offset-sm-6" id="allMilestones" data-job="<%= @job.id %>">
   <%= button_to "+ Milestone", job_milestones_path(@job.id), :id => "new-milestone-btn", form_class: 'new-milestone-form', :class => "milestones", :method => :post, :remote => true %>
   <% @job.milestones.each do |milestone| %>
       <%= render 'milestone', milestone: milestone %>

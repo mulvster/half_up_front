@@ -137,8 +137,6 @@ $(function(){
     // since we only set the contenteditable attribute on DD elements, and their DL parents have the milestone ID value, we will extract it accordingly
   });
 
-
-
   //updates milestones to db on click of SAVE button
   $('#allMilestones').on('click', '.save-milestone-btn', function (event) {
     console.log('detected click', arguments);
@@ -262,5 +260,4 @@ $(function(){
 
   }
 });
-
 
