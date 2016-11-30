@@ -297,7 +297,10 @@ function getRequirement(requirement) {
 // }
 // debugger;
 // document.addEventListener('DOMContentLoaded', function() {
-$(function(){
+$(function() {
+    if(typeof getLiveInfo === 'undefined') {
+        return;
+    }
   var liveInfo = getLiveInfo();
   var requirement = $(".requirement");
   $('.job-budget').attr("contenteditable", !liveInfo.isEmployer);
