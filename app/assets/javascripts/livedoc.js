@@ -161,12 +161,13 @@ function handleJobBudgetChange(event) {
 
   quickPercentRedistribution($('#allMilestones'));
 
-  var jobBudgetValueNode = $(this).parent().children('.job-budget');
+  var jobBudgetValueNode = $(this).parent().next().find('.job-budget');
+  console.log("jobBudgetValueNode: " + jobBudgetValueNode);
   if (event.type === 'click') {
     var oldValue = Number(jobBudgetValueNode.html());
     console.log(oldValue);
 
-    var deltaBudget = event.target.className === 'job-arrow up-arrow' ? oldValue * 6.2 / 100 : oldValue * -6.2 / 100;
+    var deltaBudget = event.target.className === 'fa fa-arrow-up' ? oldValue * 6.2 / 100 : oldValue * -6.2 / 100;
     var newValue = oldValue + deltaBudget;
     newValue = Math.max(0, newValue);
     //round if needed:
@@ -195,7 +196,7 @@ function handleMilestoneBudgetChange(event) {
     var oldValue = Number(budgetValueNode.html());
     console.log(oldValue);
 
-    var deltaBudget = event.target.className === 'arrow up-arrow' ? 1.0 : -1.0;
+    var deltaBudget = event.target.className === 'fa fa-arrow-up arrow up-arrow' ? 1.0 : -1.0;
     var newValue = oldValue + deltaBudget;
     newValue = Math.max(0, Math.min(50, newValue));
     // round if needed:
@@ -548,14 +549,13 @@ $(function(){
 
     $('.job-arrow').on('click', handleJobBudgetChange);
     $('.job-arrow').on('click', function(event) {
-      $(this).parent().find('.job-budget').trigger('input');
-      //$(this).find('.milestone-amount').trigger('input');
+      $(this).parent().parent().next().find('.job-budget').trigger('input');
+      $(this).parent().parent().next().find('.milestone-amount').trigger('input');
     });
 
 
     $('.job-budget').on('blur', handleJobBudgetChange);
     $('.job-budget').on('keydown', function(event) {
-
       var keycode = (event.keyCode ? event.keyCode : event.which);
       if (keycode == '13') {
         event.preventDefault();
