@@ -539,6 +539,10 @@ $(function(){
       $('#allMilestones').children('.milestone').each(function() {
         $(this).find('.milestone-amount').trigger('input');
       });
+      var huf = Math.floor($(this).html() / 2);
+      console.log("HUF: " + huf);
+      console.log($(this).parent().parent().parent().next().find('.huf-budget').html());
+      $(this).parent().parent().parent().next().find('.huf-budget').html(huf);
     });
     // $('.job-budget').on('blur', function(event) {
     //   $('#allMilestones').children('.milestone').each(function() {
@@ -549,8 +553,8 @@ $(function(){
 
     $('.job-arrow').on('click', handleJobBudgetChange);
     $('.job-arrow').on('click', function(event) {
-      $(this).parent().parent().next().find('.job-budget').trigger('input');
-      $(this).parent().parent().next().find('.milestone-amount').trigger('input');
+      $(this).parent().next().find('.job-budget').trigger('input');
+      $(this).parent().next().find('.milestone-amount').trigger('input');
     });
 
 

@@ -63,7 +63,8 @@
     <div class="col-sm-3 huf-container">
       <dt id="halfbudget"> Half Up Front Cost: </dt>
         <% if @job.budget %>
-      <dd class="huf-budget"> $ <%= (@job.budget / 2).floor %> </dd>
+      <dd class = "dollar-sign">$</dd>
+      <dd class="huf-budget"> <%= (@job.budget / 2).floor %> </dd>
         <% else %>
       <dd class="huf-budget"> $ 0 </dd>
         <% end %>
