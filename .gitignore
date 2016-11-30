@@ -19,3 +19,5 @@
 .DS_Store
 env.yml
 secrets.yml
+
+/public/assets
