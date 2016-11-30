@@ -197,6 +197,7 @@ textarea#Message {
   padding-top: 20px;
   overflow-x: scroll;
   white-space: nowrap;
+  margin-bottom: 170px;
   // background-color:
 }
 
@@ -216,8 +217,8 @@ section.textType {
   float: left;
   height: 100%;
   position: fixed;
-  margin-top: 10px;
   z-index: 99999;
+  border-right: 10px solid gray;
 }
 
 .welcomeuser {
@@ -273,4 +274,114 @@ label.radio-btn {
 
 p {
   font-weight: bold;
+}
+
+dd.job-budget-freelancer-editable {
+  width: 100px;
+}
+
+.job-budget-container {
+  border: 5px solid gray;
+}
+
+.huf-container {
+  border: 5px solid gray;
+  width: 34%;
+  height: 150px;
+  background-color: white;
+}
+.allBudget {
+  display: inline;
+  margin: 0px;
+  font-family: avenir;
+}
+
+.job-budget-container {
+  width: 33%;
+  margin: auto;
+  height: 150px;
+  background-color: white;
+}
+.navbar-fixed-bottom {
+  margin-left: 400px;
+
+}
+.button-container {
+  width: 33%;
+  border: 5px solid gray;
+  height: 150px;
+  padding: 0px;
+}
+
+.huf-budget {
+  font-size: 50px;
+}
+
+#save-job {
+  border: 3px solid gray;
+  background-color: #61D961;
+  width: 100%;
+  height: 30%;
+}
+
+#save-job:hover {
+background-color: gray;
+}
+#submit-job {
+  border: 3px solid gray;
+  background-color: #61D961;
+  width: 100%;
+  height: 70%;
+}
+
+#submit-job:hover {
+  background-color: green;
+}
+
+.fa-arrow-up {
+  color: green;
+  font-size: 20px;
+  margin-right: 5px;
+}
+
+.fa-arrow-down {
+  color: green;
+  font-size: 20px;
+}
+.payment-percentage {
+  width: 80px;
+}
+
+
+#jobdownarrow {
+  font-size: 50px;
+}
+
+#jobuparrow {
+  font-size: 50px;
+}
+
+.allarrows {
+  float: left;
+}
+
+.arrowjobbudget {
+  float:left;
+  margin-left: 15px;
+}
+
+#arrowjobbudget {
+  font-size: 50px;
+}
+
+#jobbudget {
+  text-align: center;
+}
+
+#halfbudget {
+  text-align: center;
+}
+
+#save-job:hover {
+background-color: orange;
 }

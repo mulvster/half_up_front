@@ -1,5 +1,3 @@
-<%= link_to 'Edit', edit_job_path(@job) %> |
-<%= link_to 'Back', jobs_path %>
 
 <script>
   function getLiveInfo() {
@@ -10,54 +8,63 @@
   }
 </script>
 
-<p id="notice"><%= notice %></p>
-<body>
+
+<body class="jobs-show-body">
 
 <iframe class="appearin" src="https://appear.in/half-up-front/<%= @job.id %>" width="400" height="480" frameborder="0"></iframe>
 
-<h3 class="welcomeuser">Welcome, <%= current_user.first_name %>. </h3>
-
-<%= render 'stepwizard' %>
-
-<h3> Job Budget: </h3>
-<span class="job-budget-container">
-
-  <dl data-job-id="<%= @job.id %>">
-    <%= image_tag 'crazy_green_up.png', :class => 'job-arrow up-arrow', alt: 'up arrow', height: '40px', width: '40px' %>
-    <span class="$-sign">$</span>
-    <dd class="job-budget freelancer-editable" data-job-update-field="job-budget"><%= @job.budget %></dd>
-    <%= image_tag 'crazy_green_down.png', :class => 'job-arrow down-arrow', alt: 'down arrow', height: '40px', width: '40px' %>
-
-</span>
-
-
 <br>
 <br>
-
-<span class="huf-container">
-  <h4>Half Up Front: </h4> $
-  <% if @job.budget %>
-  <dd class="huf-budget"><%= (@job.budget / 2).floor %> </dd>
-  <% else %>
-  <dd class="huf-budget"> 0 </dd>
-  <% end %>
-</span>
-
-<br>
-<br>
-
-<button id="save-job">Save Current Contract State</button>
-
-<br>
-<br>
-
-<!-- end of added sections -->
-
 <section class="col-xl-8 offset-xl-4 col-lg-9 offset-lg-3 col-md-7 offset-md-5 col-sm-6 offset-sm-6" id="allMilestones" data-job="<%= @job.id %>">
+
   <%= button_to "+ Milestone", job_milestones_path(@job.id), :id => "new-milestone-btn", form_class: 'new-milestone-form', :class => "milestones", :method => :post, :remote => true %>
   <% @job.milestones.each do |milestone| %>
       <%= render 'milestone', milestone: milestone %>
   <% end %>
 
 </section>
+
+
+<footer class="navbar navbar-fixed-bottom" id="allBudget">
+    <div class="col-sm-3 button-container">
+      <button id="save-job">Save Current Contract State</button>
+      <% if current_user == @job.employer_id %>
+      <button id="submit-job"> Employer Confirm Contract </button>
+      <% else %>
+      <button id="submit-job"> Freelancer Confirm Contract </button>
+      <% end %>
+    </div>
+
+    <div class="col-sm-3 job-budget-container">
+      <dt id="jobbudget"> Job Budget: </dt>
+      <dl data-job-id="<%= @job.id %>">
+
+
+
+      <div class="allarrows">
+        <div class="job-arrow up-arrow">
+          <i id="jobuparrow" class="fa fa-arrow-up "></i>
+         </div>
+         <div  class="job-arrow down-arrow">
+            <i id="jobdownarrow" class="fa fa-arrow-down "></i>
+          </div>
+      </div>
+
+
+    <div class="arrowjobbudget">
+
+      <dd id="arrowjobbudget" class="job-budget freelancer-editable" data-job-update-field="job-budget"> $ <%= @job.budget %></dd>
+    </div>
+
+
+    </div>
+    <div class="col-sm-3 huf-container">
+      <dt id="halfbudget"> Half Up Front Cost: </dt>
+        <% if @job.budget %>
+      <dd class="huf-budget"> $ <%= (@job.budget / 2).floor %> </dd>
+        <% else %>
+      <dd class="huf-budget"> $ 0 </dd>
+        <% end %>
+    </div>
+</footer>
 </body>
