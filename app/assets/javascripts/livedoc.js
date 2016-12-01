@@ -203,23 +203,9 @@ function renderMilestone(milestone) {
   .attr('data-update-field', 'payment-percentage');
   paymentPercentage.text("0");
 
-  // let milestoneAmount = $('<dd>').addClass('milestone-amount')
-  // .attr('data-update-field', 'milestone-amount');;
-  // milestoneAmount.text(" ");
-
-
-  // var budgetContainer = $("<span>").addClass('budget-container');
-
-  // budgetContainer.append($("<span>").text("Percent (%)"));
-  // budgetContainer.append($("<i>").addClass("fa fa-arrow-up arrow up-arrow"));
-  // budgetContainer.append($("<i>").addClass("fa fa-arrow-down arrow down-arrow"));
-  // budgetContainer.append($("<dd>").addClass("payment-percentage freelancer-editable").attr("data-update-field", "payment-percentage"));
-  // budgetContainer.append($("<span>").text("Amount ($)"));
-  // budgetContainer.append($("<dd>").addClass("milestone-amount freelancer-editable").attr("data-update-field", "milestone-amount"));
-
   let milestoneAmount = $('<dd>').addClass('milestone-amount')
   .attr('data-update-field', 'milestone-amount');;
-  milestoneAmount.text(" ");
+  milestoneAmount.text("");
 
   let budgetValue = $('<span class="budget-container">')
     .append($('<span>Percent (%) </span>'))
@@ -238,6 +224,11 @@ function renderMilestone(milestone) {
       });
     });
   budgetValue.on('blur', '.payment-percentage', handleMilestoneBudgetChange);
+  budgetValue.on('blur', '.payment-percentage', function(event) {
+      $('#allMilestones').children('.milestone').each(function() {
+        $(this).find('.milestone-amount').trigger('input');
+      });
+    });
   budgetValue.on('keydown', '.payment-percentage', function(event) {
       var keycode = (event.keyCode ? event.keyCode : event.which);
       if (keycode == '13') {
