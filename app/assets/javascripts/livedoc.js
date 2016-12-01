@@ -249,9 +249,11 @@ function renderMilestone(milestone) {
   let budgetLabel = $('<dt>');
   budgetLabel.text('Budget');
 
-  let paymentPercentage = $('<dd>').addClass('payment-percentage freelancer-editable');
+  let paymentPercentage = $('<dd>').addClass('payment-percentage freelancer-editable')
+  .attr('data-update-field', 'payment-percentage');
   paymentPercentage.text("0");
-  let milestoneAmount = $('<dd>').addClass('milestone-amount');
+  let milestoneAmount = $('<dd>').addClass('milestone-amount')
+  .attr('data-update-field', 'milestone-amount');;
   milestoneAmount.text(" ");
 
   let budgetValue = $('<span class="budget-container">')
@@ -272,7 +274,6 @@ function renderMilestone(milestone) {
     });
   budgetValue.on('blur', '.payment-percentage', handleMilestoneBudgetChange);
   budgetValue.on('keydown', '.payment-percentage', function(event) {
-
       var keycode = (event.keyCode ? event.keyCode : event.which);
       if (keycode == '13') {
         event.preventDefault();
@@ -284,6 +285,7 @@ function renderMilestone(milestone) {
         }
       }
     });
+
 
   list.append(budgetLabel, budgetValue);
 
@@ -428,6 +430,10 @@ $(function(){
     $('.new-milestone-form').on('click', handleNewMilestone(xhr.responseJSON));
   });
 
+
+  $('#allMilestones').on('blur', '.payment-percentage', handleUpdate);
+
+
   $('.new-requirement-form').on('ajax:success', function(event, data, status, xhr){
     $(this).closest('.milestone').append(getRequirement(xhr.responseJSON));
     $('#allMilestones').find('dd').attr("contenteditable", !liveInfo.isEmployer)
@@ -503,7 +509,7 @@ $(function(){
   if(liveInfo.isEmployer) {
 
     dispatcher.bind("replace_field", function(message) {
-      console.log("replace_field: " + message);
+      console.log("replace_field: " + message.text);
       if (!message.idRequirement) {
         var element = $("dl[data-milestone-id='" + message.idMilestone + "'] ." +  message.field)
         element.text(message.text);
