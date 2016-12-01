@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
     user.city = auth_hash['extra']['address']['locality']
 
     user.password = SecureRandom.urlsafe_base64
-    user.uid = auth_hash['info']['uid']
+    user.uid = auth_hash['uid']
     user.save!
     user
   end
