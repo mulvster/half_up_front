@@ -127,8 +127,11 @@ function handleJobBudgetChange(event) {
   console.log("jobBudgetValueNode: " + jobBudgetValueNode);
   if (event.type === 'click') {
     var oldValue = Number(jobBudgetValueNode.html());
-
-    var deltaBudget = event.target.className === 'fa fa-arrow-up' ? oldValue * 6.2 / 100 : oldValue * -6.2 / 100;
+    if (oldValue === 0 && event.target.className === 'fa fa-arrow-up') {
+      var deltaBudget = 100;
+    } else {
+      var deltaBudget = event.target.className === 'fa fa-arrow-up' ? oldValue * 6.2 / 100 : oldValue * -6.2 / 100;
+    }
     var newValue = oldValue + deltaBudget;
     newValue = Math.max(0, newValue);
     //round if needed:
@@ -203,23 +206,9 @@ function renderMilestone(milestone) {
   .attr('data-update-field', 'payment-percentage');
   paymentPercentage.text("0");
 
-  // let milestoneAmount = $('<dd>').addClass('milestone-amount')
-  // .attr('data-update-field', 'milestone-amount');;
-  // milestoneAmount.text(" ");
-
-
-  // var budgetContainer = $("<span>").addClass('budget-container');
-
-  // budgetContainer.append($("<span>").text("Percent (%)"));
-  // budgetContainer.append($("<i>").addClass("fa fa-arrow-up arrow up-arrow"));
-  // budgetContainer.append($("<i>").addClass("fa fa-arrow-down arrow down-arrow"));
-  // budgetContainer.append($("<dd>").addClass("payment-percentage freelancer-editable").attr("data-update-field", "payment-percentage"));
-  // budgetContainer.append($("<span>").text("Amount ($)"));
-  // budgetContainer.append($("<dd>").addClass("milestone-amount freelancer-editable").attr("data-update-field", "milestone-amount"));
-
   let milestoneAmount = $('<dd>').addClass('milestone-amount')
   .attr('data-update-field', 'milestone-amount');;
-  milestoneAmount.text(" ");
+  milestoneAmount.text("");
 
   let budgetValue = $('<span class="budget-container">')
     .append($('<span>Percent (%) </span>'))
@@ -238,6 +227,11 @@ function renderMilestone(milestone) {
       });
     });
   budgetValue.on('blur', '.payment-percentage', handleMilestoneBudgetChange);
+  budgetValue.on('blur', '.payment-percentage', function(event) {
+      $('#allMilestones').children('.milestone').each(function() {
+        $(this).find('.milestone-amount').trigger('input');
+      });
+    });
   budgetValue.on('keydown', '.payment-percentage', function(event) {
       var keycode = (event.keyCode ? event.keyCode : event.which);
       if (keycode == '13') {
