@@ -2,15 +2,6 @@ var MILESTONE_DATA_ATTRIBUTE_NAME = 'data-milestone-id';
 
 var dispatcher = new WebSocketRails('127.0.0.1:3000/websocket', false);
 
-
-// function handleUpdateTitle(event) {
-//   dispatcher.trigger('update_title', { title: event.target.innerText });
-// }
-
-// function handleUpdateDetails(event) {
-//   dispatcher.trigger('update_details', { details: event.target.innerText });
-// }
-
 function handleUpdate(event) {
   dispatcher.trigger('update', {
     field: $(this).data("update-field"),
@@ -22,7 +13,6 @@ function handleUpdate(event) {
 }
 
 function handleJobUpdate(event) {
-  console.log($(this));
   dispatcher.trigger('updatejob', {
     field: $(this).data("job-update-field"),
     //idJob: $(this).closest("[data-job-id]").data('job-id'),
@@ -37,13 +27,13 @@ function handleNewMilestone(event) {
 }
 
 function deleteMilestone(event) {
-  console.log('THIS IS EVENT', event)
   dispatcher.trigger('destroymilestone', {
     milestone: event
   })
 }
 
 function handleRequirement(event) {
+  console.log("made it to handle requirement")
   dispatcher.trigger('updaterequirement', {
     requirementid: event
   });
@@ -56,21 +46,14 @@ function percentRedistributor(jobBudget, allMilestones, currentMilestone) {
 
   // dealing with percentage distribution:
   var newPercentageRemaining = 50 - currentMilestone.find('.payment-percentage').html();
-  console.log("New remaining percentage: " + newPercentageRemaining);
   var previousTotalRemainingPercentage = 0;
   allMilestones.children('.milestone').each(function() {
-    console.log(currentMilestone.find('dl').html() === $(this).find('dl').html());
-
-    console.log("milestone percentage: " + $(this).find('.payment-percentage').html());
     if ($(this).find('dl').html() !== currentMilestone.find('dl').html()) {
       previousTotalRemainingPercentage += Number($(this).find('.payment-percentage').html());
     }
-    console.log("prev total remaining: " + previousTotalRemainingPercentage);
   });
   allMilestones.children('.milestone').each(function() {
     if ($(this).find('dl').html() !== currentMilestone.find('dl').html()) {
-      console.log($(this).find('.payment-percentage').html())
-
       // if/else added 2016.11.29
       if (previousTotalRemainingPercentage === 0) {
         var newPercentage = 0;
@@ -78,9 +61,7 @@ function percentRedistributor(jobBudget, allMilestones, currentMilestone) {
         var newPercentage = Number($(this).find('.payment-percentage').html()) / previousTotalRemainingPercentage * newPercentageRemaining;
       }
 
-      console.log("new percentage: " + newPercentage);
       $(this).find('.payment-percentage').html(newPercentage.toFixed(1));
-      console.log($(this).find('.payment-percentage').html())
     }
   });
 }
@@ -91,26 +72,15 @@ function budgetRedistributor(jobBudget, allMilestones) {
   var newAmount;
   allMilestones.children('.milestone').each(function() {
 
-    console.log("old amount: " + $(this).find('.milestone-amount').html());
-
     newAmount = Math.floor(jobBudget.html() * $(this).find('.payment-percentage').html() / 100);
 
-    console.log("new Amount: " + newAmount);
     $(this).find('.milestone-amount').html(newAmount);
     budgetRemaining -= newAmount;
-    console.log($(this).find('.milestone-amount').html());
-    console.log("budgetRemaining: " + budgetRemaining);
   });
   //loop over non-calling milestones, adding $1 till budgetRemaining depleted
   rotatingMilestone = allMilestones.children('.milestone').first();
-  console.log("BUDGET REMAINING BEFORE DELUGE: " + budgetRemaining);
   while (budgetRemaining > 0) {
-    //console.log(allMilestones.children('.milestone').length);
-
-    // **** the following line is hideous and doesn't work. TO BE FIXED. ****
-    //console.log(rotatingMilestone.find('.milestone-amount').html());
     rotatingMilestone.find('.milestone-amount').html(Number(rotatingMilestone.find('.milestone-amount').html())+1);
-    //console.log(rotatingMilestone.find('.milestone-amount').html());
     if (rotatingMilestone === allMilestones.children('.milestone').last()) {
       rotatingMilestone = allMilestones.children('.milestone').first();
     } else {
@@ -121,12 +91,9 @@ function budgetRedistributor(jobBudget, allMilestones) {
 }
 
 function quickPercentRedistribution(allMilestones) {
-  console.log('quick percent redistribution');
-
   var oldPercentTotal = 0;
   allMilestones.children('.milestone').each(function() {
       oldPercentTotal += Number($(this).find('.payment-percentage').html());
-      console.log(oldPercentTotal);
     });
   var newPercentTotal = 0;
   allMilestones.children('.milestone').each(function() {
@@ -137,8 +104,6 @@ function quickPercentRedistribution(allMilestones) {
     });
   // loop over the milestones, adding 0.1% to each till they total 50%
   rotatingMilestone = allMilestones.children('.milestone').first();
-
-  console.log("newPercentTotal: " + newPercentTotal);
 
   while (newPercentTotal < 50) {
     var incrementedPercent = (Number(rotatingMilestone.find('.payment-percentage').html()) + 0.1).toFixed(1);
@@ -151,20 +116,16 @@ function quickPercentRedistribution(allMilestones) {
 
     newPercentTotal += 0.1;
 
-    console.log("newPercentTotal: " + newPercentTotal.toFixed(1));
   }
 }
 
 function handleJobBudgetChange(event) {
-  console.log('handleJobBudgetChange invoked');
-  console.log($(this).closest("[data-job-id]").data('job-id'));
 
   quickPercentRedistribution($('#allMilestones'));
 
   var jobBudgetValueNode = $(this).parent().children('.job-budget');
   if (event.type === 'click') {
     var oldValue = Number(jobBudgetValueNode.html());
-    console.log(oldValue);
 
     var deltaBudget = event.target.className === 'job-arrow up-arrow' ? oldValue * 6.2 / 100 : oldValue * -6.2 / 100;
     var newValue = oldValue + deltaBudget;
@@ -187,13 +148,10 @@ function handleJobBudgetChange(event) {
 }
 
 function handleMilestoneBudgetChange(event) {
-  console.log('handleMilestoneBudgetChange invoked');
-
   var budgetValueNode = $(this).parent().children('.payment-percentage');
 
   if (event.type === 'click') {
     var oldValue = Number(budgetValueNode.html());
-    console.log(oldValue);
 
     var deltaBudget = event.target.className === 'arrow up-arrow' ? 1.0 : -1.0;
     var newValue = oldValue + deltaBudget;
@@ -215,8 +173,8 @@ function handleMilestoneBudgetChange(event) {
 
 function renderMilestone(milestone) {
   var container = $('<article>').addClass("milestone");
-  var deletebutton = $('<button>').addClass('delete-milestone-btn').text('X');
-  deletebutton.attr(MILESTONE_DATA_ATTRIBUTE_NAME, milestone.id);
+  var deletebutton = $('<button>').addClass('delete-milestone-btn').text('X').attr(MILESTONE_DATA_ATTRIBUTE_NAME, milestone.id);
+
   deletebutton.on("click", function(event) {
     var milestone_id = milestone.id;
     var job_id = milestone.job_id;
@@ -225,7 +183,6 @@ function renderMilestone(milestone) {
       url: url,
       method: "DELETE"
     }).done(function(data) {
-      console.log("THIS IS DATA", data)
       $("dl[data-milestone-id='" + data.id + "']").parent().remove();
       deleteMilestone(data);
       })
@@ -233,43 +190,46 @@ function renderMilestone(milestone) {
 
   container.append(deletebutton);
 
+  var nameLabel = $('<dt>').text('Name');
+  var nameValue = $('<dd>').addClass('name freelancer-editable').text("");
+  nameValue.attr("data-update-field", "name")
 
-  var list = $('<dl>');
-  list.attr(MILESTONE_DATA_ATTRIBUTE_NAME, milestone.id);
+  var budgetLabel = $('<dt>').text('Budget');
 
-  var nameLabel = $('<dt>');
-  nameLabel.text('Name');
-  var nameValue = $('<dd>').addClass('name freelancer-editable');
-  nameValue.text("");
-  list.append(nameLabel, nameValue);
+  var budgetContainer = $("<span>").addClass('budget-container');
 
-  var budgetLabel = $('<dt>');
-  budgetLabel.text('Budget');
-  var budgetValue = $('<dd>').addClass('payment-percentage freelancer-editable');
-  budgetValue.text("");
-  list.append(budgetLabel, budgetValue);
+  budgetContainer.append($("<span>").text("Percent (%)"));
+  budgetContainer.append($("<i>").addClass("fa fa-arrow-up arrow up-arrow"));
+  budgetContainer.append($("<i>").addClass("fa fa-arrow-down arrow down-arrow"));
+  budgetContainer.append($("<dd>").addClass("payment-percentage freelancer-editable").attr("data-update-field", "payment-percentage"));
+  budgetContainer.append($("<span>").text("Amount ($)"));
+  budgetContainer.append($("<dd>").addClass("milestone-amount freelancer-editable").attr("data-update-field", "milestone-amount"));
 
-  var startDateLabel = $('<dt>');
-  startDateLabel.text('Start Date');
-  var startDateValue = $('<dd>').addClass('start-date freelancer-editable');
-  startDateValue.text("");
-  list.append(startDateLabel, startDateValue);
 
-  var endDateLabel = $('<dt>');
-  endDateLabel.text('End Date');
-  var endDateValue = $('<dd>').addClass('end-date freelancer-editable');
-  endDateValue.text("");
-  list.append(endDateLabel, endDateValue);
+  var startDateLabel = $('<dt>').text('Start Date');
+  var startDateValue = $('<dd>').addClass('start-date freelancer-editable').text("");
+  startDateValue.attr("data-update-field", "start-date")
 
-  var requirementSummaryLabel = $('<dt>');
-  requirementSummaryLabel.text('Summary of Requirements');
-  var requirementSummaryValue = $('<dd>').addClass('summary freelancer-editable');
-  requirementSummaryValue.text("");
-  list.append(requirementSummaryLabel, requirementSummaryValue);
+  var endDateLabel = $('<dt>').text('End Date');
+  var endDateValue = $('<dd>').addClass('end-date freelancer-editable').text("");
+  endDateValue.attr("data-update-field", "end-date")
+  var requirementSummaryLabel = $('<dt>').text('Summary of Requirements');
+  var requirementSummaryValue = $('<dd>').addClass('summary freelancer-editable').text("");
 
-  var button = $('<button>').addClass('save-milestone-btn').text('Save');
-  button.attr(MILESTONE_DATA_ATTRIBUTE_NAME, milestone.id);
+  var list = $('<dl>').attr(MILESTONE_DATA_ATTRIBUTE_NAME, milestone.id)
+    .append(nameLabel, nameValue)
+    .append(budgetLabel, budgetContainer)
+    .append(startDateLabel, startDateValue)
+    .append(endDateLabel, endDateValue)
+    .append(requirementSummaryLabel, requirementSummaryValue);
+
+  var button = $('<button>').addClass('save-milestone-btn').text('Save').attr(MILESTONE_DATA_ATTRIBUTE_NAME, milestone.id);
   var requirementbutton = $('<button>').addClass('req-btn').text('+ Requirement')
+  requirementbutton.attr("form_class", "new-requirement-form")
+  // var requirementbutton = $('<form>').addClass('new-requirement-form');
+  // requirementbutton.append($('<input>')).addClass('req-btn');
+
+
   requirementbutton.attr(MILESTONE_DATA_ATTRIBUTE_NAME, milestone.id);
   requirementbutton.on("click", function(event) {
     var milestone_id = milestone.id;
@@ -279,19 +239,20 @@ function renderMilestone(milestone) {
       url: url,
       method: "POST"
     }).done(function(data) {
-      // console.log("THIS IS DATA", data)
       $("dl[data-milestone-id='" + data.milestone_id + "']").append(getRequirement(data));
       $('#allMilestones').find('dd').attr("contenteditable", !getLiveInfo().isEmployer);
-
+      handleRequirement(data);
+      console.log("ajax request complete")
     });
   });
-  container.append(list, button, requirementbutton);
+  list.append(button, requirementbutton)
+  container.append(list);
   return container;
 }
 
 function getRequirement(requirement) {
     var newReq = '<dl class="requirement" data-requirement-id="' + requirement.id + '">Requirement<dt>Name</dt><dd class="req-name freelancer-editable" data-update-field="req-name"> </dd><dt>Details</dt><dd class="details freelancer-editable" data-update-field="details"></dd></dl>';
-    return $newRequirement = $(newReq);
+    return $(newReq);
 }
 
 // }
@@ -305,52 +266,21 @@ $(function() {
   var requirement = $(".requirement");
   $('.job-budget').attr("contenteditable", !liveInfo.isEmployer);
   $('#allMilestones').find('dd').attr("contenteditable", !liveInfo.isEmployer);
-  $('#allMilestones').on('input', function (event) {
-    console.log('all milestone parent received', event.type, event);
-    // content editable events are input events which can be propagated up to parent elements
-    // since we only set the contenteditable attribute on DD elements, and their DL parents have the milestone ID value, we will extract it accordingly
-  });
-
-
 
   //updates milestones to db on click of SAVE button
   $('#allMilestones').on('click', '.save-milestone-btn', function (event) {
-    console.log('detected click', arguments);
     var milestoneId = $(event.target).attr(MILESTONE_DATA_ATTRIBUTE_NAME);
-    console.log(milestoneId);
     var list = $('#allMilestones').find('dl[data-milestone-id=' + milestoneId + ']');
-    // var milestoneparams = {
-    //   'name': list.find('dd[class="name"]'),
-    //   'start-date': list.find('dd[class="start-date"]'),
-    //   'end-date': list.find('dd[class="end-date"]'),
-    //   'summary': list.find('dd[class="summary"]'),
-    //   'requirements': []
-    // }
-    // console.log("MILESTONE PARAMS", milestoneparams);
-    // console.log('milestone name dot notation', milestoneparams.name);
-    // console.log('milestone name bracket notation', milestoneparams['name']);
-
-    // $('dl.requirement"]').children().find(dl.class=)
-    // var requirements = list.find('dl[class="requirement"]')
-    // requirements.map(function(index, req){
-    //   var newreq = (req.find('dd[class="req-name"]'))
-    //   console.log('XXX', newreq)
-    //   console.log("INDEX", index)
-    //   console.log("REQ", req)
-    // })
-    // console.log("THIS IS REQ", requirements)
-    // milestoneparams['requirements']['summary'] = list.find('dd[class="req-name"')
-
-    console.log()
 
     var values = $.map($.makeArray(list.find('dd')), function (dd) {
       return $(dd).text();
     });
-    var fields = ["name", "payment_percentage", "start_date", "end_date", "requirements_summary"]
+    var fields = ["name", "payment_percentage", "payment_amount", "start_date", "end_date", "requirements_summary"]
     var data = fields.reduce(function(previous, current, index) {
       previous[current] = values[index];
       return previous;
     }, {});
+
     var requirements = list.children('.requirement');
 
     data.requirements_attributes = []
@@ -376,13 +306,13 @@ $(function() {
   });
 
   $('.new-milestone-form').on('ajax:success', function(event, data, status, xhr){
-    console.log("THIS IS XHR", xhr)
     $('#allMilestones').append(renderMilestone(xhr.responseJSON));
     $('#allMilestones').find('dd').attr("contenteditable", !liveInfo.isEmployer);
     $('.new-milestone-form').on('click', handleNewMilestone(xhr.responseJSON));
   });
 
   $('.new-requirement-form').on('ajax:success', function(event, data, status, xhr){
+    console.log("made it to ajax success", data)
     $(this).closest('.milestone').append(getRequirement(xhr.responseJSON));
     $('#allMilestones').find('dd').attr("contenteditable", !liveInfo.isEmployer)
     $('.new-requirement-form').on('click', handleRequirement(xhr.responseJSON));
@@ -392,20 +322,15 @@ $(function() {
     var targetmilestone = $(this).closest('.milestone')
     $(this).closest('.milestone').remove();
     deleteMilestone(milestone);
-
-
   });
 
   // save whole job, fields saved to be added
   $('#save-job').on('click', function (event) {
-    console.log($('.job-budget').html());
     var job_id = parseInt(window.location.pathname.substring(6));
-    console.log("job_id: " + job_id);
     var url_j = '/jobs/' + job_id;
     var data_j = {
       budget: Number($('.job-budget').html())
     }
-    console.log(data_j)
     $.ajax({
       type: "PUT",
       url: url_j,
@@ -413,13 +338,12 @@ $(function() {
     });
     $('#allMilestones').children('.milestone').each(function() {
       var milestoneId = $(this).find('.save-milestone-btn').attr(MILESTONE_DATA_ATTRIBUTE_NAME);
-      console.log(milestoneId);
       var list = $('#allMilestones').find('dl[data-milestone-id=' + milestoneId + ']');
 
       var values = $.map($.makeArray(list.find('dd')), function (dd) {
         return $(dd).text();
       });
-      var fields = ["name", "payment_percentage", "start_date", "end_date", "requirements_summary"]
+      var fields = ["name", "payment_percentage", "payment_amount", "start_date", "end_date", "requirements_summary"]
       var data = fields.reduce(function(previous, current, index) {
         previous[current] = values[index];
         return previous;
@@ -449,46 +373,30 @@ $(function() {
     });
   });
 
-  // $('.delete-milestone-btn').on('click', function (event) {
-  //   $(this).closest('.milestone').remove();
-  // });
-
-  // debugger;
   if(liveInfo.isEmployer) {
 
     dispatcher.bind("replace_field", function(message) {
-      console.log("replace_field: " + message);
       if (!message.idRequirement) {
-        var element = $("dl[data-milestone-id='" + message.idMilestone + "'] ." +  message.field)
-        element.text(message.text);
+        var element = $("dl[data-milestone-id='" + message.idMilestone + "'] ." +  message.field).text(message.text);
       } else {
-        var element = $("dl[data-requirement-id='" + message.idRequirement + "'] ." + message.field)
-        element.text(message.text);
+        var element = $("dl[data-requirement-id='" + message.idRequirement + "'] ." + message.field).text(message.text);
       }
     });
 
     dispatcher.bind("replace_job_field", function(message) {
-      console.log("replace-job-field: " + message);
-      var element1 = $(".job-budget");
-      element1.text(message.text);
-      var element2 = $(".huf-budget");
-      element2.text(Math.floor(message.text / 2));
+      $(".job-budget").text(message.text);
+      $(".huf-budget").text(Math.floor(message.text / 2));
     });
 
     dispatcher.bind("new_milestone", function(message) {
-      // $('#allMilestones').find("dl[data-milestone-id='" + message.milestoneid + "']")
       $('#allMilestones').append(renderMilestone(message.milestoneid));
-
     });
 
     dispatcher.bind("new_requirement", function(message) {
       $("dl[data-milestone-id='" + message.requirementid.milestone_id + "']").append(getRequirement(message.requirementid));
-
     });
      dispatcher.bind("bye_milestone", function(message) {
-      console.log("MESSAGE", message.milestone.id)
       $("dl[data-milestone-id='" + message.milestone.id + "']").parent().remove();
-
     });
 
   } else {
@@ -507,7 +415,6 @@ $(function() {
 
     $('.payment-percentage').on('blur', handleMilestoneBudgetChange);
     $('.payment-percentage').on('keydown', function(event) {
-
       var keycode = (event.keyCode ? event.keyCode : event.which);
       if (keycode == '13') {
         event.preventDefault();
@@ -532,34 +439,20 @@ $(function() {
         $(this).find('.milestone-amount').trigger('input');
       });
     });
-    // $('.job-budget').on('blur', function(event) {
-    //   $('#allMilestones').children('.milestone').each(function() {
-    //     $(this).find('.payment-percentage').trigger('input');
-    //     $(this).find('.milestone-amount').trigger('input');
-    //   });
-    // });
 
     $('.job-arrow').on('click', handleJobBudgetChange);
     $('.job-arrow').on('click', function(event) {
       $(this).parent().find('.job-budget').trigger('input');
-      //$(this).find('.milestone-amount').trigger('input');
     });
-
 
     $('.job-budget').on('blur', handleJobBudgetChange);
     $('.job-budget').on('keydown', function(event) {
-
       var keycode = (event.keyCode ? event.keyCode : event.which);
       if (keycode == '13') {
         event.preventDefault();
         $(this).trigger('blur');
       }
     });
-
-
-
-
-
   }
 });
 
