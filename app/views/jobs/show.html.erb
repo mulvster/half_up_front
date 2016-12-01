@@ -43,25 +43,26 @@
 
       <div class="allarrows">
         <div class="job-arrow up-arrow">
-          <i id="jobuparrow" class="fa fa-arrow-up "></i>
-         </div>
-         <div  class="job-arrow down-arrow">
-            <i id="jobdownarrow" class="fa fa-arrow-down "></i>
-          </div>
+          <i id="jobuparrow" class="fa fa-arrow-up"></i>
+        </div>
+        <div  class="job-arrow down-arrow">
+          <i id="jobdownarrow" class="fa fa-arrow-down"></i>
+        </div>
       </div>
 
 
-    <div class="arrowjobbudget">
-
-      <dd id="arrowjobbudget" class="job-budget freelancer-editable" data-job-update-field="job-budget"> $ <%= @job.budget %></dd>
-    </div>
+      <div class="arrowjobbudget">
+        <dd class = "dollar-sign">$</dd>
+        <dd id="arrowjobbudget" class="job-budget freelancer-editable" data-job-update-field="job-budget"> <%= @job.budget %></dd>
+      </div>
 
 
     </div>
     <div class="col-sm-3 huf-container">
       <dt id="halfbudget"> Half Up Front Cost: </dt>
         <% if @job.budget %>
-      <dd class="huf-budget"> $ <%= (@job.budget / 2).floor %> </dd>
+      <dd class = "dollar-sign">$</dd>
+      <dd class="huf-budget"> <%= (@job.budget / 2).floor %> </dd>
         <% else %>
       <dd class="huf-budget"> $ 0 </dd>
         <% end %>
