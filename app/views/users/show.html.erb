@@ -7,10 +7,19 @@
   <br>
   <br>
   <section class="header">
-
+   <% if @user.user_type == 'Freelancer' %>
+    <div class="profilephoto">
+      <%= image_tag 'freelancer.png', id: "profile_photo", alt: "profile_photo", height: '270px' %>
+    </div>
+    <% elsif @user.user_type == 'Employer' %>
+    <div class="profilephoto">
+      <%= image_tag 'employer.png', id: "profile_photo", alt: "profile_photo", height: '270px' %>
+    </div>
+    <% else %>
     <div class="profilephoto">
       <%= image_tag 'profilePlaceholder.png', id: "profile_photo", alt: "profile_photo", height: '270px' %>
     </div>
+    <% end %>
 
     <div class="username">
       <h1 id="user-full-name"> <%= @user.first_name %> <%= @user.last_name %></h1>
@@ -61,7 +70,7 @@
   <section class="summary">
 
     <div class="summary">
-      <h4>Bio: </h4> <%= @user.summary %>
+      <h4 class="bio">Bio: </h4> <%= @user.summary %>
     </div>
 
 

@@ -36,7 +36,7 @@
     </div>
 
     <div class="col-sm-3 job-budget-container">
-      <dt id="jobbudget"> Job Budget: </dt>
+      <dt id="jobbudget"> Job Budget ($): </dt>
       <dl data-job-id="<%= @job.id %>">
 
 
@@ -52,16 +52,14 @@
 
 
       <div class="arrowjobbudget">
-        <dd class = "dollar-sign">$</dd>
-        <dd id="arrowjobbudget" class="job-budget freelancer-editable" data-job-update-field="job-budget"> <%= @job.budget %></dd>
+        <dd id="arrowjobbudget" class="job-budget freelancer-editable" data-job-update-field="job-budget"> <%= @job.budget %> $ 0</dd>
       </div>
 
 
     </div>
     <div class="col-sm-3 huf-container">
-      <dt id="halfbudget"> Half Up Front Cost: </dt>
+      <dt id="halfbudget"> Half Up Front Cost ($): </dt>
         <% if @job.budget %>
-      <dd class = "dollar-sign">$</dd>
       <dd class="huf-budget"> <%= (@job.budget / 2).floor %> </dd>
         <% else %>
       <dd class="huf-budget"> $ 0 </dd>
