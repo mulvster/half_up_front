@@ -127,8 +127,11 @@ function handleJobBudgetChange(event) {
   console.log("jobBudgetValueNode: " + jobBudgetValueNode);
   if (event.type === 'click') {
     var oldValue = Number(jobBudgetValueNode.html());
-
-    var deltaBudget = event.target.className === 'fa fa-arrow-up' ? oldValue * 6.2 / 100 : oldValue * -6.2 / 100;
+    if (oldValue === 0 && event.target.className === 'fa fa-arrow-up') {
+      var deltaBudget = 100;
+    } else {
+      var deltaBudget = event.target.className === 'fa fa-arrow-up' ? oldValue * 6.2 / 100 : oldValue * -6.2 / 100;
+    }
     var newValue = oldValue + deltaBudget;
     newValue = Math.max(0, newValue);
     //round if needed:
