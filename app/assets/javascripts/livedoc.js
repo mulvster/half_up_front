@@ -380,7 +380,7 @@ $(function() {
     $.ajax({
       type: "PUT",
       url: url_j,
-      data: data_j
+      data: {jobs: data_j}
     });
     $('#allMilestones').children('.milestone').each(function() {
       var milestoneId = $(this).find('.save-milestone-btn').attr(MILESTONE_DATA_ATTRIBUTE_NAME);
