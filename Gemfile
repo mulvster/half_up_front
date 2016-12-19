@@ -44,6 +44,8 @@ gem 'best_in_place','~> 3.0.1'
 
 gem 'seed_dump'
 
+gem 'stripe'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
