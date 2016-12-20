@@ -15,11 +15,15 @@ Rails.application.routes.draw do
   resources :jobs, only: [:create, :new, :edit, :show, :update, :destroy, :index] do
     resources :milestones, only: [:create, :edit, :destroy, :update] do
       resources :requirements, only: [:create, :edit, :destroy, :update]
+
+
     end
   end
      #index may go away later
 
   resources :tokens, only: [:create]
+
+   resources :charges, only: [:create, :new]
 
   get "/auth/paypal/callback", to: "sessions#create"
 
