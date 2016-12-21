@@ -19,9 +19,18 @@ Rails.application.routes.draw do
   end
      #index may go away later
 
+
   resources :tokens, only: [:create]
 
-  get "/auth/paypal/callback", to: "sessions#create"
+  get "/signup", to: 'users#new'
+  
+  get "/login", to: 'sessions#new'
+  
+  post "/login", to: 'sessions#create'
+  
+  delete "/logout", to: 'sessions#destroy'
+
+  # get "/auth/paypal/callback", to: "sessions#create"
 
   post "/jobs/:id", to: "jobs#create"
 
