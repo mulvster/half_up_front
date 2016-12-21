@@ -1,0 +1,1 @@
+Stripe.setPublishableKey('<%= Rails.configuration.stripe[:publishable_key] %>');
