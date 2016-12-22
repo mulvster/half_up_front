@@ -19,10 +19,6 @@ section.edit_header {
   margin-right: 25px;
 }
 
-h1 {
-  color: #eeeeee;
-  padding: 1em 0 0 1em;
-}
 
 h1#user-full-name {
 	padding-top: 10px;
@@ -227,17 +223,4 @@ textarea#user_summary {
 }
 
 
-input, textarea, select, .uneditable-input {
-  border: 1px solid #bbb;
-  width: 100%;
-  margin-bottom: 15px;
-}
-
-input {
-  height: auto !important;
-}
-
-label {
-  color: #eeeeee;
-}
 
