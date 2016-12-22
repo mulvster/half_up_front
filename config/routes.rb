@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   resources :tokens, only: [:create]
 
   get "/signup", to: 'users#new'
+  post "/signup", to: 'users#create'
   
   get "/login", to: 'sessions#new'
   
