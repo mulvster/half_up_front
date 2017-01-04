@@ -7,7 +7,8 @@
 
 
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <!-- javascript_include_tag moved to end of body as per vuejs-rails instructions -->
+
 
   <%= csrf_meta_tags %>
 </head>
@@ -22,6 +23,6 @@
 
   <%= yield %>
 
-
+<%= javascript_include_tag 'application' %>   <!-- , 'data-turbolinks-track' => true <- taken out -->
 </body>
 </html>
