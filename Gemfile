@@ -80,4 +80,4 @@ end
 
 gem 'puma'
 
-# gem 'sprockets'
+gem 'sprockets'
