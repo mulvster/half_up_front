@@ -202,15 +202,15 @@ function renderMilestone(milestone) {
 
   var budgetLabel = $('<dt>').text('Budget');
 
-  let paymentPercentage = $('<dd>').addClass('payment-percentage freelancer-editable')
+  var paymentPercentage = $('<dd>').addClass('payment-percentage freelancer-editable')
   .attr('data-update-field', 'payment-percentage');
   paymentPercentage.text("0");
 
-  let milestoneAmount = $('<dd>').addClass('milestone-amount')
-  .attr('data-update-field', 'milestone-amount');;
+  var milestoneAmount = $('<dd>').addClass('milestone-amount')
+  .attr('data-update-field', 'milestone-amount');
   milestoneAmount.text("");
 
-  let budgetValue = $('<span class="budget-container">')
+  var budgetValue = $('<span class="budget-container">')
     .append($('<span>Percent (%) </span>'))
     .append($('<i class="fa fa-arrow-up arrow up-arrow"></i>'))
     .append($('<i class="fa fa-arrow-down arrow down-arrow"></i>'))
@@ -284,7 +284,7 @@ function renderMilestone(milestone) {
       console.log("ajax request complete")
     });
   });
-  let savebutton = $('<button>').addClass('save-milestone-btn').text('Save');
+  var savebutton = $('<button>').addClass('save-milestone-btn').text('Save');
   savebutton.attr(MILESTONE_DATA_ATTRIBUTE_NAME, milestone.id);
 
 list.append(savebutton, requirementbutton)
