@@ -50,9 +50,12 @@
         <div class="corral">
           <div id="content" class="contentContainer">
             <header>
-              <p class="paypal-logo paypal-logo-long">
+              <!--
+	      <p class="paypal-logo paypal-logo-long">
               <center><%= image_tag 'PayPalLogo.png', id: 'PayPalLogo', alt: 'PayPalLogo', class: 'paypaylogo' %></center>
               </p>
+	      -->
+	      <h3 class="paypal-logo paypal-logo-long"><center>Try the App in one of two user roles:</center></h3>
             </header>
             <!--
 	    <form action="http://127.0.0.1:3000/auth/paypal/callback" method="post" class="proceed maskable" name="login" autocomplete="off" novalidate="">
@@ -83,11 +86,11 @@
             <!-- <a href="http://127.0.0.1:3000/auth/paypal" class="button secondary" id="createAccount">Sign Up</a></div> -->
             <br>
 	    		
-	    <%= button_to "Sample Freelancer Account", 
+	    <%= button_to "Sample Freelancer Login", 
 	      "/sessions/1", :action => "show", 
 	      :class => "button secondary", :id => "createAccount", :method => :get %>
 	    <br>
- 	    <%= button_to "Sample Employer Account",
+ 	    <%= button_to "Sample Employer Login",
 	      "/sessions/2", :action => "show",
 	      :class => "button secondary", :id => "createAccount", :method => :get %>
 	    <br>
