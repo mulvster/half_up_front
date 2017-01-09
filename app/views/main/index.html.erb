@@ -54,7 +54,8 @@
               <center><%= image_tag 'PayPalLogo.png', id: 'PayPalLogo', alt: 'PayPalLogo', class: 'paypaylogo' %></center>
               </p>
             </header>
-            <form action="http://127.0.0.1:3000/auth/paypal/callback" method="post" class="proceed maskable" name="login" autocomplete="off" novalidate="">
+            <!--
+	    <form action="http://127.0.0.1:3000/auth/paypal/callback" method="post" class="proceed maskable" name="login" autocomplete="off" novalidate="">
               <div id="passwordSection" class="clearfix">
                 <div class="textInput" id="login_emaildiv">
                   <div class="fieldWrapper">
@@ -78,12 +79,19 @@
                   trouble logging in?</a></div>
               <input type="hidden" id="bp_mid" name="bp_mid" value="">
             </form>
-
-            <a href="http://127.0.0.1:3000/auth/paypal" class="button secondary" id="createAccount">Sign Up</a></div>
+	  -->	
+            <!-- <a href="http://127.0.0.1:3000/auth/paypal" class="button secondary" id="createAccount">Sign Up</a></div> -->
             <br>
-	    <a href="http://138.197.134.47:3000/users/1" class="button secondary" id="createAccount">Sample Freelancer Account</a></div>
-            <br>
-	    <a href="http://138.197.134.47:3000/users/2" class="button secondary" id="createAccount">Sample Employer Account</a>
+	    		
+	    <%= button_to "Sample Freelancer Account", 
+	      "/sessions/1", :action => "show", 
+	      :class => "button secondary", :id => "createAccount", :method => :get %>
+	    <br>
+ 	    <%= button_to "Sample Employer Account",
+	      "/sessions/2", :action => "show",
+	      :class => "button secondary", :id => "createAccount", :method => :get %>
+	    <br>
+	</div>
 	</div>
 	</div>
       </section>

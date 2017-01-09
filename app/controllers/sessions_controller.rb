@@ -16,13 +16,15 @@ class SessionsController < ApplicationController
 
 
   def create
-    user = User.from_omniauth(request.env['omniauth.auth'])
+    user = User.find_by_id(params[:id])
     session[:user_id] = user.id
     redirect_to user_path(user)
   end
 
   def show
-    @user = User.find_by_id(session[:user_id])
+    @user = User.find_by_id(params[:id])
+    session[:user_id] = @user.id
+    redirect_to user_path(@user)
   end
 
   def destroy
