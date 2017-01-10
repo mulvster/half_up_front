@@ -20,7 +20,7 @@ development:
   database: demo_test_development
   host: localhost
   pool: 5
-  username: half_up_front
+  username: huf1
   password: huf1
   timeout: 5000
 
@@ -58,9 +58,9 @@ test:
 
 production:
   adapter: postgresql
-  encoding: utf8
+  encoding: unicode
   database: half_up_front
-  host: localhost
+  # host: localhost
   pool: 5
   username: half_up_front
   password: huf1
