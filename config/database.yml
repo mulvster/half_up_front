@@ -62,7 +62,7 @@ production:
   database: half_up_front
   host: localhost
   pool: 5
-  username: half_up_front
+  username: deploy
   password: huf1
   timeout: 5000
 
