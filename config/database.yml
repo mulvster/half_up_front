@@ -60,7 +60,7 @@ production:
   adapter: postgresql
   encoding: unicode
   database: half_up_front
-  # host: localhost
+  host: localhost
   pool: 5
   username: half_up_front
   password: huf1
