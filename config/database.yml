@@ -17,7 +17,7 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: demo_test_development
+  database: half_up_front
   host: localhost
   pool: 5
   username: huf1
