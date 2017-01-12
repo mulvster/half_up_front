@@ -1,6 +1,6 @@
 var MILESTONE_DATA_ATTRIBUTE_NAME = 'data-milestone-id';
 
-var dispatcher = new WebSocketRails('138.197.134.47:80/websocket', false);
+var dispatcher = new WebSocketRails('127.0.0.1:6001/websocket', false);
 
 function handleUpdate(event) {
   dispatcher.trigger('update', {
