@@ -1,2 +1,8 @@
 GET http://138.197.134.47/websocket 500 (Internal Server Error)   // port 80
 
+GET http://138.197.134.47/websocket 502 (Bad Gateway)     // port 80 still, but after adding this bit here: https://github.com/websocket-rails/websocket-rails/issues/211#issuecomment-232175595
+
+GET http://127.0.0.1:3001/websocket net::ERR_SOCKET_NOT_CONNECTED
+
+
+
