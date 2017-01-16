@@ -1,9 +1,9 @@
 var MILESTONE_DATA_ATTRIBUTE_NAME = 'data-milestone-id';
 
-var pumaServer = 'unix:///home/deploy/apps/half_up_front/shared/tmp/sockets/half_up_front-puma.sock:80'
 // var dispatcher = new WebSocketRails(window.location.hostname + '/websocket', false);
+var dispatcher = new WebSocketRails('localhost:3001' + '/websocket', false);
+
 // var dispatcher = new WebSocketRails('localhost:3000' + '/websocket', false);
-var dispatcher = new WebSocketRails(pumaServer + '/websocket', false);
 
 function handleUpdate(event) {
   dispatcher.trigger('update', {
