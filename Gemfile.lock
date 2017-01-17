@@ -85,6 +85,9 @@ GEM
     capistrano-rvm (0.1.2)
       capistrano (~> 3.0)
       sshkit (~> 1.2)
+    capistrano-websocket-rails (0.2.0)
+      capistrano (>= 3.0.0)
+      websocket-rails (>= 0.7.0)
     capistrano3-puma (1.2.1)
       capistrano (~> 3.0)
       puma (>= 2.6)
@@ -287,6 +290,7 @@ DEPENDENCIES
   capistrano-faster-assets
   capistrano-rails
   capistrano-rvm
+  capistrano-websocket-rails
   capistrano3-puma
   coffee-rails (~> 4.1.0)
   envyable
