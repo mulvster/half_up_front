@@ -7,6 +7,8 @@ require 'capistrano/bundler'
 require 'capistrano/rvm'
 require 'capistrano/puma'
 
+require 'capistrano/websocket-rails'
+
 require "capistrano/scm/git"
 install_plugin Capistrano::SCM::Git
 

@@ -84,6 +84,8 @@ group :development do
     gem 'capistrano-bundler', require: false
     gem 'capistrano3-puma',   require: false
     gem 'capistrano-faster-assets'
+    gem 'capistrano-websocket-rails'
+
 end
 
 gem 'puma'
