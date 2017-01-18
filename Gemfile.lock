@@ -185,7 +185,7 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rake (12.0.0)
     rdoc (4.3.0)
-    redis (3.3.2)
+    redis (3.2.0)
     redis-objects (1.2.1)
       redis (>= 3.0.2)
     ref (2.0.0)
@@ -279,7 +279,7 @@ DEPENDENCIES
   pry
   puma
   rails (= 4.2.6)
-  redis
+  redis (= 3.2.0)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   seed_dump
