@@ -30,7 +30,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 #Action Cable for Real-time communications (Milestones)
-gem 'actioncable', git: 'git@github.com:rails/actioncable', branch: 'archive'
+#gem 'actioncable', git: 'git@github.com:rails/actioncable', branch: 'archive'
 
 #Font-Awesome Icons
 gem "font-awesome-rails"
@@ -41,9 +41,9 @@ gem 'websocket-rails'
 # trying this for puma.
 #gem 'websocket-rails', github: 'moaa/websocket-rails', branch: 'threadsocket-rails'
 #gem 'websocket-rails-js', github: 'websocket-rails/websocket-rails-js', branch: 'sub_protocols'
-gem 'redis', '~>3.2'
+gem 'redis'#, '~>3.2'
 gem 'eventmachine', '1.0.9'
-gem 'faye-websocket', '0.10.0'
+#gem 'faye-websocket', '0.10.0'
 
 gem 'envyable' # for managing environment variables
 
