@@ -37,12 +37,13 @@ gem "font-awesome-rails"
 
 gem 'bootstrap', '~> 4.0.0.alpha5'
 
-gem 'websocket-rails'
+#gem 'websocket-rails'
 # trying this for puma.
 #gem 'websocket-rails', github: 'moaa/websocket-rails', branch: 'threadsocket-rails'
 #gem 'websocket-rails-js', github: 'websocket-rails/websocket-rails-js', branch: 'sub_protocols'
 gem 'redis', '3.2.0'
 gem 'eventmachine', '1.0.9'
+gem 'websocket-rails', github: 'moaa/websocket-rails', branch: 'sync_fixes'
 #gem 'faye-websocket', '0.10.0'
 
 gem 'envyable' # for managing environment variables
