@@ -8,7 +8,7 @@ require 'capistrano/rvm'
 require 'capistrano/puma'
 
 require 'capistrano/websocket-rails'
-# require 'redis'
+require 'redis'
 
 require "capistrano/scm/git"
 install_plugin Capistrano::SCM::Git
