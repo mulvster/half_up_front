@@ -45,7 +45,7 @@ gem 'redis'#, '3.2.0'
 gem 'eventmachine'#, '1.0.9'
 gem 'websocket-rails'#, github: 'moaa/websocket-rails', branch: 'sync_fixes'
 gem 'websocket-rails-js' # added 2017.01.20 because, haven't tried this yet.
-#gem 'faye-websocket', '0.10.0'
+gem 'faye-websocket', '0.10.0'
 
 gem 'envyable' # for managing environment variables
 
