@@ -252,8 +252,6 @@ GEM
       redis
       redis-objects
       thin
-    websocket-rails-js (0.0.1)
-      rails
 
 PLATFORMS
   ruby
@@ -293,7 +291,6 @@ DEPENDENCIES
   vuejs-rails
   web-console (~> 2.0)
   websocket-rails
-  websocket-rails-js
 
 BUNDLED WITH
    1.13.6
