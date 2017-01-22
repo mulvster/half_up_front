@@ -16,7 +16,7 @@ WebsocketRails.setup do |config|
   # Start the standalone server with rake websocket_rails:start_server
   # * Requires Redis
   config.standalone = true
-  config.redis_options = {:host => '138.197.134.47', :port => '6379', :password => 'reJ4NK^l^$bl!p'}
+  config.redis_options = {:host => '127.0.0.1', :port => '6379', :password => 'reJ4NK^l^$bl!p'}
   # Change to true to enable channel synchronization between
   # multiple server instances.
   # * Requires Redis.
