@@ -20,12 +20,12 @@ WebsocketRails.setup do |config|
   config.redis_options = {:host => '138.197.134.47', :port => '6379', :password => 'reJ4NK^l^$bl!p'}
 
   # Rack Cors
-  config.middleware.use Rack::Cors do
-    allow do
-      origins '*'
-      resource '*', :headers => :any, :methods => [:get, :post, :options]
-    end
-  end
+  # config.middleware.use Rack::Cors do
+  #   allow do
+  #     origins '*'
+  #     resource '*', :headers => :any, :methods => [:get, :post, :options]
+  #   end
+  # end
 
   # Change to true to enable channel synchronization between
   # multiple server instances.
