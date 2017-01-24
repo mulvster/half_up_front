@@ -22,20 +22,20 @@ WebsocketRails.setup do |config|
   # * Requires Redis.
   config.synchronize = true
 
-  # try this recommended hack next time?
-  # $global_redis = Redis.new
+  # hack from https://github.com/websocket-rails/websocket-rails/issues/330
+  $global_redis = Redis.new
 
-  # module WebsocketRails
-  #   class Synchronization
-  #     def redis
-  #       @redis = $global_redis
-  #     end
+  module WebsocketRails
+    class Synchronization
+      def redis
+        @redis = $global_redis
+      end
 
-  #     def ruby_redis
-  #       @ruby_redis = $global_redis
-  #     end
-  #   end
-  # end
+      def ruby_redis
+        @ruby_redis = $global_redis
+      end
+    end
+  end
 
   # Uncomment and edit to point to a different redis instance.
   # Will not be used unless standalone or synchronization mode
