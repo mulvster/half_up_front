@@ -21,9 +21,9 @@ WebsocketRails.setup do |config|
 
   # CORS thing
   config.middleware.insert_before 0, "Rack::Cors", :debug => true, :logger => (->{ Rails.logger }) do
-  allow do
-    origins '*'
-    resource '*',
+    allow do
+      origins '*'
+      resource '*',
              :headers => :any,
              :credentials => true,
              :expose  => ['access-token', 'expiry', 'token-type', 'uid', 'client'],
