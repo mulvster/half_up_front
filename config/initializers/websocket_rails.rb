@@ -17,7 +17,7 @@ WebsocketRails.setup do |config|
   # * Requires Redis
   config.standalone = true
   config.redis_options = {:host => '138.197.134.47', :port => '6379', :password => 'reJ4NK^l^$bl!p'}
-  config.standalone_port = 80 # trying this
+  config.standalone_port = 3000 # trying this
 
   # Change to true to enable channel synchronization between
   # multiple server instances.
