@@ -4,7 +4,8 @@ var MILESTONE_DATA_ATTRIBUTE_NAME = 'data-milestone-id';
 
 // var dispatcher = new WebSocketRails('0.0.0.0: ' + '/websocket', false);
 
-var dispatcher = new WebSocketRails(window.location.hostname + ':3001/websocket', false);
+// trying port 80, default recommendation 3001
+var dispatcher = new WebSocketRails(window.location.hostname + ':80/websocket', false);
 
 function handleUpdate(event) {
   dispatcher.trigger('update', {
