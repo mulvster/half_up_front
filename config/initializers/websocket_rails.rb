@@ -19,15 +19,11 @@ WebsocketRails.setup do |config|
   config.standalone = true
   config.redis_options = {:host => '138.197.134.47', :port => '6379', :password => 'reJ4NK^l^$bl!p'}
 
-  # CORS thing
-  config.middleware.insert_before 0, "Rack::Cors", :debug => true, :logger => (->{ Rails.logger }) do
+  # Rack Cors
+  config.middleware.use Rack::Cors do
     allow do
       origins '*'
-      resource '*',
-             :headers => :any,
-             :credentials => true,
-             :expose  => ['access-token', 'expiry', 'token-type', 'uid', 'client'],
-             :methods => [:get, :post, :options, :delete, :put, :patch, :head]
+      resource '*', :headers => :any, :methods => [:get, :post, :options]
     end
   end
 
