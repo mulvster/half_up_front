@@ -17,7 +17,9 @@ WebsocketRails.setup do |config|
   # * Requires Redis
 
   config.standalone = true
-  config.redis_options = {:host => '138.197.134.47', :port => '6379', :password => 'reJ4NK^l^$bl!p'}
+  config.redis_options = {:host => '127.0.0.1', :port => '6379'}
+  # deploy:
+  #  config.redis_options = {:host => '138.197.134.47', :port => '6379', :password => 'reJ4NK^l^$bl!p'}
 
   # Rack Cors
   # config.middleware.use Rack::Cors do

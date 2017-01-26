@@ -30,22 +30,26 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 #Action Cable for Real-time communications (Milestones)
-#gem 'actioncable', git: 'git@github.com:rails/actioncable', branch: 'archive'
+gem 'actioncable', git: 'git@github.com:rails/actioncable', branch: 'archive'
 
 #Font-Awesome Icons
 gem "font-awesome-rails"
 
 gem 'bootstrap', '~> 4.0.0.alpha5'
 
-#gem 'websocket-rails'
 # trying this for puma.
 #gem 'websocket-rails', github: 'moaa/websocket-rails', branch: 'threadsocket-rails'
 #gem 'websocket-rails-js', github: 'websocket-rails/websocket-rails-js', branch: 'sub_protocols'
-gem 'redis', '3.2.0'
+
+gem 'redis', '3.2.0'  #{commented out as a test}
+
 #gem 'eventmachine'#, '1.0.9'
-gem 'rack-cors', :require => 'rack/cors'
+
+#gem 'rack-cors', :require => 'rack/cors'
+
 gem 'websocket-rails'#, github: 'moaa/websocket-rails', branch: 'sync_fixes'
-gem 'websocket-rails-js' # added 2017.01.20 because, haven't tried this yet.
+
+#gem 'websocket-rails-js' # added 2017.01.20 because, haven't tried this yet.
 #gem 'faye-websocket', '0.10.0'
 
 gem 'envyable' # for managing environment variables
@@ -82,6 +86,7 @@ group :development do
   gem 'spring'
 
 end
+
 
 group :development do
     gem 'capistrano',         require: false

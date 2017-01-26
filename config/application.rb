@@ -28,16 +28,16 @@ module HalfUpFront
     # Added for deployment in production:
     config.assets.initialize_on_precompile = false
 
-    config.middleware.insert_before 0, "Rack::Cors", :debug => true, :logger => (->{ Rails.logger }) do
-      allow do
-        origins '*'
-        resource '*',
-          :headers => :any,
-          :credentials => true,
-          :expose  => ['access-token', 'expiry', 'token-type', 'uid', 'client'],
-          :methods => [:get, :post, :options, :delete, :put, :patch, :head]
-      end
-    end
+    # config.middleware.insert_before 0, "Rack::Cors", :debug => true, :logger => (->{ Rails.logger }) do
+    #   allow do
+    #     origins '*'
+    #     resource '*',
+    #       :headers => :any,
+    #       :credentials => true,
+    #       :expose  => ['access-token', 'expiry', 'token-type', 'uid', 'client'],
+    #       :methods => [:get, :post, :options, :delete, :put, :patch, :head]
+    #   end
+    # end
 
   end
 end
