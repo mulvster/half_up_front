@@ -132,7 +132,7 @@ i#edit_linkedin {
 }
 
 div.editprofilecont {
-	margin-left: 25px;
+	margin-left: 20px;
 	margin-top: 25px;
 }
 
@@ -141,6 +141,7 @@ textarea#user_summary {
 }
 
 .edit_submit {
+  padding-top: 12px;
   text-align: center;
 
 }
@@ -154,54 +155,67 @@ textarea#user_summary {
 input#user_email {
   margin-bottom: 10px;
   border-radius: 5px;
+  width: 240px;
+  padding: 0 0 0 3px;
 }
 
 select#user_user_type {
   margin-bottom: 10px;
+  padding: 1px 0 1px 0;
 }
 
 input#user_hourly_rate {
   margin-bottom: 10px;
   border-radius: 5px;
+  padding: 0 0 0 2px;
 }
 
 input#user_git {
   margin-bottom: 10px;
   border-radius: 5px;
+  padding: 0 0 0 2px;
 }
 
 input#user_city {
    margin-left: 10px;
   border-radius: 5px;
+  padding: 0 0 0 2px;
 
 }
 
 input#user_province {
   margin-left: 10px;
   border-radius: 5px;
+  padding: 0 0 0 2px;
 
 }
 
 input#user_linked_in {
   border-radius: 5px;
+  margin-bottom: 5px;
+  padding: 0 0 0 2px;
 
 }
 
 input#user_country {
   border-radius: 5px;
+  padding: 0 0 0 2px;
 
 }
 
 input#user_first_name {
   border-radius: 5px;
+  padding: 1px 1px 2px 4px;
 }
 
 input#user_last_name {
   border-radius: 5px;
+  padding: 1px 1px 2px 4px;
 }
 
 textarea#user_summary {
   border-radius: 5px;
+  font-size: 130%;
 }
 
 .edit_submit input {
@@ -217,6 +231,16 @@ textarea#user_summary {
 }
 
 .summary {
-  padding-top: 8px;
+  padding-top: 6px;
   // top: 2.5em;
 }
+
+.edit_summary {
+  padding: 4px 0 4px 0;
+  font-size: 200%;
+}
+
+#edit-user-full-name {
+  padding: 22px 0 12px 0;
+}
+
