@@ -4,7 +4,7 @@ server '138.197.134.47', port: 22, roles: [:web, :app, :db], primary: true
 set :branch, :deploy #added to deploy on alternate branches
 set :repository, "git@github.com:mulvster/half_up_front.git"
 
-set :repo_url,        'git@github.com:NoamAscher/half_up_front.git'
+set :repo_url,        'git@github.com:mulvster/half_up_front.git'
 set :application,     'half_up_front'
 set :user,            'deploy'
 set :puma_threads,    [4, 16]
