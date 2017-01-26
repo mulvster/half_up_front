@@ -35,7 +35,7 @@ gem 'actioncable', git: 'git@github.com:rails/actioncable', branch: 'archive'
 #Font-Awesome Icons
 gem "font-awesome-rails"
 
-gem 'bootstrap', '~> 4.0.0.alpha5'
+gem 'bootstrap', '<= 4.0.0.alpha5'
 
 # trying this for puma.
 #gem 'websocket-rails', github: 'moaa/websocket-rails', branch: 'threadsocket-rails'
