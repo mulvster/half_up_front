@@ -35,7 +35,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 #Font-Awesome Icons
 gem "font-awesome-rails"
 
-gem 'bootstrap', '~> 4.0.0.alpha5'
+gem 'bootstrap', '<= 4.0.0.alpha5'
 
 #gem 'websocket-rails'
 # trying this for puma.
