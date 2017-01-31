@@ -3,10 +3,26 @@ section.edit_header {
   height: 325px;
 }
 
+// body {
+//   background-color: #f5f5fe;
+// }
+
+
 .container {
-  width: 50%;
-  height: 160%;
+  width: 52%;
+  height: 820px;
   margin-left: 25%;
+  margin-top: 40px;
+  padding: 0 18px 0 18px;
+  border: 1px solid black;
+}
+
+.container.viewing {
+  display: block;
+  float: top;
+  width: 44%;
+  height: 760px;
+  margin-left: 35%;
   border: 1px solid black;
 }
 
@@ -34,12 +50,22 @@ section.header {
 }
 
 
-a.btn.btn-lg.btn-success {
-	float: top;
-	margin-top: 10px;
-	margin-right: 10px;
-	color:  #efeff5;
-	box-shadow: 0 2px 2px 0 rgba(0,0,0,.20),0 3px 1px -2px rgba(0,0,0,.20),0 1px 5px 0 rgba(0,0,0,.20);
+// a.btn.btn-lg.btn-success {
+// 	float: top;
+// 	margin-top: 10px;
+// 	margin-right: 10px;
+// 	color:  #efeff5;
+// 	box-shadow: 0 2px 2px 0 rgba(0,0,0,.20),0 3px 1px -2px rgba(0,0,0,.20),0 1px 5px 0 rgba(0,0,0,.20);
+// }
+
+a.btn.btn-lg.btn-success.left {
+  font-size: 80%;
+  float: left;
+  margin-top: 10px;
+  margin-right: 30px;
+  padding: 0px;
+  color:  #efeff5;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.20),0 3px 1px -2px rgba(0,0,0,.20),0 1px 5px 0 rgba(0,0,0,.20);
 }
 
 .userlocation {
@@ -242,5 +268,22 @@ textarea#user_summary {
 
 #edit-user-full-name {
   padding: 22px 0 12px 0;
+}
+
+.client_sidebar {
+  padding: 25px 0 0 25px;
+  width: 360px;
+  float: left;
+}
+
+
+#sidebar_profile_photo {
+  padding-left: 80px;
+}
+
+.sidebar_flash {
+  display: block;
+  padding: 25px 0 10px 55px;
+  font-size: 140%;
 }
 
