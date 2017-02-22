@@ -13,6 +13,13 @@
 
 <iframe class="appearin" src="https://appear.in/half-up-front/<%= @job.id %>" width="400" height="480" frameborder="0"></iframe>
 
+<% if current_user.user_type == 'Employer' %>
+  <div class="demo_message">
+  <h6> For this demo version, please open the home page from either
+  another machine or another browser window in a different account, and log in as Freddy Freelancer. </h6>
+  </div>
+<% end %>
+
 <br>
 <br>
 <section class="col-xl-8 offset-xl-4 col-lg-9 offset-lg-3 col-md-7 offset-md-5 col-sm-6 offset-sm-6" id="allMilestones" data-job="<%= @job.id %>">

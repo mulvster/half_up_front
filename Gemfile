@@ -43,9 +43,9 @@ gem 'bootstrap', '<= 4.0.0.alpha5'
 #gem 'websocket-rails-js', github: 'websocket-rails/websocket-rails-js', branch: 'sub_protocols'
 gem 'redis', '3.2.0'
 #gem 'eventmachine'#, '1.0.9'
-gem 'rack-cors', :require => 'rack/cors'
+# gem 'rack-cors', :require => 'rack/cors'
 gem 'websocket-rails'#, github: 'moaa/websocket-rails', branch: 'sync_fixes'
-gem 'websocket-rails-js' # added 2017.01.20 because, haven't tried this yet.
+# gem 'websocket-rails-js' # added 2017.01.20 because, haven't tried this yet.
 #gem 'faye-websocket', '0.10.0'
 
 gem 'envyable' # for managing environment variables
@@ -89,8 +89,8 @@ group :development do
     gem 'capistrano-rails',   require: false
     gem 'capistrano-bundler', require: false
     gem 'capistrano3-puma',   require: false
-    gem 'capistrano-faster-assets'
-    gem 'capistrano-websocket-rails'
+    gem 'capistrano-faster-assets',   require: false
+    gem 'capistrano-websocket-rails',   require: false
 
 end
 
